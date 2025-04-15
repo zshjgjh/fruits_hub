@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "260849137592",
+    "project_id": "fruits-market-613e5",
+    "storage_bucket": "fruits-market-613e5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:260849137592:android:f0142904b9b6635b01814d",
+        "android_client_info": {
+          "package_name": "com.example.fruits_hub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuSF1kwGbltWzrkuVd-x14k31D5kRTF_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:260849137592:android:6803a3147005dff701814d",
+        "android_client_info": {
+          "package_name": "com.example.fruitshub_dashboard"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuSF1kwGbltWzrkuVd-x14k31D5kRTF_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,4 @@
+const kSupabaseUrl='https://sagguoazumgzbxzdfkfc.supabase.co';
+const kSupabaseKey='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNhZ2d1b2F6dW1nemJ4emRma2ZjIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczOTc3MzMwMCwiZXhwIjoyMDU1MzQ5MzAwfQ.76MFjBR_2woEITaKfsXFITx92cL-5lt051vdCiIi2MY';
+const kImagesStorage='images';
+const kProductStorage='products';
