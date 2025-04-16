@@ -13,13 +13,22 @@ import '../../features/dash_board/presentation/views/home_view.dart';
 
 abstract class AppRouters {
   static const kSplashView = '/';
+  static const kBoardingView = '/onBoarding';
+
+
+
 
 
   static final router = GoRouter(
     routes: [
       GoRoute(
         path: kSplashView,
+        builder: (context, state) => const SplashView(),
+      ),
+      GoRoute(
+        path: kBoardingView,
         builder: (context, state) => const OnBoardingView(),
       ),
+
     ],);
 }
