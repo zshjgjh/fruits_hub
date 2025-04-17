@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/features/splash_view/presentation/views/widgets/page_view_item_first.dart';
 import 'package:fruits_hub/features/splash_view/presentation/views/widgets/page_view_item_second.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../../core/utilis/app_routers.dart';
 import '../../../../../core/utilis/styles.dart';
 import '../../../../../generated/assets.dart';
 
@@ -40,7 +42,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
            scrollDirection: Axis.horizontal,
            controller: pageController,
            children: [
-            // PageViewItemFirst(),
+             PageViewItemFirst(),
              PageViewItemSecond()
            ],
          ),
@@ -59,11 +61,13 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
           maintainSize: true,
           maintainAnimation: true,
           maintainState: true,
-          visible: true ,
+          visible: currentIndex==2 ,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 24.0,horizontal: 8),
             child: CustomButton(
-                onPressed: (){},
+                onPressed: (){
+                  GoRouter.of(context).pushReplacement(AppRouters.kLoginView);
+                },
                 title: 'ابدأ الان',
                 backgroundColor: Styles.primaryColor,
                 borderRadius: 16,

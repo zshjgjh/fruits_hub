@@ -11,12 +11,14 @@ class CustomTextField extends StatefulWidget {
     this.maxLines=1,
     this.textInputType,
     this.onSaved,
-    this.hiddenText=false
+    this.hiddenText=false,
+    this.borderRadius
   });
 
 final String? labelText;
 final TextStyle? style;
 final int? maxLines;
+final double? borderRadius;
 final TextInputType? textInputType;
 final void Function(String?)? onSaved;
 final bool? hiddenText;
@@ -43,7 +45,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
       decoration: InputDecoration(
         labelText:widget.labelText,
         labelStyle: widget.style,
-
+        fillColor: Colors.grey.withOpacity(.02),
+        filled: true,
         suffixIcon: widget.hiddenText!?
         IconButton(onPressed:(){
           if(obSecureText==true){
@@ -59,16 +62,18 @@ class _CustomTextFieldState extends State<CustomTextField> {
             icon:Icon( Icons.remove_red_eye)):null,
 
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(widget.borderRadius!),
           borderSide: BorderSide(
+              width: 0.01,
               color: Color(0xFFE6E9EA),
               style: BorderStyle.solid,
           ),
         ) ,
 
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(widget.borderRadius!),
           borderSide: BorderSide(
+            width: 1,
               color: Styles.primaryColor,
               style: BorderStyle.solid
           ),

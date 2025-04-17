@@ -1,5 +1,7 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:fruits_hub/core/utilis/app_routers.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../core/utilis/styles.dart';
 import '../../../../../generated/assets.dart';
@@ -29,9 +31,14 @@ class PageViewItemFirst extends StatelessWidget {
                   onTap: (){
 
                   },
-                  child: Text(
-                    'تخط',
-                    style: Styles.semiBold13.copyWith(color: Color(0xFF949D9E)),
+                  child: GestureDetector(
+                    onTap: (){
+                      GoRouter.of(context).pushReplacement(AppRouters.kLoginView);
+                    },
+                    child: Text(
+                      'تخط',
+                      style: Styles.semiBold13.copyWith(color: Color(0xFF949D9E)),
+                    ),
                   ),
                 ),
               ),

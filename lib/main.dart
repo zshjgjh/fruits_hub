@@ -10,21 +10,20 @@ import 'core/utilis/services/supabase/supabase_storage_service.dart';
 import 'core/utilis/styles.dart';
 import 'firebase_options.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,);
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
- await SupaBaseStorageService.initSupabase();// initialize supa
+  await SupaBaseStorageService.initSupabase(); // initialize supa
 //  await SupaBaseDataBase.initSupabase();
- // await SupaBaseStorageService.createBucket(kImagesStorage);// create bucket
-  runApp(
-      DevicePreview(
+  // await SupaBaseStorageService.createBucket(kImagesStorage);// create bucket
+  runApp(DevicePreview(
     enabled: !kReleaseMode,
     builder: (context) => const MyApp(),
   ) // Wrap your app
-  );
+      );
 }
 
 class MyApp extends StatelessWidget {
@@ -36,12 +35,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       theme: ThemeData(
           fontFamily: 'Cairo',
-          colorScheme: ColorScheme.fromSeed(seedColor: Styles.primaryColor)),
-
+          ),
       locale: const Locale('ar'),
       debugShowCheckedModeBanner: false,
       routerConfig: AppRouters.router,
     );
   }
 }
-
