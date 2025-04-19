@@ -1,6 +1,8 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:expandable_page_view/expandable_page_view.dart';
 import 'package:flutter/material.dart';
+import 'package:fruits_hub/core/utilis/constants.dart';
+import 'package:fruits_hub/core/utilis/shared_prefrences.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/features/splash_view/presentation/views/widgets/page_view_item_first.dart';
 import 'package:fruits_hub/features/splash_view/presentation/views/widgets/page_view_item_second.dart';
@@ -66,6 +68,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
             padding: const EdgeInsets.symmetric(vertical: 24.0,horizontal: 8),
             child: CustomButton(
                 onPressed: (){
+                  SharedPreferencesSingelton.setBool(kIsOnBoardingViewSeen, true);
                   GoRouter.of(context).pushReplacement(AppRouters.kLoginView);
                 },
                 title: 'ابدأ الان',

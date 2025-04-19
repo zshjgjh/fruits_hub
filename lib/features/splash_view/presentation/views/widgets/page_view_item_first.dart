@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/utilis/app_routers.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../core/utilis/constants.dart';
+import '../../../../../core/utilis/shared_prefrences.dart';
 import '../../../../../core/utilis/styles.dart';
 import '../../../../../generated/assets.dart';
 
@@ -33,6 +35,7 @@ class PageViewItemFirst extends StatelessWidget {
                   },
                   child: GestureDetector(
                     onTap: (){
+                      SharedPreferencesSingelton.setBool(kIsOnBoardingViewSeen, true);
                       GoRouter.of(context).pushReplacement(AppRouters.kLoginView);
                     },
                     child: Text(

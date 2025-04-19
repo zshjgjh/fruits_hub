@@ -27,7 +27,6 @@ class _CreateAccountViewState extends State<CreateAccountView> {
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 12.0,horizontal: 12),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 20,
             children: [
               CustomTextField(
@@ -63,12 +62,12 @@ class _CreateAccountViewState extends State<CreateAccountView> {
 
                   Column(
                     children: [
-                      Text('من خلال إنشاء حساب ، فإنك توافق على',style: Styles.semiBold13,),
+                      Text('من خلال إنشاء حساب ، فإنك توافق على',style: Styles.semiBold13, textDirection: TextDirection.rtl,),
                       GestureDetector(
                           onTap: (){},
                           child: Text(
                             'الشروط والأحكام الخاصة بنا',
-                            style: Styles.semiBold13.copyWith(color: Styles.primaryColor),)),
+                            style: Styles.semiBold13.copyWith(color: Styles.primaryColor), textDirection: TextDirection.rtl,)),
 
                     ],
                   ),

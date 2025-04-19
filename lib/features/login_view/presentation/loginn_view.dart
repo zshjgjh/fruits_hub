@@ -36,7 +36,11 @@ class LoginView extends StatelessWidget {
                 textInputType: TextInputType.text,
                 borderRadius: 4,
               ),
-               Text('نسيت كلمة المرور؟',style: Styles.semiBold13.copyWith(color: Styles.primaryColor),),
+               GestureDetector(
+                 onTap: (){
+                   GoRouter.of(context).pushReplacement(AppRouters.kForgetPassword);
+                 },
+                   child: Text('نسيت كلمة المرور؟',style: Styles.semiBold13.copyWith(color: Styles.primaryColor),)),
               CustomButton(
                   onPressed:(){},
                   title: 'تسجيل دخول',

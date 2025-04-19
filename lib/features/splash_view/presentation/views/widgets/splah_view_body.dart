@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/utilis/app_routers.dart';
+import 'package:fruits_hub/core/utilis/constants.dart';
+import 'package:fruits_hub/core/utilis/shared_prefrences.dart';
 import 'package:go_router/go_router.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -38,10 +40,18 @@ class _SplashViewBodyState extends State<SplashViewBody> {
 
   }
  void navigation() {
-   Future.delayed((Duration(milliseconds: 1)),
-           () {
-         GoRouter.of(context).push(AppRouters.kBoardingView);
-       });
+   bool isOnBoardingSeen=SharedPreferencesSingelton.getBool(kIsOnBoardingViewSeen);
+
+
+     Future.delayed((Duration(milliseconds: 1)),
+             () {
+               if (isOnBoardingSeen==false) {
+                 GoRouter.of(context).push(AppRouters.kBoardingView);
+               } else{
+                 GoRouter.of(context).push(AppRouters.kLoginView);
+               }
+         });
+
  }
 
 }
