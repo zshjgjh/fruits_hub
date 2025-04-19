@@ -51,6 +51,7 @@ dependencies:
   dots_indicator: ^4.0.1
   flutter_bloc: ^8.1.6
   expandable_page_view: ^1.0.17
+  custom_check_box: ^0.0.4
   flutter:
     sdk: flutter
 

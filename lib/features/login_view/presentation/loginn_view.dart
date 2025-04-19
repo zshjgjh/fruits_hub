@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_hub/core/utilis/app_routers.dart';
 import 'package:fruits_hub/core/widgets/build_app_bar.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/core/widgets/cutom_text-field.dart';
 import 'package:fruits_hub/features/login_view/presentation/widgets/custom_signin_button.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/utilis/styles.dart';
 import '../../../generated/assets.dart';
@@ -16,7 +18,7 @@ class LoginView extends StatelessWidget {
       appBar: buildAppBar(context, title: 'تسجيل الدخول'),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 12.0,horizontal: 16),
+          padding: const EdgeInsets.symmetric(vertical: 12.0,horizontal: 12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 20,
@@ -46,7 +48,9 @@ class LoginView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   GestureDetector(
-                    onTap: (){},
+                    onTap: (){
+                      GoRouter.of(context).pushReplacement(AppRouters.kCreateAccount);
+                    },
                       child: Text(
                         'قم بانشاء حساب',
                         style: Styles.semiBold16.copyWith(color: Styles.primaryColor),)),
