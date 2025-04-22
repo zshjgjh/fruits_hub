@@ -1,16 +1,19 @@
 
 
 
-import 'package:fruits_hub/features/login_view/presentation/check_code_view.dart';
-import 'package:fruits_hub/features/login_view/presentation/create_account_view.dart';
-import 'package:fruits_hub/features/login_view/presentation/forget_password_view.dart';
-import 'package:fruits_hub/features/login_view/presentation/loginn_view.dart';
-import 'package:fruits_hub/features/login_view/presentation/new_password_view.dart';
+import 'package:fruits_hub/core/utilis/services/fire_base/fire_base_auth_service.dart';
+import 'package:fruits_hub/features/login_view/presentation/views/check_code_view.dart';
+import 'package:fruits_hub/features/login_view/presentation/views/create_account_view.dart';
+import 'package:fruits_hub/features/login_view/presentation/views/forget_password_view.dart';
+import 'package:fruits_hub/features/login_view/presentation/widgets/loginn_view_body.dart';
+import 'package:fruits_hub/features/login_view/presentation/views/new_password_view.dart';
 import 'package:fruits_hub/features/splash_view/presentation/views/on_boarding_view.dart';
 import 'package:fruits_hub/features/splash_view/presentation/views/splash_view.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/dash_board/presentation/views/home_view.dart';
+import '../../features/login_view/data/repos_impl/auth_repo_impl.dart';
+import '../../features/login_view/presentation/views/login_view.dart';
 
 
 
@@ -41,11 +44,11 @@ abstract class AppRouters {
       ),
       GoRoute(
         path: kLoginView,
-        builder: (context, state) => const LoginView(),
+        builder: (context, state) => LoginView(),
       ),
       GoRoute(
         path: kCreateAccount,
-        builder: (context, state) => const CreateAccountView(),
+        builder: (context, state) => CreateAccountView(),
       ),
       GoRoute(
         path: kForgetPassword,
