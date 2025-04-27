@@ -5,16 +5,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/widgets/build_app_bar.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/core/widgets/cutom_text-field.dart';
-import 'package:fruits_hub/features/login_view/data/repos_impl/auth_repo_impl.dart';
-import 'package:fruits_hub/features/login_view/presentation/widgets/custom_signin_button.dart';
 import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../../../core/utilis/app_routers.dart';
 import '../../../../core/utilis/styles.dart';
 import '../../../../generated/assets.dart';
-import '../manager/auth_cubit.dart';
-import '../widgets/build_dialog.dart';
+import '../manager/signup_cubit/signup_cubit.dart';
+
 
 class CreateAccountView extends StatefulWidget {
   const CreateAccountView({super.key,});
@@ -26,6 +24,7 @@ class CreateAccountView extends StatefulWidget {
 class _CreateAccountViewState extends State<CreateAccountView> {
   String? email;
   String? password;
+  String? name;
   bool isChecked = false;
   GlobalKey<FormState> key = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
@@ -34,20 +33,19 @@ class _CreateAccountViewState extends State<CreateAccountView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context, title: 'حساب جديد'),
-      body: BlocListener<AuthCubit, AuthState>(
+      body: BlocListener<SignUpCubit, SignUpState>(
         listener: (context, state) {
-          if (state is AuthLoading) {
+          if (state is SignUpLoading) {
             isLoading = true;
             setState(() {});
-          } else if (state is AuthFailure) {
+          } else if (state is SignUpFailure) {
             isLoading = false;
             setState(() {});
-            buildDialog(context, title: 'Fail', dialogType: DialogType.error);
+           AwesomeDialog(context:context,title: 'Fail',dialogType:DialogType.error ,btnOkOnPress: (){}).show();
           } else {
             isLoading = false;
             setState(() {});
-            buildDialog(context,
-                title: 'Success', dialogType: DialogType.success);
+            AwesomeDialog(context:context, title: 'Success', dialogType: DialogType.success,btnOkOnPress: (){}).show();
           }
         },
         child: SingleChildScrollView(
@@ -62,6 +60,9 @@ class _CreateAccountViewState extends State<CreateAccountView> {
                   spacing: 20,
                   children: [
                     CustomTextField(
+                      onSaved: (value) {
+                        name = value;
+                      },
                       labelText: 'الاسم كامل',
                       style: Styles.bold13.copyWith(color: Color(0xFF949D9E)),
                       textInputType: TextInputType.name,
@@ -126,7 +127,7 @@ class _CreateAccountViewState extends State<CreateAccountView> {
                           if (key.currentState!.validate()) {
                             if (isChecked == true) {
                               key.currentState!.save();
-                            BlocProvider.of<AuthCubit>(context).createUserWithEmailAndPassword(email!, password!);
+                            BlocProvider.of<SignUpCubit>(context).createUserWithEmailAndPassword(email!, password!,name!);
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(

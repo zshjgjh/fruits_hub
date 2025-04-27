@@ -12,7 +12,7 @@ import 'core/utilis/services/fire_base/fire_base_auth_service.dart';
 import 'core/utilis/services/supabase/supabase_storage_service.dart';
 import 'core/utilis/styles.dart';
 import 'features/login_view/data/repos_impl/auth_repo_impl.dart';
-import 'features/login_view/presentation/manager/auth_cubit.dart';
+import 'features/login_view/presentation/manager/signup_cubit/signup_cubit.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -37,16 +37,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AuthCubit>(
-      create: (context) => AuthCubit(authRepo:AuthRepoImpl(fireBaseAuthService: FireBaseAuthService())),
-      child: MaterialApp.router(
-        theme: ThemeData(
-          fontFamily: 'Cairo',
-        ),
-        locale: const Locale('ar'),
-        debugShowCheckedModeBanner: false,
-        routerConfig: AppRouters.router,
+    return MaterialApp.router(
+      theme: ThemeData(
+        fontFamily: 'Cairo',
       ),
+      locale: const Locale('ar'),
+      debugShowCheckedModeBanner: false,
+      routerConfig: AppRouters.router,
     );
   }
 }

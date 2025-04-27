@@ -4,7 +4,7 @@ import 'package:fruits_hub/core/utilis/app_routers.dart';
 import 'package:fruits_hub/core/widgets/build_app_bar.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/core/widgets/cutom_text-field.dart';
-import 'package:fruits_hub/features/login_view/presentation/widgets/build_dialog.dart';
+
 import 'package:go_router/go_router.dart';
 import '../../../../core/utilis/styles.dart';
 import '../../../../generated/assets.dart';
@@ -47,7 +47,7 @@ class NewPasswordView extends StatelessWidget {
 
               CustomButton(
                   onPressed:(){
-                    buildDialog(context, title: 'Success', dialogType: DialogType.success,);
+                    AwesomeDialog(context:context,title: 'Success',dialogType:DialogType.success );
                   },
                   title: 'إنشاء كلمة مرور جديدة',
                   backgroundColor: Styles.primaryColor,

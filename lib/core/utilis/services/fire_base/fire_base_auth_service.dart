@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fruits_hub/core/errors/server_failure.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class FireBaseAuthService {
   Future<User> createUserWithEmailAndPassword({required String email, required String password}) async {
@@ -23,12 +24,13 @@ class FireBaseAuthService {
     }
   }
 
-  Future<void> signinWithEmailAndPassword({required String email, required String password}) async{
+  Future<User> signinWithEmailAndPassword({required String email, required String password}) async{
     try {
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: email,
           password: password
       );
+      return credential.user!;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         throw ServerFailure('No user found for that email.');
@@ -41,4 +43,21 @@ class FireBaseAuthService {
       throw ServerFailure(e.toString());
     }
   }
+
+
+  Future<User> signInWithGoogle() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    return (await FirebaseAuth.instance.signInWithCredential(credential)).user!;
+  }
+
 }

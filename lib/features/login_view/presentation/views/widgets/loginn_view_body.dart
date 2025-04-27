@@ -5,15 +5,15 @@ import 'package:fruits_hub/core/utilis/app_routers.dart';
 import 'package:fruits_hub/core/widgets/build_app_bar.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/core/widgets/cutom_text-field.dart';
-import 'package:fruits_hub/features/login_view/presentation/widgets/build_dialog.dart';
-import 'package:fruits_hub/features/login_view/presentation/widgets/custom_signin_button.dart';
 import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-import '../../../../core/utilis/styles.dart';
-import '../../../../generated/assets.dart';
-import '../../data/repos_impl/auth_repo_impl.dart';
-import '../manager/auth_cubit.dart';
+import '../../../../../core/utilis/styles.dart';
+import '../../../../../generated/assets.dart';
+import '../../manager/signup_cubit/signup_cubit.dart';
+import '../../manager/singin_cubit/signin_cubit.dart';
+import 'custom_signin_button.dart';
+
 
 class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});
@@ -32,21 +32,19 @@ class _LoginViewBodyState extends State<LoginViewBody> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context, title: 'تسجيل الدخول'),
-      body: BlocListener<AuthCubit, AuthState>(
+      body: BlocListener<SigninCubit, SigninState>(
         listener: (context, state) {
-          if (state is AuthLoading) {
+          if (state is SigninLoading) {
             isLoading = true;
             setState(() {});
-          } else if (state is AuthFailure) {
+          } else if (state is SigninFailure) {
             isLoading = false;
             setState(() {});
-            buildDialog(context,
-                title: 'Fail', dialogType: DialogType.error);
+            AwesomeDialog(context:context,title: 'Fail',dialogType:DialogType.error,btnOkOnPress: (){} ).show();
           } else {
             isLoading = false;
             setState(() {});
-            buildDialog(context,
-                title: 'Success', dialogType: DialogType.success);
+            AwesomeDialog(context:context, title: 'Success', dialogType: DialogType.success,btnOkOnPress: (){}).show();
           }
         },
         child: SingleChildScrollView(
@@ -94,6 +92,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                         onPressed: () {
                           if (key.currentState!.validate()) {
                             key.currentState!.save();
+                            BlocProvider.of<SigninCubit>(context).signinWithEmailAndPassword(email!, password!);
 
                           } else {
                             autovalidateMode = AutovalidateMode.always;

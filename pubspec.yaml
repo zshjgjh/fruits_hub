@@ -53,7 +53,8 @@ dependencies:
   expandable_page_view: ^1.0.17
   custom_check_box: ^0.0.4
   awesome_dialog: ^3.2.1
-
+  google_sign_in: ^6.3.0
+  flutter_facebook_auth: ^3.5.0
   flutter:
     sdk: flutter
 
