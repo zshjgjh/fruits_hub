@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/utilis/app_routers.dart';
 import 'package:fruits_hub/core/utilis/constants.dart';
+import 'package:fruits_hub/core/utilis/services/fire_base/fire_auth_service.dart';
 import 'package:fruits_hub/core/utilis/shared_prefrences.dart';
 import 'package:go_router/go_router.dart';
 
@@ -43,12 +44,17 @@ class _SplashViewBodyState extends State<SplashViewBody> {
    bool isOnBoardingSeen=SharedPreferencesSingelton.getBool(kIsOnBoardingViewSeen);
 
 
-     Future.delayed((Duration(milliseconds: 1)),
+     Future.delayed((Duration(milliseconds: 5)),
              () {
-               if (isOnBoardingSeen==false) {
-                 GoRouter.of(context).push(AppRouters.kBoardingView);
+               var isUserSignin=FireAuthService().isUserSignin();
+               if (isOnBoardingSeen==true) {
+                 if(isUserSignin ==true){
+                   GoRouter.of(context).push(AppRouters.kHomeView);
+                 }else{
+                   GoRouter.of(context).push(AppRouters.kLoginView);
+                 }
                } else{
-                 GoRouter.of(context).push(AppRouters.kLoginView);
+                 GoRouter.of(context).push(AppRouters.kBoardingView);
                }
          });
 

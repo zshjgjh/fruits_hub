@@ -3,3 +3,5 @@ const kSupabaseKey='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSI
 const kImagesStorage='images';
 const kProductStorage='products';
 const kIsOnBoardingViewSeen='isOnBoardingSeen';
+const kUsers='users';
+const kSaveUserLocally='user';

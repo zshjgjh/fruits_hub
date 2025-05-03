@@ -14,14 +14,14 @@ import '../../../../generated/assets.dart';
 import '../manager/signup_cubit/signup_cubit.dart';
 
 
-class CreateAccountView extends StatefulWidget {
-  const CreateAccountView({super.key,});
+class SignupView extends StatefulWidget {
+  const SignupView({super.key,});
 
   @override
-  State<CreateAccountView> createState() => _CreateAccountViewState();
+  State<SignupView> createState() => _SignupViewState();
 }
 
-class _CreateAccountViewState extends State<CreateAccountView> {
+class _SignupViewState extends State<SignupView> {
   String? email;
   String? password;
   String? name;
@@ -41,11 +41,18 @@ class _CreateAccountViewState extends State<CreateAccountView> {
           } else if (state is SignUpFailure) {
             isLoading = false;
             setState(() {});
-           AwesomeDialog(context:context,title: 'Fail',dialogType:DialogType.error ,btnOkOnPress: (){}).show();
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Center(child: Text(state.errorMessage)),backgroundColor: Colors.redAccent,));
           } else {
             isLoading = false;
             setState(() {});
-            AwesomeDialog(context:context, title: 'Success', dialogType: DialogType.success,btnOkOnPress: (){}).show();
+            ScaffoldMessenger.of(context).
+            showSnackBar(SnackBar(
+              content: Center(child: Text('Success')),
+              backgroundColor: Colors.green,
+              duration: Duration(seconds: 2),));
+
+            GoRouter.of(context).pushReplacement(AppRouters.kLoginView);
+
           }
         },
         child: SingleChildScrollView(
@@ -127,7 +134,8 @@ class _CreateAccountViewState extends State<CreateAccountView> {
                           if (key.currentState!.validate()) {
                             if (isChecked == true) {
                               key.currentState!.save();
-                            BlocProvider.of<SignUpCubit>(context).createUserWithEmailAndPassword(email!, password!,name!);
+                            BlocProvider.of<SignUpCubit>(context).createUserWithEmailAndPassword(email:email!,password:  password!,name:name!);
+
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(

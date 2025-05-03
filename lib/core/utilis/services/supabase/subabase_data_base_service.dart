@@ -2,9 +2,10 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../constants.dart';
-import '../fire_base/fire_storage_service.dart';
+import '../data_base_service.dart';
+import '../fire_base/fire_store_service.dart';
 
-class SupaBaseDataBase implements DataBase {
+class SupaBaseDataBase implements DataBaseService {
   static late Supabase supabase;
   static initSupabase() async {
     supabase = await Supabase.initialize(

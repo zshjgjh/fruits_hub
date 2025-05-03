@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fruits_hub/core/errors/server_failure.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class FireBaseAuthService {
+class FireAuthService {
   Future<User> createUserWithEmailAndPassword({required String email, required String password}) async {
     try {
       final credential = await FirebaseAuth.instance
@@ -44,7 +44,6 @@ class FireBaseAuthService {
     }
   }
 
-
   Future<User> signInWithGoogle() async {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
@@ -59,5 +58,12 @@ class FireBaseAuthService {
     // Once signed in, return the UserCredential
     return (await FirebaseAuth.instance.signInWithCredential(credential)).user!;
   }
+
+  Future<void> deleteUser() async {
+    await FirebaseAuth.instance.currentUser!.delete();
+  }
+  bool isUserSignin()  {
+    return FirebaseAuth.instance.currentUser !=null;
+}
 
 }

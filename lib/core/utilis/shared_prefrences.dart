@@ -11,4 +11,10 @@ class SharedPreferencesSingelton{
   static getBool(String key){
     return instance.getBool(key)??false;
   }
+  static setString(String key,String value){
+    instance.setString(key, value);
+  }
+  static getString(String key){
+    return instance.getString(key)??false;
+  }
 }

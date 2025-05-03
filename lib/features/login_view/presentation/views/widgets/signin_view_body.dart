@@ -15,14 +15,14 @@ import '../../manager/singin_cubit/signin_cubit.dart';
 import 'custom_signin_button.dart';
 
 
-class LoginViewBody extends StatefulWidget {
-  const LoginViewBody({super.key});
+class SigninViewBody extends StatefulWidget {
+  const SigninViewBody({super.key});
 
   @override
-  State<LoginViewBody> createState() => _LoginViewBodyState();
+  State<SigninViewBody> createState() => _SigninViewBodyState();
 }
 
-class _LoginViewBodyState extends State<LoginViewBody> {
+class _SigninViewBodyState extends State<SigninViewBody> {
   String? email;
   String? password;
   GlobalKey<FormState> key = GlobalKey();
@@ -40,11 +40,12 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           } else if (state is SigninFailure) {
             isLoading = false;
             setState(() {});
-            AwesomeDialog(context:context,title: 'Fail',dialogType:DialogType.error,btnOkOnPress: (){} ).show();
+           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Center(child: Text(state.errorMessage)),backgroundColor: Colors.redAccent,));
           } else {
             isLoading = false;
             setState(() {});
-            AwesomeDialog(context:context, title: 'Success', dialogType: DialogType.success,btnOkOnPress: (){}).show();
+
+            GoRouter.of(context).pushReplacement(AppRouters.kHomeView);
           }
         },
         child: SingleChildScrollView(
@@ -92,7 +93,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                         onPressed: () {
                           if (key.currentState!.validate()) {
                             key.currentState!.save();
-                            BlocProvider.of<SigninCubit>(context).signinWithEmailAndPassword(email!, password!);
+                            BlocProvider.of<SigninCubit>(context).signinWithEmailAndPassword(email:email!, password:password!);
 
                           } else {
                             autovalidateMode = AutovalidateMode.always;

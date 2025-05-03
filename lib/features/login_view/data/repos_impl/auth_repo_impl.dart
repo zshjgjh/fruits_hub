@@ -1,36 +1,49 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:fruits_hub/core/errors/server_failure.dart';
-import 'package:fruits_hub/core/utilis/services/fire_base/fire_base_auth_service.dart';
+import 'package:fruits_hub/core/utilis/constants.dart';
+import 'package:fruits_hub/core/utilis/services/fire_base/fire_auth_service.dart';
+import 'package:fruits_hub/core/utilis/services/fire_base/fire_store_service.dart';
+import 'package:fruits_hub/core/utilis/shared_prefrences.dart';
 import 'package:fruits_hub/features/login_view/data/models/user_model.dart';
 
 import 'package:fruits_hub/features/login_view/domain/entities/user_entity.dart';
 
+import '../../../../core/utilis/save_user_locally.dart';
+import '../../../../core/utilis/services/data_base_service.dart';
 import '../../domain/repos/auth_repo.dart';
 
 class AuthRepoImpl implements AuthRepo{
-  final FireBaseAuthService fireBaseAuthService;
+  final FireAuthService fireBaseAuthService;
+  final DataBaseService dataBaseService;
 
-  AuthRepoImpl({required this.fireBaseAuthService});
+  AuthRepoImpl({required this.fireBaseAuthService,required this.dataBaseService});
   @override
-  Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword(String email, String password,String name) async {
+  Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword({required String email, required String password,required String name}) async {
+  User? user;
    try {
-     var result=await fireBaseAuthService.createUserWithEmailAndPassword(email: email, password: password);
-     UserModel userModel= UserModel.fromFirebaseUser(result);
-     UserEntity userEntity= userModel.toEntity();
+     var user=await fireBaseAuthService.createUserWithEmailAndPassword(email: email, password: password);
+     UserEntity userEntity= UserEntity(name: name, email: user.email!, id: user.uid);
+    await addUserData(path: kUsers, userEntity: userEntity, id: user.uid);
+    addUserDataLocally(userEntity);
      return right(userEntity);
    } catch (e) {
+     if(user != null){
+       await fireBaseAuthService.deleteUser();
+     }
      return left(ServerFailure(e.toString()));
    }
    
   }
 
   @override
-  Future<Either<Failure, UserEntity>> signinWithEmailAndPassword(String email, String password) async {
+  Future<Either<Failure, UserEntity>> signinWithEmailAndPassword({required String email,required String password}) async {
     try {
-      var result=await fireBaseAuthService.signinWithEmailAndPassword(email: email, password: password);
-      UserModel userModel= UserModel.fromFirebaseUser(result);
-      UserEntity userEntity= userModel.toEntity();
+      var user=await fireBaseAuthService.signinWithEmailAndPassword(email: email, password: password);
+      UserEntity userEntity= await getUserData(path: kUsers, id: user.uid);
       return Right(userEntity);
     } catch (e) {
       return left(ServerFailure(e.toString()));
@@ -40,12 +53,23 @@ class AuthRepoImpl implements AuthRepo{
 
   @override
   Future<Either<Failure,UserEntity>> signinWithGoogle() async {
+    User? user;
+
     try {
-      var result=await fireBaseAuthService.signInWithGoogle();
-      UserModel userModel= UserModel.fromFirebaseUser(result);
-      UserEntity userEntity= userModel.toEntity();
+      var user=await fireBaseAuthService.signInWithGoogle();
+      UserEntity userEntity= UserEntity(name: user.displayName!, email: user.email!, id: user.uid);
+      var isUserExists=dataBaseService.isDataExists(path: kUsers, id: user.uid);
+      if (isUserExists==true) {
+       await getUserData(path: kUsers, id: user.uid);
+      }else{
+        await addUserData(path: kUsers, userEntity: userEntity, id: user.uid);
+        addUserDataLocally(userEntity);
+      }
       return Right(userEntity);
     } catch (e) {
+      if(user != null){
+        await fireBaseAuthService.deleteUser();
+      }
       return left(ServerFailure(e.toString()));
     }
   }
@@ -54,6 +78,19 @@ class AuthRepoImpl implements AuthRepo{
   Future<Either<Failure, UserEntity>> signinWithFacebook() {
     // TODO: implement signinWithFacebook
     throw UnimplementedError();
+  }
+
+  @override
+  Future<void> addUserData({required String path,required UserEntity userEntity,required String id}) async {
+   await dataBaseService.addData(path: path, data: UserModel.fromEntity(userEntity).toJson(), id: id);
+  }
+
+  @override
+  Future<UserEntity> getUserData({required String path, required String id}) async {
+ var result=  await dataBaseService.getData(path: path,id: id);
+ UserEntity userEntity=(UserModel.fromJson(result)).toEntity();
+ return userEntity;
+
   }
 
 }
