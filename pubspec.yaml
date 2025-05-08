@@ -55,6 +55,9 @@ dependencies:
   awesome_dialog: ^3.2.1
   google_sign_in: ^6.3.0
   flutter_facebook_auth: ^3.5.0
+  stylish_bottom_bar: ^1.1.1
+  provider: ^6.1.5
+  persistent_bottom_nav_bar: ^6.2.1
   flutter:
     sdk: flutter
 

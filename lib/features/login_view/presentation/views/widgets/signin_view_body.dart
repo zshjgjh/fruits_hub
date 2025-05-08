@@ -31,7 +31,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, title: 'تسجيل الدخول'),
+      appBar: buildAppBar(context, title: 'SignIn'),
       body: BlocListener<SigninCubit, SigninState>(
         listener: (context, state) {
           if (state is SigninLoading) {
@@ -64,7 +64,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                       onSaved: (value) {
                         email = value;
                       },
-                      labelText: 'البريد الالكتروني',
+                      labelText: 'Email',
                       style: Styles.bold13.copyWith(color: Color(0xFF949D9E)),
                       textInputType: TextInputType.emailAddress,
                       borderRadius: 4,
@@ -73,7 +73,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                       onSaved: (value) {
                         password = value;
                       },
-                      labelText: 'كلمة المرور',
+                      labelText: 'Password',
                       style: Styles.bold13.copyWith(color: Color(0xFF949D9E)),
                       hiddenText: true,
                       textInputType: TextInputType.text,
@@ -85,7 +85,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                               .pushReplacement(AppRouters.kForgetPassword);
                         },
                         child: Text(
-                          'نسيت كلمة المرور؟',
+                          'Forget password?',
                           style: Styles.semiBold13
                               .copyWith(color: Styles.primaryColor),
                         )),
@@ -99,27 +99,28 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                             autovalidateMode = AutovalidateMode.always;
                           }
                         },
-                        title: 'تسجيل دخول',
+                        title: 'Sign In',
                         backgroundColor: Styles.primaryColor,
                         borderRadius: 16,
                         titleStyle:
-                            Styles.bold16.copyWith(color: Colors.white)),
+                            Styles.bold16.copyWith(color: Colors.white),
+                      width: double.infinity,
+                      height: 54,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        Text('Dont have account?',
+                          style: Styles.semiBold16
+
+                        ),
                         GestureDetector(
-                            onTap: () {
-                              GoRouter.of(context)
-                                  .pushReplacement(AppRouters.kCreateAccount);
-                            },
-                            child: Text(
-                              'قم بانشاء حساب',
-                              style: Styles.semiBold16
-                                  .copyWith(color: Styles.primaryColor),
-                            )),
-                        Text(
-                          'لا تمتلك حساب؟',
-                          style: Styles.semiBold16,
+                          onTap: () {
+                            GoRouter.of(context)
+                                .pushReplacement(AppRouters.kCreateAccount);
+                          },
+                          child: Text('  Create account',
+                            style: Styles.semiBold16.copyWith(color: Styles.primaryColor),
+                          ),
                         ),
                       ],
                     ),
@@ -132,7 +133,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                         )),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text('أو', style: Styles.semiBold16),
+                          child: Text('OR', style: Styles.semiBold16),
                         ),
                         Expanded(
                             child: Divider(
@@ -143,7 +144,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                     ),
                     CustomSigninButton(
                       onPressed: () {},
-                      title: 'تسجيل بواسطة ابل',
+                      title: 'SignIn with Apple',
                       borderRadius: 16,
                       titleStyle: Styles.semiBold16,
                       leading: Assets.imagesApple,
@@ -152,7 +153,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                     ),
                     CustomSigninButton(
                       onPressed: () {},
-                      title: 'تسجيل بواسطة جوجل',
+                      title: 'SignIn with Google',
                       borderRadius: 16,
                       titleStyle: Styles.semiBold16,
                       leading: Assets.imagesGmail,
@@ -161,7 +162,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                     ),
                     CustomSigninButton(
                       onPressed: () {},
-                      title: 'تسجيل بواسطة فيسبوك',
+                      title: 'SignIn with Facebook',
                       borderRadius: 16,
                       titleStyle: Styles.semiBold16,
                       leading: Assets.imagesFacebook,

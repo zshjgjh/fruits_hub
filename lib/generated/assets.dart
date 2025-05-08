@@ -4,15 +4,24 @@ class Assets {
 
   static const String imagesApple = 'assets/images/apple.png';
   static const String imagesArrowBack = 'assets/images/arrowBack.png';
+  static const String imagesAvatar = 'assets/images/avatar.png';
   static const String imagesCircles = 'assets/images/circles.png';
   static const String imagesFacebook = 'assets/images/facebook.png';
+  static const String imagesFilter = 'assets/images/filter.png';
   static const String imagesFruitbasket = 'assets/images/fruitbasket.png';
+  static const String imagesFruits = 'assets/images/fruits.png';
   static const String imagesGmail = 'assets/images/gmail.png';
+  static const String imagesGreenad = 'assets/images/greenad.png';
   static const String imagesGreenbg = 'assets/images/greenbg.png';
+  static const String imagesHeart = 'assets/images/heart.png';
   static const String imagesLeaf = 'assets/images/leaf.png';
   static const String imagesLogo = 'assets/images/logo.png';
+  static const String imagesNotification = 'assets/images/notification.png';
   static const String imagesPasswordchange = 'assets/images/passwordchange.png';
   static const String imagesPineapple = 'assets/images/pineapple.png';
   static const String imagesPinkbg = 'assets/images/pinkbg.png';
+  static const String imagesSearch = 'assets/images/search.png';
+  static const String imagesStrawberry = 'assets/images/strawberry.png';
+  static const String imagesSwaparrow = 'assets/images/swaparrow.png';
 
 }

@@ -16,16 +16,18 @@ import '../../../../core/widgets/build_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+import 'home_view.dart';
+
+class MainView extends StatelessWidget {
+  const MainView({super.key});
 
   @override
   Widget build(BuildContext context) {
     final tabProvider = Provider.of<TabControllerProvider>(context);
 
     return Scaffold(
-      body:HomeViewBody(),
-      bottomNavigationBar: buildBottomBar(tabProvider: tabProvider ),
+      body: HomeView(),
+      bottomNavigationBar: buildBottomBar(tabProvider: tabProvider),
     );
   }
 }

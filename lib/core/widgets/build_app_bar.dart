@@ -2,12 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../generated/assets.dart';
 import '../utilis/styles.dart';
 
-AppBar buildAppBar(BuildContext context,
-    {String? action, required String title}) {
+AppBar buildAppBar(BuildContext context, {String? action, required String title,Widget? leading}) {
   return AppBar(
     automaticallyImplyLeading: false,
+    leading: leading,
     title: Text(
       title,
       style: Styles.bold19,

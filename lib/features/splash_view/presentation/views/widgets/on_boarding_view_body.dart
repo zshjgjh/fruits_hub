@@ -74,7 +74,9 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
                 title: 'ابدأ الان',
                 backgroundColor: Styles.primaryColor,
                 borderRadius: 16,
-                titleStyle: Styles.bold16.copyWith(color: Color(0xFFFFFFFF))
+                titleStyle: Styles.bold16.copyWith(color: Color(0xFFFFFFFF)),
+              width: double.infinity,
+              height: 54,
             ),
           ),
         ),

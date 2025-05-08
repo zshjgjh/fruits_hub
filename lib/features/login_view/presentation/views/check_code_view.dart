@@ -14,15 +14,15 @@ class CheckCodeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, title: 'التحقق من الرمز'),
+      appBar: buildAppBar(context, title: 'Check code'),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 12.0,horizontal: 12),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 20,
             children: [
-              Text('أدخل الرمز الذي أرسلناه إلى هاتفك',
+              Text('Enter Code',
                 style: Styles.semiBold16.copyWith(color: Color(0xFF616A6B)),
 
                 maxLines: 2,),
@@ -74,14 +74,16 @@ class CheckCodeView extends StatelessWidget {
                   onPressed:(){
                     GoRouter.of(context).pushReplacement(AppRouters.kNewPassword);
                   },
-                  title: 'تحقق من الرمز',
+                  title: 'Check code',
                   backgroundColor: Styles.primaryColor,
                   borderRadius:16,
-                  titleStyle: Styles.bold16.copyWith(color: Colors.white)
+                  titleStyle: Styles.bold16.copyWith(color: Colors.white),
+                width: double.infinity,
+                height: 54,
               ),
 
               Center(
-                child: Text('إعادة إرسال الرمز',
+                child: Text('Resend code',
                   style: Styles.semiBold16.copyWith(color: Styles.primaryColor),
                   maxLines: 2,),
               ),

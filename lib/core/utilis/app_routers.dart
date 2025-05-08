@@ -2,7 +2,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/utilis/services/data_base_service.dart';
 import 'package:fruits_hub/core/utilis/services/fire_base/fire_auth_service.dart';
 import 'package:fruits_hub/core/utilis/services/fire_base/fire_store_service.dart';
-import 'package:fruits_hub/features/home_view/presentation/views/home_view.dart';
+import 'package:fruits_hub/features/home_view/presentation/views/main_view.dart';
+import 'package:fruits_hub/features/home_view/presentation/views/products_view.dart';
+import 'package:fruits_hub/features/home_view/presentation/views/widgets/best_seller.dart';
 import 'package:fruits_hub/features/login_view/presentation/manager/signup_cubit/signup_cubit.dart';
 import 'package:fruits_hub/features/login_view/presentation/views/check_code_view.dart';
 import 'package:fruits_hub/features/login_view/presentation/views/signup_view.dart';
@@ -25,6 +27,8 @@ abstract class AppRouters {
   static const kCheckCode = '/checkcodeview';
   static const kNewPassword = '/newpassword';
   static const kHomeView = '/homeview';
+  static const kBestSeller = '/bestseller';
+  static const kProducts = '/products';
 
 
   static final router = GoRouter(
@@ -39,7 +43,7 @@ abstract class AppRouters {
       ),
       GoRoute(
         path: kLoginView,
-        builder: (context, state) => SigninView(),
+        builder: (context, state) =>const SigninView(),
       ),
       GoRoute(
         path: kCreateAccount,
@@ -63,7 +67,15 @@ abstract class AppRouters {
       ),
       GoRoute(
         path: kHomeView,
-        builder: (context, state) => const HomeView(),
+        builder: (context, state) => const MainView(),
+      ),
+      GoRoute(
+        path: kBestSeller,
+        builder: (context, state) => const BestSellerView(),
+      ),
+      GoRoute(
+        path: kProducts,
+        builder: (context, state) => const ProductsView(),
       ),
 
     ],);

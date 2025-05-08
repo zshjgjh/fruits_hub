@@ -17,10 +17,10 @@ class FireStoreService implements DataBaseService {
   }
 
   @override
-  Future<Map<String,dynamic>> getData({required String path,Map<String, dynamic>? query, String? id,}) async {
+  Future<dynamic> getData({required String path,Map<String, dynamic>? query, String? id,}) async {
     if (id != null) {
       var data = await fireStore.collection(path).doc(id).get();
-      return data.data() as Map<String,dynamic> ;
+      return data.data() as Map<String,dynamic> ;// return is one product that is why return is dynamic
     } else {
       Query<Map<String, dynamic>> data = fireStore.collection(path);
       if (query != null) {
@@ -35,7 +35,7 @@ class FireStoreService implements DataBaseService {
         }
       }
       var result = await data.get();
-      return result.docs.map((e) => e.data()).toList() as Map<String,dynamic>;
+      return result.docs.map((e) => e.data()).toList();// return is list of products
     }
   }
 

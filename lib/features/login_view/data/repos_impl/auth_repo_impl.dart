@@ -44,6 +44,7 @@ class AuthRepoImpl implements AuthRepo{
     try {
       var user=await fireBaseAuthService.signinWithEmailAndPassword(email: email, password: password);
       UserEntity userEntity= await getUserData(path: kUsers, id: user.uid);
+      addUserDataLocally(userEntity);
       return Right(userEntity);
     } catch (e) {
       return left(ServerFailure(e.toString()));

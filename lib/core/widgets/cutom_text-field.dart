@@ -61,21 +61,22 @@ class _CustomTextFieldState extends State<CustomTextField> {
         },
             icon:Icon( Icons.remove_red_eye)):null,
 
-        border: OutlineInputBorder(
+        enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(widget.borderRadius!),
           borderSide: BorderSide(
               width: 0.1,
-              color: Color(0xFFE6E9EA),
-              style: BorderStyle.none,
+            color: Colors.grey.shade500,
+
           ),
         ) ,
 
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(widget.borderRadius!),
           borderSide: BorderSide(
-            width: 1,
-              color: Styles.primaryColor,
-              style: BorderStyle.solid
+            color: Colors.grey.shade300,
+            width:0.1,
+
+
           ),
         ) ,
 

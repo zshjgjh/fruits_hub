@@ -32,7 +32,7 @@ class _SignupViewState extends State<SignupView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, title: 'حساب جديد'),
+      appBar: buildAppBar(context, title: 'New account'),
       body: BlocListener<SignUpCubit, SignUpState>(
         listener: (context, state) {
           if (state is SignUpLoading) {
@@ -70,7 +70,7 @@ class _SignupViewState extends State<SignupView> {
                       onSaved: (value) {
                         name = value;
                       },
-                      labelText: 'الاسم كامل',
+                      labelText: 'Full name',
                       style: Styles.bold13.copyWith(color: Color(0xFF949D9E)),
                       textInputType: TextInputType.name,
                       borderRadius: 4,
@@ -79,7 +79,7 @@ class _SignupViewState extends State<SignupView> {
                       onSaved: (value) {
                         email = value;
                       },
-                      labelText: 'البريد الالكتروني',
+                      labelText: 'Email',
                       style: Styles.bold13.copyWith(color: Color(0xFF949D9E)),
                       textInputType: TextInputType.emailAddress,
                       borderRadius: 4,
@@ -88,32 +88,15 @@ class _SignupViewState extends State<SignupView> {
                       onSaved: (value) {
                         password = value;
                       },
-                      labelText: 'كلمة المرور',
+                      labelText: 'Password',
                       style: Styles.bold13.copyWith(color: Color(0xFF949D9E)),
                       hiddenText: true,
                       textInputType: TextInputType.text,
                       borderRadius: 4,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Column(
-                          children: [
-                            Text(
-                              'من خلال إنشاء حساب ، فإنك توافق على',
-                              style: Styles.semiBold13,
-                              textDirection: TextDirection.rtl,
-                            ),
-                            GestureDetector(
-                                onTap: () {},
-                                child: Text(
-                                  'الشروط والأحكام الخاصة بنا',
-                                  style: Styles.semiBold13
-                                      .copyWith(color: Styles.primaryColor),
-                                  textDirection: TextDirection.rtl,
-                                )),
-                          ],
-                        ),
                         CustomCheckBox(
                             checkedFillColor: Styles.primaryColor,
                             uncheckedFillColor: Colors.white,
@@ -126,7 +109,26 @@ class _SignupViewState extends State<SignupView> {
                             onChanged: (value) {
                               isChecked = value!;
                               setState(() {});
-                            })
+                            }),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'By creating an account, you agree to',
+                              style: Styles.semiBold13,
+                              textDirection: TextDirection.rtl,
+                            ),
+                            GestureDetector(
+                                onTap: () {},
+                                child: Text(
+                                  'Our Terms and Conditions',
+                                  style: Styles.semiBold13
+                                      .copyWith(color: Styles.primaryColor),
+                                  textDirection: TextDirection.rtl,
+                                )),
+                          ],
+                        ),
+
                       ],
                     ),
                     CustomButton(
@@ -140,33 +142,37 @@ class _SignupViewState extends State<SignupView> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                       content: Text(
-                                          'ارجو الموافقة على شروط الخصوصية')));
+                                          'Please agree to the privacy terms.')));
                             }
                           } else {
                             autovalidateMode = AutovalidateMode.always;
                           }
                         },
-                        title: 'إنشاء حساب جديد',
+                        title: 'Create new account',
                         backgroundColor: Styles.primaryColor,
                         borderRadius: 16,
                         titleStyle:
-                            Styles.bold16.copyWith(color: Colors.white)),
+                            Styles.bold16.copyWith(color: Colors.white),
+                      width: double.infinity,
+                      height: 54,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        GestureDetector(
-                            onTap: () {
-                              GoRouter.of(context)
-                                  .pushReplacement(AppRouters.kLoginView);
-                            },
-                            child: Text(
-                              'تسجيل دخول ',
-                              style: Styles.semiBold16
-                                  .copyWith(color: Styles.primaryColor),
-                            )),
                         Text(
-                          'تمتلك حساب بالفعل؟',
-                          style: Styles.semiBold16,
+                          'already have an account? ',
+                          style: Styles.semiBold16
+
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            GoRouter.of(context)
+                                .pushReplacement(AppRouters.kLoginView);
+                          },
+                          child: Text(
+                            'Sign In',
+                            style: Styles.semiBold16.copyWith(color: Styles.primaryColor),
+                          ),
                         ),
                       ],
                     ),
