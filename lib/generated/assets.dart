@@ -6,6 +6,7 @@ class Assets {
   static const String imagesArrowBack = 'assets/images/arrowBack.png';
   static const String imagesAvatar = 'assets/images/avatar.png';
   static const String imagesCircles = 'assets/images/circles.png';
+  static const String imagesClock = 'assets/images/clock.png';
   static const String imagesFacebook = 'assets/images/facebook.png';
   static const String imagesFilter = 'assets/images/filter.png';
   static const String imagesFruitbasket = 'assets/images/fruitbasket.png';
@@ -21,6 +22,7 @@ class Assets {
   static const String imagesPineapple = 'assets/images/pineapple.png';
   static const String imagesPinkbg = 'assets/images/pinkbg.png';
   static const String imagesSearch = 'assets/images/search.png';
+  static const String imagesSearchimg = 'assets/images/searchimg.png';
   static const String imagesStrawberry = 'assets/images/strawberry.png';
   static const String imagesSwaparrow = 'assets/images/swaparrow.png';
 

@@ -23,12 +23,11 @@ class ProductRepoImpl implements ProductRepo{
             'orderBy':'sellingCount',
             'descending':true,
             'limit':10
-          }) as List<Map<String, dynamic>> ;  ;
+          }) as List<Map<String, dynamic>> ;
 
       List<ProductModel> products= data.map((e) => ProductModel.fromJson(e)).toList();
 
       List<ProductEntity> productEntities=products.map((e) => e.toEntity()).toList();
-      print('${productEntities[0].name}');
       return right(productEntities);
     } catch (e) {
       return left(ServerFailure(e.toString()));
@@ -41,13 +40,49 @@ class ProductRepoImpl implements ProductRepo{
       var data= await supabaseDataBaseService.getData(path: kProductStorage) as List<Map<String, dynamic>> ;
       List<ProductModel> products= data.map((e) => ProductModel.fromJson(e)).toList();
       List<ProductEntity> productEntities=products.map((e) => e.toEntity()).toList();
-      print('${productEntities[0].name}');
       return right(productEntities);
 
     }  catch (e) {
       print('${e.toString()} failure in product repo');
       return left(ServerFailure(e.toString()));
     }
+  }
+
+  @override
+  Future<Either<Failure, List<ProductEntity>>> getOurProducts() async {
+    try {
+      var data =await supabaseDataBaseService.getData(
+          path: kProductStorage,
+          query: {
+            'isFeatured':true,
+          }) as List<Map<String, dynamic>> ;
+
+      List<ProductModel> products= data.map((e) => ProductModel.fromJson(e)).toList();
+
+      List<ProductEntity> productEntities=products.map((e) => e.toEntity()).toList();
+      return right(productEntities);
+    } catch (e) {
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<ProductEntity>>> getSearchProducts({required String searchWord}) async {
+    try {
+      var data =await supabaseDataBaseService.getData(
+          path: kProductStorage,
+          query: {
+            'searchWord':searchWord,
+          }) as List<Map<String, dynamic>> ;
+
+      List<ProductModel> products= data.map((e) => ProductModel.fromJson(e)).toList();
+
+      List<ProductEntity> productEntities=products.map((e) => e.toEntity()).toList();
+      return right(productEntities);
+    } catch (e) {
+      return left(ServerFailure(e.toString()));
+    }
+
   }
 
 }

@@ -4,9 +4,9 @@ import 'package:fruits_hub/core/utilis/app_routers.dart';
 import 'package:fruits_hub/core/widgets/build_app_bar.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/widgets/products_bloc_builder.dart';
 
-import '../../../../../core/utilis/styles.dart';
-import '../../../../../generated/assets.dart';
-import '../../manager/get_products_cubit.dart';
+import '../../../../core/utilis/styles.dart';
+import '../../../../generated/assets.dart';
+import '../manager/get_products_cubit.dart';
 
 class BestSellerView extends StatefulWidget {
   const BestSellerView({

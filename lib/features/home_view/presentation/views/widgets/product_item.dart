@@ -25,14 +25,17 @@ final ProductEntity productEntity;
             spacing: 5,
             children: [
               GestureDetector(
-                  child: GestureDetector(child: Image.asset(Assets.imagesHeart,height: 20,width: 25,)),),
-              CachedNetworkImage(imageUrl:productEntity.imageUrl??'',),
+                  child: GestureDetector(child: Image.asset(Assets.imagesHeart,height: 25,width: 30,)),),
+              SizedBox(
+                height: 100,
+                  width: 120,
+                  child: Image.network('${productEntity.imageUrl}',fit: BoxFit.cover,)),
               Text(productEntity.name,style: Styles.semiBold16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text('${productEntity.price}',style: Styles.bold16.copyWith(color: Color(0xFFF4A91F)),),
-                  Text(' / pound',style: Styles.semiBold16.copyWith(color: Color(0xFFF8C76D)),),
+                  Text(r'$ / pound',style: Styles.semiBold16.copyWith(color: Color(0xFFF8C76D)),),
                   Spacer(),
                   Container(
                     height: 40,

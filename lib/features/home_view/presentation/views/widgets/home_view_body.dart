@@ -6,7 +6,7 @@ import 'package:fruits_hub/core/utilis/save_user_locally.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/features/home_view/domain/entities/product_entity.dart';
 import 'package:fruits_hub/features/home_view/presentation/manager/get_products_cubit.dart';
-import 'package:fruits_hub/features/home_view/presentation/views/widgets/best_seller.dart';
+import 'package:fruits_hub/features/home_view/presentation/views/best_seller_view.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/widgets/home_view_appBar.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/widgets/product_item.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/widgets/products_bloc_builder.dart';
@@ -16,6 +16,7 @@ import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 import '../../../../../core/utilis/styles.dart';
 import '../../../../../generated/assets.dart';
+import '../search_view.dart';
 import 'ad_item.dart';
 
 class HomeViewBody extends StatefulWidget {
@@ -31,8 +32,9 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   @override
   void initState() {
     super.initState();
-      BlocProvider.of<GetProductsCubit>(context).getProducts();
+    BlocProvider.of<GetProductsCubit>(context).getProducts();
   }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -43,7 +45,15 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             HomeViewAppBar(),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: SearchField(),
+              child: SearchField(
+                onTap: () {
+                  PersistentNavBarNavigator.pushNewScreen(
+                    context,
+                    screen: SearchView(),
+                    withNavBar: true, // OPTIONAL VALUE. True by default.
+                  );
+                },
+              ),
             ),
             AdItem(),
             Row(
@@ -55,7 +65,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                         screen: BestSellerView(),
                         withNavBar: true, // OPTIONAL VALUE. True by default.
                         pageTransitionAnimation:
-                        PageTransitionAnimation.cupertino,
+                            PageTransitionAnimation.cupertino,
                       );
                     },
                     child: Text(
@@ -65,10 +75,9 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 Spacer(),
                 GestureDetector(
                     child: Text(
-                      'Show more',
-                      style: Styles.regular13.copyWith(
-                          color: Color(0xFF949D9E)),
-                    ))
+                  'Show more',
+                  style: Styles.regular13.copyWith(color: Color(0xFF949D9E)),
+                ))
               ],
             ),
             SizedBox(
@@ -81,5 +90,3 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     );
   }
 }
-
-

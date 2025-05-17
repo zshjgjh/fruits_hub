@@ -33,4 +33,27 @@ class GetProductsCubit extends Cubit<GetProductsState> {
     }
     );
   }
+
+  Future<void> getOurProducts()async {
+    emit(GetProductsLoading());
+    var result= await productRepo.getOurProducts();
+    result.fold(
+            (failure){
+          emit(GetProductsFailure(errorMessage: failure.errorMessage));
+        }, (products){
+      emit(GetProductsSuccess(products:products ));
+    }
+    );
+  }
+  Future<void> getSearchProducts({required String searchWord})async {
+    emit(GetProductsLoading());
+    var result= await productRepo.getSearchProducts(searchWord: searchWord);
+    result.fold(
+            (failure){
+          emit(GetProductsFailure(errorMessage: failure.errorMessage));
+        }, (products){
+      emit(GetProductsSuccess(products:products ));
+    }
+    );
+  }
 }

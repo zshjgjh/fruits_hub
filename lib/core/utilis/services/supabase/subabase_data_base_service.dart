@@ -36,10 +36,15 @@ class SupaBaseDataBaseService implements DataBaseService {
         if (query['limit'] != null) {
           var limit = query['limit'];
           data =await  supabase.client.from(path).select().limit(limit);
+        }if (query['isFeatured'] != null){
+          var isFeatured=query['isFeatured'];
+          data= await supabase.client.from(path).select().eq('isFeatured', isFeatured);
+        }if (query['searchWord'] != null){
+          var searchWord=query['searchWord'];
+          data= await supabase.client.from(path).select().eq('name', searchWord);
         }
       }
         var result =  data;
-      print('${result.length},zzzz');
         return result;// return is list of products
       }
 

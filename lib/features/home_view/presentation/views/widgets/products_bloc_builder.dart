@@ -10,11 +10,11 @@ BlocBuilder<GetProductsCubit, GetProductsState> productsBlocBuilder() {
     builder: (context, state) {
       if(state is GetProductsSuccess) {
         List<ProductEntity> products = state.products;
-        print(products);
         return SliverGrid(
             delegate: SliverChildBuilderDelegate((BuildContext, index) {
               return ProductItem(productEntity: products[index],);
-            }, childCount: products.length
+            },
+                childCount: products.length
             ),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
@@ -22,10 +22,11 @@ BlocBuilder<GetProductsCubit, GetProductsState> productsBlocBuilder() {
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 20));
       }else if(state is GetProductsFailure){
-        print(state.errorMessage.toString());
         return SliverToBoxAdapter(child: Text(state.errorMessage.toString()));
-      }else{
+      }else if(state is GetProductsLoading){
         return SliverToBoxAdapter(child: Text('loading'));
+      }else{
+        return SliverToBoxAdapter(child: SizedBox());
       }
     },
   );

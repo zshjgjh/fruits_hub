@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_hub/features/home_view/presentation/views/widgets/best_seller.dart';
+import 'package:fruits_hub/features/home_view/presentation/views/best_seller_view.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 
