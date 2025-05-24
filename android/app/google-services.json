@@ -12,7 +12,12 @@
           "package_name": "com.example.fruits_hub"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "260849137592-2jk7qadqqs5tpni34s3hmievb18t5itm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCuSF1kwGbltWzrkuVd-x14k31D5kRTF_s"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "260849137592-2jk7qadqqs5tpni34s3hmievb18t5itm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "260849137592-2njit29lc2eq70p0narji5iq62n0q1k3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fruitshubDashboard"
+              }
+            }
+          ]
         }
       }
     },
@@ -31,7 +48,12 @@
           "package_name": "com.example.fruitshub_dashboard"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "260849137592-2jk7qadqqs5tpni34s3hmievb18t5itm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCuSF1kwGbltWzrkuVd-x14k31D5kRTF_s"
@@ -39,7 +61,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "260849137592-2jk7qadqqs5tpni34s3hmievb18t5itm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "260849137592-2njit29lc2eq70p0narji5iq62n0q1k3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fruitshubDashboard"
+              }
+            }
+          ]
         }
       }
     }

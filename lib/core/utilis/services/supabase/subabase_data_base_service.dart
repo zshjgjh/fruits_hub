@@ -41,7 +41,13 @@ class SupaBaseDataBaseService implements DataBaseService {
           data= await supabase.client.from(path).select().eq('isFeatured', isFeatured);
         }if (query['searchWord'] != null){
           var searchWord=query['searchWord'];
-          data= await supabase.client.from(path).select().eq('name', searchWord);
+          data= await supabase.client.from(path).select().ilike('name', '%$searchWord%');
+        }if (query['startRange'] != null && query['endRange']!= null){
+          var startRange=query['startRange'];
+          var endRange=query['endRange'];
+          data= await supabase.client.from(path).select().gte('price', startRange)
+          .lte('price', endRange)
+          .order('price',ascending: true);
         }
       }
         var result =  data;
@@ -54,5 +60,13 @@ class SupaBaseDataBaseService implements DataBaseService {
   Future<bool> isDataExists({required String path, required String id}) {
     // TODO: implement isDataExists
     throw UnimplementedError();
+  }
+
+  @override
+  Future<void> deletData({required String path, required String id}) async {
+    await supabase.client
+        .from(path)
+        .delete()
+        .eq('user-id', id);
   }
 }

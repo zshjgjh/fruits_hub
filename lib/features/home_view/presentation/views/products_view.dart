@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/widgets/build_app_bar.dart';
 import 'package:fruits_hub/core/widgets/build_bottom_bar.dart';
+import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/best_seller_view.dart';
+import 'package:fruits_hub/features/home_view/presentation/views/widgets/build_bottom_sheet.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/widgets/our_product_item.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/widgets/our_products-bloc_builder.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/widgets/product_item.dart';
@@ -13,7 +15,7 @@ import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import '../../../../../core/utilis/styles.dart';
 import '../../../../../generated/assets.dart';
 import '../../domain/entities/product_entity.dart';
-import '../manager/get_products_cubit.dart';
+import '../manager/products_cubit/products_cubit.dart';
 
 class ProductsView extends StatefulWidget {
   const ProductsView({
@@ -25,10 +27,11 @@ class ProductsView extends StatefulWidget {
 }
 
 class _ProductsViewState extends State<ProductsView> {
+
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<GetProductsCubit>(context).getProducts();
+    BlocProvider.of<ProductsCubit>(context).getProducts();
   }
 
   @override
@@ -49,7 +52,10 @@ class _ProductsViewState extends State<ProductsView> {
                     children: [
                       Text('Our Products', style: Styles.bold19,),
                       Spacer(),
-                      TextButton(onPressed: () {},
+                      TextButton(
+                        onPressed: () {
+                        buildBottomSheet(context);
+                      },
                         style: TextButton.styleFrom(
                           iconSize: 30,
                           side: BorderSide(color: Colors.grey.withOpacity(.2)),
@@ -99,4 +105,6 @@ class _ProductsViewState extends State<ProductsView> {
           ]),
     );
   }
+
+
 }

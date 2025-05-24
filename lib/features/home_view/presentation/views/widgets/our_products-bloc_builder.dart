@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../domain/entities/product_entity.dart';
-import '../../manager/get_products_cubit.dart';
+import '../../manager/products_cubit/products_cubit.dart';
 import 'our_product_item.dart';
 
-BlocBuilder<GetProductsCubit, GetProductsState> ourProductsBlocBuilder(context) {
-  BlocProvider.of<GetProductsCubit>(context).getOurProducts();
-  return BlocBuilder<GetProductsCubit, GetProductsState>(
+BlocBuilder<ProductsCubit, ProductsState> ourProductsBlocBuilder(context) {
+  BlocProvider.of<ProductsCubit>(context).getOurProducts();
+  return BlocBuilder<ProductsCubit, ProductsState>(
     builder: (context, state) {
-      if(state is GetProductsSuccess) {
+      if(state is ProductsSuccess) {
         List<ProductEntity> products = state.products;
         return SliverToBoxAdapter(
           child: SizedBox(
@@ -24,7 +24,7 @@ BlocBuilder<GetProductsCubit, GetProductsState> ourProductsBlocBuilder(context) 
               itemCount: products.length,),
           ),
         );
-      }else if(state is GetProductsFailure){
+      }else if(state is ProductsFailure){
         return SliverToBoxAdapter(child: Text(state.errorMessage.toString()));
       }else{
         return SliverToBoxAdapter(child: Text('loading'));

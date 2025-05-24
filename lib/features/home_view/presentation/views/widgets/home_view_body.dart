@@ -5,7 +5,7 @@ import 'package:fruits_hub/core/utilis/app_routers.dart';
 import 'package:fruits_hub/core/utilis/save_user_locally.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/features/home_view/domain/entities/product_entity.dart';
-import 'package:fruits_hub/features/home_view/presentation/manager/get_products_cubit.dart';
+import 'package:fruits_hub/features/home_view/presentation/manager/products_cubit/products_cubit.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/best_seller_view.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/widgets/home_view_appBar.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/widgets/product_item.dart';
@@ -32,7 +32,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<GetProductsCubit>(context).getProducts();
+    BlocProvider.of<ProductsCubit>(context).getProducts();
   }
 
   @override

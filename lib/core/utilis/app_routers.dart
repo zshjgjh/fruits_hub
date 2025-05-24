@@ -2,7 +2,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/utilis/services/data_base_service.dart';
 import 'package:fruits_hub/core/utilis/services/fire_base/fire_auth_service.dart';
 import 'package:fruits_hub/core/utilis/services/fire_base/fire_store_service.dart';
+import 'package:fruits_hub/core/utilis/services/supabase/subabase_data_base_service.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/main_view.dart';
+import 'package:fruits_hub/features/home_view/presentation/views/notification_view.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/products_view.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/best_seller_view.dart';
 import 'package:fruits_hub/features/login_view/presentation/manager/signup_cubit/signup_cubit.dart';
@@ -31,6 +33,9 @@ abstract class AppRouters {
   static const kBestSeller = '/bestseller';
   static const kProducts = '/products';
   static const kSearch = '/search';
+  static const kNotification = '/notification';
+
+
 
   static final router = GoRouter(
     routes: [
@@ -50,7 +55,7 @@ abstract class AppRouters {
         path: kCreateAccount,
         builder: (context, state) =>
             BlocProvider<SignUpCubit>(
-              create: (context) => SignUpCubit(authRepo: AuthRepoImpl(fireBaseAuthService: FireAuthService(), dataBaseService: FireStoreService())),
+              create: (context) => SignUpCubit(authRepo: AuthRepoImpl(fireBaseAuthService: FireAuthService(), fireStoreService: FireStoreService(), supaBaseDataBaseService: SupaBaseDataBaseService())),
               child: SignupView(),
             ),
       ),
@@ -82,6 +87,12 @@ abstract class AppRouters {
         path: kSearch,
         builder: (context, state) => const SearchView(),
       ),
+      GoRoute(
+        path: kNotification,
+        builder: (context, state) => const NotificationView(),
+      ),
+
 
     ],);
+
 }

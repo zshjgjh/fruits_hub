@@ -12,7 +12,9 @@ class CustomTextField extends StatefulWidget {
     this.textInputType,
     this.onSaved,
     this.hiddenText=false,
-    this.borderRadius
+    this.borderRadius,
+    this.controller,
+    this.onChanged
   });
 
 final String? labelText;
@@ -22,6 +24,8 @@ final double? borderRadius;
 final TextInputType? textInputType;
 final void Function(String?)? onSaved;
 final bool? hiddenText;
+ final TextEditingController? controller;
+ final void Function(String)? onChanged;
 
 
   @override
@@ -38,10 +42,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
           return 'field is required';
         }
       },
+      controller:widget.controller,
       maxLines:widget.maxLines ,
       keyboardType: widget.textInputType,
       obscureText:widget.hiddenText!?obSecureText:false,
       onSaved: widget.onSaved,
+      onChanged:widget.onChanged ,
       decoration: InputDecoration(
         labelText:widget.labelText,
         labelStyle: widget.style,
@@ -62,7 +68,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             icon:Icon( Icons.remove_red_eye)):null,
 
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(widget.borderRadius!),
+          borderRadius: BorderRadius.circular(widget.borderRadius??4),
           borderSide: BorderSide(
               width: 0.1,
             color: Colors.grey.shade500,

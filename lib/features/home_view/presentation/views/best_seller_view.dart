@@ -6,7 +6,7 @@ import 'package:fruits_hub/features/home_view/presentation/views/widgets/product
 
 import '../../../../core/utilis/styles.dart';
 import '../../../../generated/assets.dart';
-import '../manager/get_products_cubit.dart';
+import '../manager/products_cubit/products_cubit.dart';
 
 class BestSellerView extends StatefulWidget {
   const BestSellerView({
@@ -22,7 +22,7 @@ class _BestSellerViewState extends State<BestSellerView> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<GetProductsCubit>(context).getBestSellingProducts();
+    BlocProvider.of<ProductsCubit>(context).getBestSellingProducts();
   }
   @override
   Widget build(BuildContext context) {

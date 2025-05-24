@@ -3,12 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/widgets/product_item.dart';
 
 import '../../../domain/entities/product_entity.dart';
-import '../../manager/get_products_cubit.dart';
+import '../../manager/products_cubit/products_cubit.dart';
 
-BlocBuilder<GetProductsCubit, GetProductsState> productsBlocBuilder() {
-  return BlocBuilder<GetProductsCubit, GetProductsState>(
+BlocBuilder<ProductsCubit, ProductsState> productsBlocBuilder() {
+  return BlocBuilder<ProductsCubit, ProductsState>(
     builder: (context, state) {
-      if(state is GetProductsSuccess) {
+      if(state is ProductsSuccess) {
         List<ProductEntity> products = state.products;
         return SliverGrid(
             delegate: SliverChildBuilderDelegate((BuildContext, index) {
@@ -21,12 +21,10 @@ BlocBuilder<GetProductsCubit, GetProductsState> productsBlocBuilder() {
                 childAspectRatio: 3.2 / 4,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 20));
-      }else if(state is GetProductsFailure){
-        return SliverToBoxAdapter(child: Text(state.errorMessage.toString()));
-      }else if(state is GetProductsLoading){
+      }else if(state is ProductsFailure){
+        return SliverToBoxAdapter(child: Text('Fail to fetch products...please try later'));
+      }else {
         return SliverToBoxAdapter(child: Text('loading'));
-      }else{
-        return SliverToBoxAdapter(child: SizedBox());
       }
     },
   );

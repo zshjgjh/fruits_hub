@@ -1,7 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_hub/core/utilis/constants.dart';
 import 'package:fruits_hub/core/widgets/build_app_bar.dart';
 import 'package:fruits_hub/core/widgets/build_bottom_bar.dart';
+import 'package:fruits_hub/features/home_view/data/models/search_item_model.dart';
+import 'package:fruits_hub/features/home_view/presentation/manager/search_cubit/search_cubit.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/best_seller_view.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/widgets/our_product_item.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/widgets/our_products-bloc_builder.dart';
@@ -9,12 +14,13 @@ import 'package:fruits_hub/features/home_view/presentation/views/widgets/product
 import 'package:fruits_hub/features/home_view/presentation/views/widgets/products_bloc_builder.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/widgets/search_field.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/widgets/search_item.dart';
+import 'package:hive/hive.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 import '../../../../../core/utilis/styles.dart';
 import '../../../../../generated/assets.dart';
 import '../../domain/entities/product_entity.dart';
-import '../manager/get_products_cubit.dart';
+import '../manager/products_cubit/products_cubit.dart';
 
 class SearchView extends StatefulWidget {
   const SearchView({
@@ -26,15 +32,38 @@ class SearchView extends StatefulWidget {
 }
 
 class _ProductsViewState extends State<SearchView> {
+
+  bool isSearch = false;
+  bool isTyping = false;
+  String? searchWord;
+  Timer? debounce;
+  SearchItemModel? searchItemModel;
+  List<SearchItemModel> searchItems = [];
+
   @override
   void initState() {
-    isSearch=true;
+    isSearch = true;
+    BlocProvider.of<SearchCubit>(context).getSearchHistory();
     super.initState();
   }
 
-  bool isSearch = false;
-  bool isTyping=false;
-  String? searchWord;
+  void onSearchChanged({required String searchWord}) {
+    // Cancel previous timer
+    if (debounce?.isActive ?? false) debounce!.cancel();
+
+    // Start new timer
+    debounce = Timer(const Duration(milliseconds: 500), () {
+      BlocProvider.of<ProductsCubit>(context).getSearchProducts(
+          searchWord: searchWord);
+    });
+  }
+
+  @override
+  void dispose() {
+    debounce?.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,30 +79,31 @@ class _ProductsViewState extends State<SearchView> {
                     title: 'Search',
                     leading: Image.asset(Assets.imagesNotification)),
                 SearchField(
-                  onTapOutside: (event){
-                    FocusScope.of(context).unfocus();
-                    isSearch=true;
-                    isTyping=false;
+                  onTapOutside: (event) {
+                    FocusScope.of(context).unfocus(); //remove keyboard
+                    isSearch = true;
+                    isTyping = false;
                     setState(() {
 
                     });
                   },
-                  onChanged: (value){
-                    isTyping=true;
-                    isSearch=false;
+                  onChanged: (value) {
+                    isTyping = true;
+                    isSearch = false;
+                    BlocProvider.of<SearchCubit>(context).getSearchHistory();
+                    onSearchChanged(searchWord: value);
                     setState(() {
 
                     });
                   },
                   onSubmitted: (value) {
-                    isTyping=false;
-                    isSearch=false;
+                    isTyping = false;
+                    isSearch = false;
+                    searchItemModel = SearchItemModel(title: value);
+                   BlocProvider.of<SearchCubit>(context).addSearchItem(searchItemModel: searchItemModel!);
                     setState(() {
 
                     });
-                    searchWord=value;
-                    BlocProvider.of<GetProductsCubit>(context)
-                        .getSearchProducts(searchWord: searchWord!);
                   },
                 ),
                 SizedBox(
@@ -102,14 +132,25 @@ class _ProductsViewState extends State<SearchView> {
                       ),
                     ],
                   ),
+                  SizedBox(height: 30,),
                   SizedBox(
                     height: 200,
-                    child: ListView.builder(
-                      itemCount: 5,
-                      scrollDirection: Axis.vertical,
-                      itemBuilder: (context, index) {
-                        return SearchItem();
+                    child: BlocListener<SearchCubit, SearchState>(
+                      listener: (context, state) {
+                        if(state is SearchSuccess){
+                          searchItems=state.searchItems;
+                        }else if(state is SearchFailure){
+                          print(state.errorMessage);
+                        }
                       },
+                      child: ListView.builder(
+                        itemCount: searchItems.length,
+                        scrollDirection: Axis.vertical,
+                        itemBuilder: (context, index) {
+                          return searchItems.isNotEmpty? SearchItem(
+                            searchItemModel: searchItems[index],):SizedBox();
+                        },
+                      ),
                     ),
                   ),
                 ],
@@ -132,14 +173,18 @@ class _ProductsViewState extends State<SearchView> {
             ),
           ),
 
-          isSearch==false && isTyping==false? productsBlocBuilder():SliverToBoxAdapter(child: SizedBox()),
+          isSearch == false && isTyping == false
+              ? productsBlocBuilder()
+              : SliverToBoxAdapter(child: SizedBox()),
 
           SliverToBoxAdapter(
               child: SizedBox(
-            height: 20,
-          )),
+                height: 20,
+              )),
         ]),
       ),
     );
   }
 }
+
+

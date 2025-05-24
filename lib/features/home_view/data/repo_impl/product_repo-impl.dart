@@ -85,4 +85,23 @@ class ProductRepoImpl implements ProductRepo{
 
   }
 
+  @override
+  Future<Either<Failure, List<ProductEntity>>> getFilteredProducts({required num starRange,required num endRange}) async {
+    try {
+      var data =await supabaseDataBaseService.getData(
+          path: kProductStorage,
+          query: {
+            'startRange':starRange,
+            'endRange':endRange
+          }) as List<Map<String, dynamic>> ;
+
+      List<ProductModel> products= data.map((e) => ProductModel.fromJson(e)).toList();
+
+      List<ProductEntity> productEntities=products.map((e) => e.toEntity()).toList();
+      return right(productEntities);
+    } catch (e) {
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
 }

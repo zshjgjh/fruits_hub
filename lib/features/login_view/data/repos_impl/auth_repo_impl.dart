@@ -7,7 +7,9 @@ import 'package:fruits_hub/core/errors/server_failure.dart';
 import 'package:fruits_hub/core/utilis/constants.dart';
 import 'package:fruits_hub/core/utilis/services/fire_base/fire_auth_service.dart';
 import 'package:fruits_hub/core/utilis/services/fire_base/fire_store_service.dart';
+import 'package:fruits_hub/core/utilis/services/supabase/subabase_data_base_service.dart';
 import 'package:fruits_hub/core/utilis/shared_prefrences.dart';
+import 'package:fruits_hub/features/login_view/data/models/token_model.dart';
 import 'package:fruits_hub/features/login_view/data/models/user_model.dart';
 
 import 'package:fruits_hub/features/login_view/domain/entities/user_entity.dart';
@@ -18,18 +20,20 @@ import '../../domain/repos/auth_repo.dart';
 
 class AuthRepoImpl implements AuthRepo{
   final FireAuthService fireBaseAuthService;
-  final DataBaseService dataBaseService;
+  final FireStoreService fireStoreService;
+  final SupaBaseDataBaseService supaBaseDataBaseService;
 
-  AuthRepoImpl({required this.fireBaseAuthService,required this.dataBaseService});
+  AuthRepoImpl( {required this.fireBaseAuthService,required this.fireStoreService,required this.supaBaseDataBaseService,});
   @override
   Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword({required String email, required String password,required String name}) async {
   User? user;
+
    try {
      var user=await fireBaseAuthService.createUserWithEmailAndPassword(email: email, password: password);
      UserEntity userEntity= UserEntity(name: name, email: user.email!, id: user.uid);
     await addUserData(path: kUsers, userEntity: userEntity, id: user.uid);
     addUserDataLocally(userEntity);
-     return right(userEntity);
+    return right(userEntity);
    } catch (e) {
      if(user != null){
        await fireBaseAuthService.deleteUser();
@@ -55,11 +59,10 @@ class AuthRepoImpl implements AuthRepo{
   @override
   Future<Either<Failure,UserEntity>> signinWithGoogle() async {
     User? user;
-
     try {
       var user=await fireBaseAuthService.signInWithGoogle();
       UserEntity userEntity= UserEntity(name: user.displayName!, email: user.email!, id: user.uid);
-      var isUserExists=dataBaseService.isDataExists(path: kUsers, id: user.uid);
+      var isUserExists=fireStoreService.isDataExists(path: kUsers, id: user.uid);
       if (isUserExists==true) {
        await getUserData(path: kUsers, id: user.uid);
       }else{
@@ -83,14 +86,21 @@ class AuthRepoImpl implements AuthRepo{
 
   @override
   Future<void> addUserData({required String path,required UserEntity userEntity,required String id}) async {
-   await dataBaseService.addData(path: path, data: UserModel.fromEntity(userEntity).toJson(), id: id);
+   await fireStoreService.addData(path: path, data: UserModel.fromEntity(userEntity).toJson(), id: id);
   }
 
   @override
   Future<UserEntity> getUserData({required String path, required String id}) async {
- var result=  await dataBaseService.getData(path: path,id: id);
+ var result=  await fireStoreService.getData(path: path,id: id);
  UserEntity userEntity=(UserModel.fromJson(result)).toEntity();
  return userEntity;
+
+  }
+
+  @override
+  Future<void> addUserToken({required String path, required String token, required String userId}) async {
+  await supaBaseDataBaseService.addData(path: path, data: TokenModel(token: token, userId: userId).toJson(),);
+  await fireStoreService.addData(path: path, data: TokenModel(token: token, userId: userId).toJson(),);
 
   }
 
