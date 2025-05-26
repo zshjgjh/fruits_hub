@@ -7,6 +7,7 @@ import '../utilis/styles.dart';
 
 AppBar buildAppBar(BuildContext context, {String? action, required String title,Widget? leading}) {
   return AppBar(
+    backgroundColor: Colors.transparent,
     automaticallyImplyLeading: false,
     leading: leading,
     title: Text(

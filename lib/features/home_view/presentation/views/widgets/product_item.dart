@@ -14,8 +14,8 @@ final ProductEntity productEntity;
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
-        color: Colors.grey.withOpacity(.2),
+        borderRadius: BorderRadius.circular(8),
+        color: Colors.grey.withOpacity(.1),
       ),
 
       child: Padding(
@@ -30,12 +30,12 @@ final ProductEntity productEntity;
                 height: 100,
                   width: 120,
                   child: Image.network('${productEntity.imageUrl}',fit: BoxFit.cover,)),
-              Text(productEntity.name,style: Styles.semiBold16),
+              Text(productEntity.name,style: Styles.bold19),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text('${productEntity.price}',style: Styles.bold16.copyWith(color: Color(0xFFF4A91F)),),
-                  Text(r'$ / pound',style: Styles.semiBold16.copyWith(color: Color(0xFFF8C76D)),),
+                  Text('${productEntity.price}',style: Styles.bold19.copyWith(color: Color(0xFFF4A91F)),),
+                  Text(r' $ / pound',style: Styles.bold16.copyWith(color: Color(0xFFF8C76D)),),
                   Spacer(),
                   Container(
                     height: 40,

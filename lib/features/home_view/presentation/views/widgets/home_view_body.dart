@@ -37,11 +37,15 @@ class _HomeViewBodyState extends State<HomeViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16),
-      child: CustomScrollView(scrollDirection: Axis.vertical, slivers: [
-        SliverToBoxAdapter(
-          child: Column(spacing: 20, children: [
+    return CustomScrollView(
+        scrollDirection: Axis.vertical,
+        slivers: [
+      SliverToBoxAdapter(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16),
+          child: Column(
+              spacing: 20,
+              children: [
             HomeViewAppBar(),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -85,8 +89,8 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             )
           ]),
         ),
-        productsBlocBuilder()
-      ]),
-    );
+      ),
+      productsBlocBuilder()
+    ]);
   }
 }

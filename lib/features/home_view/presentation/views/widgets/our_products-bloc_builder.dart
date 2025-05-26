@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 import '../../../domain/entities/product_entity.dart';
 import '../../manager/products_cubit/products_cubit.dart';
+import '../best_seller_view.dart';
 import 'our_product_item.dart';
 
 BlocBuilder<ProductsCubit, ProductsState> ourProductsBlocBuilder(context) {
@@ -17,7 +19,17 @@ BlocBuilder<ProductsCubit, ProductsState> ourProductsBlocBuilder(context) {
             child: ListView.builder(itemBuilder: (context, int index) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: OurProductItem(productEntity:products[index] ,),
+                child: GestureDetector(
+                  onTap: (){
+                    PersistentNavBarNavigator.pushNewScreen(
+                      context,
+                      screen: BestSellerView(),
+                      withNavBar: true, // OPTIONAL VALUE. True by default.
+                      pageTransitionAnimation:
+                      PageTransitionAnimation.cupertino,
+                    );
+                  },
+                    child: OurProductItem(productEntity:products[index] ,)),
               );
             },
               scrollDirection: Axis.horizontal,

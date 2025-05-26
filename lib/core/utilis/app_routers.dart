@@ -5,6 +5,7 @@ import 'package:fruits_hub/core/utilis/services/fire_base/fire_store_service.dar
 import 'package:fruits_hub/core/utilis/services/supabase/subabase_data_base_service.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/main_view.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/notification_view.dart';
+import 'package:fruits_hub/features/home_view/presentation/views/product_detail_view.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/products_view.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/best_seller_view.dart';
 import 'package:fruits_hub/features/login_view/presentation/manager/signup_cubit/signup_cubit.dart';
@@ -34,6 +35,7 @@ abstract class AppRouters {
   static const kProducts = '/products';
   static const kSearch = '/search';
   static const kNotification = '/notification';
+  static const kProductDetails = '/productdatails';
 
 
 
@@ -90,6 +92,10 @@ abstract class AppRouters {
       GoRoute(
         path: kNotification,
         builder: (context, state) => const NotificationView(),
+      ),
+      GoRoute(
+        path: kProductDetails,
+        builder: (context, state) => const ProductDetailsView(),
       ),
 
 
