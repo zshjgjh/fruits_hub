@@ -10,7 +10,8 @@ class CustomButton extends StatelessWidget {
     required this.borderRadius,
     required this.titleStyle,
     this.width,
-    required this.height
+    required this.height,
+    this.isDisabled=false
   });
   final void Function() onPressed;
   final String title;
@@ -19,7 +20,7 @@ class CustomButton extends StatelessWidget {
   final TextStyle titleStyle;
   final double? width;
   final double height;
-
+ final bool? isDisabled ;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class CustomButton extends StatelessWidget {
               borderRadius
             ),
           ),
-          backgroundColor: backgroundColor,
+          backgroundColor:isDisabled!?Colors.grey: backgroundColor,
         ),
         onPressed: onPressed,
         child: Text(

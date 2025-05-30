@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/utilis/shared_prefrences.dart';
 import 'package:fruits_hub/core/widgets/build_bottom_bar.dart';
+import 'package:fruits_hub/features/cart_view/presentation/manager/cart_cubit.dart';
 import 'package:fruits_hub/features/home_view/data/models/search_item_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
 
 import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -36,8 +36,7 @@ void main() async {
   // await SupaBaseStorageService.createBucket(kImagesStorage);// create bucket
   await Hive.initFlutter();
   Hive.registerAdapter(SearchItemModelAdapter());
-    await Hive.openBox<SearchItemModel>(kSearchHistory);
-
+  await Hive.openBox<SearchItemModel>(kSearchHistory);
 
   runApp(DevicePreview(
     enabled: !kReleaseMode,
@@ -45,18 +44,24 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => TabControllerProvider()),
       ],
-      child: BlocProvider<ProductsCubit>(create: (BuildContext context) {
-        return ProductsCubit(
-            productRepo: ProductRepoImpl(
-                supabaseDataBaseService: SupaBaseDataBaseService()));
-      },
-      child: const MyApp()),
+      child: MultiBlocProvider(providers: [
+        BlocProvider<ProductsCubit>(
+          create: (BuildContext context) {
+            return ProductsCubit(
+                productRepo: ProductRepoImpl(
+                    supabaseDataBaseService: SupaBaseDataBaseService()));
+          },
+        ),
+      BlocProvider<CartCubit>(create: (BuildContext context) {
+        return CartCubit();
+      },)
+      ],
+          child: const MyApp()
+      ),
     ),
   ) // Wrap your app
-  );
+      );
 }
-
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

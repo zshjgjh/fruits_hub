@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/widgets/build_app_bar.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
+import 'package:fruits_hub/features/cart_view/data/entities/cart_entity.dart';
+import 'package:fruits_hub/features/cart_view/presentation/manager/cart_cubit.dart';
 import 'package:fruits_hub/features/cart_view/presentation/views/widgets/cart_item.dart';
 
 import '../../../../../core/utilis/styles.dart';
 import '../../../../../generated/assets.dart';
 
-class CartViewBody extends StatelessWidget {
-  const CartViewBody({super.key});
+class CartViewBody extends StatefulWidget {
+  const CartViewBody({super.key, required this.cartEntity});
+ final CartEntity cartEntity;
 
+  @override
+  State<CartViewBody> createState() => _CartViewBodyState();
+}
+
+class _CartViewBodyState extends State<CartViewBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,34 +25,53 @@ class CartViewBody extends StatelessWidget {
           body: CustomScrollView(
             slivers: [
               SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    spacing: 20,
-                    children: [
-                      buildAppBar(context, title: 'Cart'),
-                      Container(
-                        alignment: Alignment.center,
-                        height: 70,
-                        width: double.infinity,
-                        color: Color(0xffEBF9F1),
-                        child: Text('You have 3 items in cart',style: Styles.semiBold13.copyWith(color: Styles.primaryColor),),
-                      ),
-                      SizedBox(height: 20,)
+                child: Column(
+                  spacing: 20,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: buildAppBar(context, title: 'Cart'),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      height: 50,
+                      width: double.infinity,
+                      color: Color(0xffEBF9F1),
+                      child: Text('You have ${widget.cartEntity.calculateNumOfProducts()} items in cart',style: Styles.semiBold13.copyWith(color: Styles.primaryColor),),
+                    ),
+                    SizedBox(height: 20,)
 
 
 
 
-                    ],
-                  ),
+                  ],
                 ),
               ),
               SliverList(delegate: SliverChildBuilderDelegate(
-                childCount: 3,
+                childCount: widget.cartEntity.cartItems.length,
                       (context,index){
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 8.0),
-                          child: CartItem(),
+                          child:CartItem(cartItemEntity: widget.cartEntity.cartItems[index],
+                          onPressedPlus: (){
+                            BlocProvider.of<CartCubit>(context).addItem(widget.cartEntity.cartItems[index].productEntity);
+                            setState(() {
+
+                            });
+                          },
+                          onPressedMinus: (){
+                            BlocProvider.of<CartCubit>(context).removeItem(widget.cartEntity.cartItems[index].productEntity);
+                            setState(() {
+
+                            });
+                          },
+                          onPressedDelete: (){
+                            BlocProvider.of<CartCubit>(context).cartEntity.cartItems[index].count=0;
+                            widget.cartEntity.cartItems.remove(widget.cartEntity.cartItems[index]);
+                            setState(() {
+
+                            });
+                          },),
                         );
                       })),
 
@@ -55,11 +83,12 @@ class CartViewBody extends StatelessWidget {
                       Spacer(),
                       CustomButton(
                           onPressed: (){},
-                          title: r'Pay 20 $',
+                          title: 'Pay  ${widget.cartEntity.calculateTotalPrice()}'r'  $',
                           backgroundColor: Styles.primaryColor,
                           borderRadius: 16,
-                          titleStyle: Styles.bold16.copyWith(color: Colors.white),
-                          height: 54
+                          titleStyle: Styles.bold19.copyWith(color: Colors.white),
+                          height: 54,
+                          isDisabled: widget.cartEntity.cartItems.isEmpty?true:false,
                       ),
                     ],
                   ),

@@ -5,6 +5,7 @@ import '../../domain/entities/product_entity.dart';
 
 
 class ProductModel{
+  final String productID;
   final String name;
   final String code;
   final String description;
@@ -21,6 +22,7 @@ class ProductModel{
   String? imageUrl;
 
   ProductModel({
+    required this.productID,
     required this.name,
     required this.code,
     required this.description,
@@ -38,6 +40,7 @@ class ProductModel{
   });
  factory ProductModel.fromEntity(ProductEntity productEntity){
    return ProductModel(
+     productID: productEntity.productID,
        name: productEntity.name,
        code: productEntity.code,
        description: productEntity.description,
@@ -56,6 +59,7 @@ class ProductModel{
 
   factory ProductModel.fromJson(Map<String,dynamic> json){
     return ProductModel(
+      productID: json['productID'],
       name: json['name'],
       price: json['price'],
       description: json['description'],
@@ -68,7 +72,7 @@ class ProductModel{
       avgRating: json['avgRating'],
       ratingCount: json['ratingCount'],
       sellingCount: json['sellingCount'],
-      imageUrl: json['image'],
+      imageUrl: json['imageUrl'],
      // reviews: json['reviews'] != null ?
     //  List<ReviewModel>.from(
     //      json['reviews'].map((e) => ReviewModel.fromJson(json)))
@@ -77,6 +81,7 @@ class ProductModel{
   }
   ProductEntity toEntity(){
     return ProductEntity(
+      productID: productID,
         name: name,
         price: price,
         description: description,
@@ -95,6 +100,7 @@ class ProductModel{
   }
  toJason(){// same as to map
    return {
+     'productID':productID,
      'name': name,
      'price': price,
      'description': description,

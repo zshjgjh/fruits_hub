@@ -3,6 +3,7 @@ import 'dart:io';
 
 
 class ProductEntity{
+  final String productID;
   final String name;
   final String code;
   final String description;
@@ -20,6 +21,7 @@ class ProductEntity{
   String? imageUrl;
 
   ProductEntity({
+    required this.productID,
     required this.name,
     required this.code,
     required this.description,

@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_hub/features/cart_view/data/entities/cart_item_entity.dart';
 
 import '../../../../../core/utilis/styles.dart';
 import '../../../../../generated/assets.dart';
+import '../../manager/cart_cubit.dart';
 
 class CartItem extends StatelessWidget {
-  const CartItem({super.key});
+  const CartItem({super.key, required this.cartItemEntity, this.onPressedPlus, this.onPressedMinus, this.onPressedDelete});
 
+final CartItemEntity cartItemEntity;
+final void Function()? onPressedPlus;
+final void Function()? onPressedMinus;
+final void Function()? onPressedDelete;
   @override
   Widget build(BuildContext context) {
     return  Container(
@@ -21,16 +28,16 @@ class CartItem extends StatelessWidget {
           Container(
             height:100,
             color:Color(0xffF3F5F7),
-            child: Image.asset(Assets.imagesStrawberry,fit: BoxFit.cover,),
+            child: Image.network(cartItemEntity.productEntity.imageUrl??'',fit: BoxFit.cover,),
           ),
           Padding(
             padding: const EdgeInsets.all(6.0),
-            child: Container(
+            child: SizedBox(
               height: 90,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Strawberry',style: Styles.bold16,),
+                  Text(cartItemEntity.productEntity.name,style: Styles.bold16,),
                   Row(
                     spacing: 10,
                     children: [
@@ -42,12 +49,12 @@ class CartItem extends StatelessWidget {
                           color:  Color(0xFF1B5E37),
                         ),
                         child: IconButton(
-                          onPressed: (){},
+                          onPressed: onPressedPlus,
 
                           icon: Icon(Icons.add,color: Colors.white,),),
                       ),
 
-                      Text('4',style: Styles.bold16,),
+                      Text('${cartItemEntity.count}',style: Styles.bold16,),
 
                       Container(
                         height: 40,
@@ -57,7 +64,7 @@ class CartItem extends StatelessWidget {
                           color:  Color(0xff979899),
                         ),
                         child: IconButton(
-                          onPressed: (){},
+                          onPressed: onPressedMinus,
                           icon: Icon(Icons.minimize,color: Colors.white,),),
                       ),
                     ],
@@ -69,13 +76,21 @@ class CartItem extends StatelessWidget {
           Spacer(),
           Padding(
             padding: const EdgeInsets.all(6.0),
-            child: Container(
+            child: SizedBox(
               height: 90,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image.asset(Assets.imagesTrash),
-                  Text(r'3 $',style: Styles.bold16.copyWith(color: Styles.secondaryColor),)
+                  GestureDetector(
+                    onTap: onPressedDelete,
+                      child: Image.asset(Assets.imagesTrash)
+                  ),
+                  Row(
+                    children: [
+                      Text('${cartItemEntity.calculateTotalPrice()}'r' $',
+                        style: Styles.bold16.copyWith(color: Styles.secondaryColor),),
+                    ],
+                  )
 
                 ],
               ),

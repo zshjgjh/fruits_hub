@@ -3,6 +3,7 @@
 import '../../domain/entities/review_entity.dart';
 
 class ReviewModel{
+  final String productID;
   final String name;
   final String image;
   final num avgRating;
@@ -10,6 +11,7 @@ class ReviewModel{
   final String date;
 
   ReviewModel({
+    required this.productID,
     required this.name,
     required this.image,
     required this.avgRating,
@@ -19,6 +21,7 @@ class ReviewModel{
 
   factory ReviewModel.fromEntity(ReviewEntity reviewEntity){
     return ReviewModel(
+        productID: reviewEntity.productID,
         name: reviewEntity.name,
         image: reviewEntity.image,
         avgRating: reviewEntity.avgRating,
@@ -28,15 +31,17 @@ class ReviewModel{
 
   factory ReviewModel.fromJson(Map<String,dynamic> json){
     return ReviewModel(
+       productID:json['productID'] ,
         name: json['name'],
         image: json['image'],
-        avgRating: json['ratting'],
+        avgRating: json['avgRating'],
         date: json['date'],
-        description: json['reviewDescription']);
+        description: json['description']);
   }
 
   ReviewEntity toEntity(){
     return ReviewEntity(
+      productID: productID,
         name: name,
         image: image,
         avgRating: avgRating,
@@ -46,10 +51,11 @@ class ReviewModel{
   }
    toJason(){
     return{
+      'productID':productID,
       'name':name,
       'image':image,
-      'ratting':avgRating,
-      'reviewDescription':description,
+      'avgRating':avgRating,
+      'description':description,
       'date':date
     };
    }

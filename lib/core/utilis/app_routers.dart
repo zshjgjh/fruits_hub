@@ -17,6 +17,7 @@ import 'package:fruits_hub/features/login_view/presentation/views/new_password_v
 import 'package:fruits_hub/features/splash_view/presentation/views/on_boarding_view.dart';
 import 'package:fruits_hub/features/splash_view/presentation/views/splash_view.dart';
 import 'package:go_router/go_router.dart';
+import '../../features/cart_view/presentation/views/cart_view.dart';
 import '../../features/home_view/presentation/views/search_view.dart';
 import '../../features/login_view/data/repos_impl/auth_repo_impl.dart';
 import '../../features/login_view/presentation/views/signin_view.dart';
@@ -36,6 +37,7 @@ abstract class AppRouters {
   static const kSearch = '/search';
   static const kNotification = '/notification';
   static const kProductDetails = '/productdatails';
+  static const kCartView = '/cartview';
 
 
 
@@ -93,10 +95,15 @@ abstract class AppRouters {
         path: kNotification,
         builder: (context, state) => const NotificationView(),
       ),
+     // GoRoute(
+      //  path: kProductDetails,
+   //     builder: (context, state) => const ProductDetailsView(),
+    //  ),
       GoRoute(
-        path: kProductDetails,
-        builder: (context, state) => const ProductDetailsView(),
+        path: kCartView,
+        builder: (context, state) => const CartView(),
       ),
+
 
 
     ],);
