@@ -10,7 +10,7 @@ class CustomButton extends StatelessWidget {
     required this.borderRadius,
     required this.titleStyle,
     this.width,
-    required this.height,
+    this.height,
     this.isDisabled=false
   });
   final void Function() onPressed;
@@ -19,7 +19,7 @@ class CustomButton extends StatelessWidget {
   final double borderRadius;
   final TextStyle titleStyle;
   final double? width;
-  final double height;
+  final double? height;
  final bool? isDisabled ;
 
   @override

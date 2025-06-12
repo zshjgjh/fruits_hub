@@ -12,7 +12,7 @@ class CustomTextField extends StatefulWidget {
     this.textInputType,
     this.onSaved,
     this.hiddenText=false,
-    this.borderRadius,
+    this.borderRadius=4,
     this.controller,
     this.onChanged
   });

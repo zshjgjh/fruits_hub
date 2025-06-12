@@ -46,7 +46,9 @@ class _ProductsViewState extends State<ProductsView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   buildAppBar(context, title: 'Products',
-                      leading: Image.asset(Assets.imagesNotification)),
+                      action: Image.asset(Assets.imagesNotification),
+                    isArrowExists: false
+                  ),
                   SearchField(),
                   Row(
                     children: [

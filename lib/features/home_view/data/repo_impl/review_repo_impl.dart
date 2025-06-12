@@ -12,11 +12,12 @@ class ReviewsRepoImpl extends ReviewsRepo{
   final SupaBaseDataBaseService supaBaseDataBaseService;
 
   ReviewsRepoImpl({required this.supaBaseDataBaseService});
+
   @override
-  Future<Either<Failure, List<ReviewEntity>>> getReviews() async {
+  Future<Either<Failure, List<ReviewEntity>>> updateReviews() async {
     try {
-      var data=await supaBaseDataBaseService.getData(path: kReviews);
-      List<ReviewModel> reviews=data.map((e) => ReviewModel.fromJson(e)).toList();
+      var data=await supaBaseDataBaseService.getData(path: kReviews) as List<Map<String,dynamic>>;
+      List<ReviewModel> reviews=data.map((e) => ReviewModel.fromJson(e)).toList() ;
       List<ReviewEntity> reviewsEntities=reviews.map((e) => e.toEntity()).toList();
       return right(reviewsEntities);
 
@@ -33,6 +34,18 @@ class ReviewsRepoImpl extends ReviewsRepo{
    } catch (e) {
      return left(ServerFailure(e.toString()));
    }
+  }
+
+  @override
+  Future<Either<Failure, void>> deleteReviews({required ReviewEntity reviewEntity}) async {
+
+    try {
+      await supaBaseDataBaseService.deleteData(path: kReviews, id:reviewEntity.id!, );
+      return right(null);
+    } catch (e) {
+      return left(ServerFailure(e.toString()));
+    }
+
   }
 
 }

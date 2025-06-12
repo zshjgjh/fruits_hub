@@ -8,5 +8,5 @@ abstract class ProductRepo{
   Future<Either<Failure,List<ProductEntity>>> getBestSellingProducts();
   Future<Either<Failure,List<ProductEntity>>> getOurProducts();
   Future<Either<Failure,List<ProductEntity>>> getSearchProducts({required String searchWord});
-  Future<Either<Failure, List<ProductEntity>>> getFilteredProducts({required num starRange,required num endRange});
+  Future<Either<Failure, List<ProductEntity>>> getFilteredProducts({required num startRange,required num endRange});
 }

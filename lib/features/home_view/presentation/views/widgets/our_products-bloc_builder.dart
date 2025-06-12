@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_hub/features/cart_view/data/entities/cart_item_entity.dart';
+import 'package:fruits_hub/features/home_view/presentation/views/product_detail_view.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 import '../../../domain/entities/product_entity.dart';
@@ -23,7 +25,7 @@ BlocBuilder<ProductsCubit, ProductsState> ourProductsBlocBuilder(context) {
                   onTap: (){
                     PersistentNavBarNavigator.pushNewScreen(
                       context,
-                      screen: BestSellerView(),
+                      screen: ProductDetailsView(productEntity: products[index], cartItemEntity: CartItemEntity(productEntity: products[index])),
                       withNavBar: true, // OPTIONAL VALUE. True by default.
                       pageTransitionAnimation:
                       PageTransitionAnimation.cupertino,

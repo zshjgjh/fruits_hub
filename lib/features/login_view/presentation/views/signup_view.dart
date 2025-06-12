@@ -32,7 +32,7 @@ class _SignupViewState extends State<SignupView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, title: 'New account'),
+      appBar: buildAppBar(context, title: 'New account', isArrowExists: true,onPressed: (){ Navigator.of(context).pop();}),
       body: BlocListener<SignUpCubit, SignUpState>(
         listener: (context, state) {
           if (state is SignUpLoading) {

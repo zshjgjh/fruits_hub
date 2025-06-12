@@ -4,7 +4,7 @@ import 'package:fruits_hub/core/utilis/services/supabase/subabase_data_base_serv
 import 'package:fruits_hub/features/home_view/data/repo_impl/product_repo-impl.dart';
 import 'package:fruits_hub/features/home_view/data/repo_impl/review_repo_impl.dart';
 import 'package:fruits_hub/features/home_view/presentation/manager/products_cubit/products_cubit.dart';
-import 'package:fruits_hub/features/home_view/presentation/manager/reviews_cubit/reviews_cubit.dart';
+import 'package:fruits_hub/features/home_view/presentation/manager/reviews_cubit/set_review_cubit/set_review_cubit.dart';
 import 'package:fruits_hub/features/home_view/presentation/manager/search_cubit/search_cubit.dart';
 
 
@@ -29,8 +29,8 @@ class MainView extends StatelessWidget {
     {
       return SearchCubit();
     },),
-      BlocProvider<ReviewsCubit>(create: (BuildContext context) {
-        return ReviewsCubit(reviewsRepo: ReviewsRepoImpl(supaBaseDataBaseService: SupaBaseDataBaseService()));
+      BlocProvider<SetReviewCubit>(create: (BuildContext context) {
+        return SetReviewCubit(reviewsRepo: ReviewsRepoImpl(supaBaseDataBaseService: SupaBaseDataBaseService()));
       },)
     ],
       child: Scaffold(

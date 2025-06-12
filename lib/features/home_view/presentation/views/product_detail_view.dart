@@ -5,6 +5,7 @@ import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/features/cart_view/data/entities/cart_item_entity.dart';
 import 'package:fruits_hub/features/home_view/domain/entities/product_entity.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/reviews_view.dart';
+import 'package:fruits_hub/features/home_view/presentation/views/widgets/reviews_view_body.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/widgets/product_details_card.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:provider/provider.dart';
@@ -48,7 +49,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                       top:10,
                       left:0,
                       right: 10,
-                      child: buildAppBar(context, title: '')),
+                      child: buildAppBar(context, title: '', isArrowExists: true,onPressed: (){ PersistentNavBarNavigator.pop(context);})),
                 ],
               ),
             ),
@@ -83,7 +84,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                          ),
                          child: IconButton(
                            onPressed: (){
-                             BlocProvider.of<CartCubit>(context).addItem(widget.productEntity);
+                             BlocProvider.of<CartCubit>(context).addItem(productEntity:widget.productEntity);
                              widget.cartItemEntity.increaseCount();
                              setState(() {
 
@@ -104,7 +105,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                          ),
                          child: IconButton(
                            onPressed: (){
-                             BlocProvider.of<CartCubit>(context).removeItem(widget.productEntity);
+                             BlocProvider.of<CartCubit>(context).removeItem(productEntity:widget.productEntity);
                              widget.cartItemEntity.decreaseCount();
                              setState(() {
 
@@ -119,7 +120,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                       spacing: 2,
                       children: [
                         Image.asset(Assets.imagesStar),
-                        Text('${widget.productEntity.avgRating}'),
+                        Text(widget.productEntity.avgRating.toStringAsFixed(1)),
                         Text('(+${widget.productEntity.ratingCount})'),
                         SizedBox(width: 10,),
                         GestureDetector(
@@ -151,13 +152,28 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                       spacing: 10,
                       children: [
                         Expanded(child: ProductDetailsCard(title: '${widget.productEntity.numOfCalories} Calories', subTitle: '${widget.productEntity.unitAmount} grams', image: Assets.imagesCalorie,)),
-                         Expanded(child: ProductDetailsCard(title: '${widget.productEntity.avgRating}', subTitle: 'Reviews', image: Assets.imagesReview,)),
+                         Expanded(child: ProductDetailsCard(title: widget.productEntity.avgRating.toStringAsFixed(1), subTitle: 'Reviews', image: Assets.imagesReview,)),
                       ],
                     ),
                     SizedBox(height: 20,),
                     CustomButton(
                         onPressed: (){
-                          Provider.of<TabControllerProvider>(context,listen: false).controller.index=2;
+                          if(widget.cartItemEntity.count==0) {
+                            BlocProvider.of<CartCubit>(context).addItem(
+                                productEntity: widget.productEntity);
+                            Provider
+                                .of<TabControllerProvider>(
+                                context, listen: false)
+                                .controller
+                                .index = 2;
+                          }else{
+                            Provider
+                                .of<TabControllerProvider>(
+                                context, listen: false)
+                                .controller
+                                .index = 2;
+                          }
+
                         },
                         title: 'Add To Cart',
                         backgroundColor: Styles.primaryColor,

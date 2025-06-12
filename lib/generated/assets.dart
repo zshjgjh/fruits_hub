@@ -34,5 +34,6 @@ class Assets {
   static const String imagesStrawberry = 'assets/images/strawberry.png';
   static const String imagesSwaparrow = 'assets/images/swaparrow.png';
   static const String imagesTrash = 'assets/images/trash.png';
+  static const String imagesVisa = 'assets/images/visa.png';
 
 }

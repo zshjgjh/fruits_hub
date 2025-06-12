@@ -11,6 +11,7 @@ class ProductsCubit extends Cubit<ProductsState> {
   ProductsCubit({required this.productRepo}) : super(ProductsInitial());
   final ProductRepo  productRepo;
 
+
   Future<void> getProducts()async {
     emit(ProductsLoading());
    var result= await productRepo.getProducts();
@@ -18,7 +19,7 @@ class ProductsCubit extends Cubit<ProductsState> {
        (failure){
         emit(ProductsFailure(errorMessage: failure.errorMessage));
        }, (products){
-         emit(ProductsSuccess(products:products ));
+         emit(ProductsSuccess(products:products,));
    }
    );
   }
@@ -61,7 +62,7 @@ class ProductsCubit extends Cubit<ProductsState> {
 
   Future<void> getFilteredProducts({required num startRange,required num endRange })async {
     emit(ProductsLoading());
-    var result= await productRepo.getFilteredProducts(starRange: startRange, endRange: endRange);
+    var result= await productRepo.getFilteredProducts(startRange: startRange, endRange: endRange);
     result.fold(
             (failure){
           emit(ProductsFailure(errorMessage: failure.errorMessage));
@@ -70,4 +71,5 @@ class ProductsCubit extends Cubit<ProductsState> {
     }
     );
   }
+
 }

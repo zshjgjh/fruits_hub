@@ -5,9 +5,12 @@ import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/features/cart_view/data/entities/cart_entity.dart';
 import 'package:fruits_hub/features/cart_view/presentation/manager/cart_cubit.dart';
 import 'package:fruits_hub/features/cart_view/presentation/views/widgets/cart_item.dart';
+import 'package:fruits_hub/features/shipping_view/presentation/views/shipping_view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 import '../../../../../core/utilis/styles.dart';
 import '../../../../../generated/assets.dart';
+import '../../../../shipping_view/presentation/views/ship_view_body.dart';
 
 class CartViewBody extends StatefulWidget {
   const CartViewBody({super.key, required this.cartEntity});
@@ -30,7 +33,7 @@ class _CartViewBodyState extends State<CartViewBody> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: buildAppBar(context, title: 'Cart'),
+                      child: buildAppBar(context, title: 'Cart', isArrowExists: false),
                     ),
                     Container(
                       alignment: Alignment.center,
@@ -54,13 +57,13 @@ class _CartViewBodyState extends State<CartViewBody> {
                           padding: const EdgeInsets.only(bottom: 8.0),
                           child:CartItem(cartItemEntity: widget.cartEntity.cartItems[index],
                           onPressedPlus: (){
-                            BlocProvider.of<CartCubit>(context).addItem(widget.cartEntity.cartItems[index].productEntity);
+                            BlocProvider.of<CartCubit>(context).addItem(productEntity:widget.cartEntity.cartItems[index].productEntity);
                             setState(() {
 
                             });
                           },
                           onPressedMinus: (){
-                            BlocProvider.of<CartCubit>(context).removeItem(widget.cartEntity.cartItems[index].productEntity);
+                            BlocProvider.of<CartCubit>(context).removeItem(productEntity:widget.cartEntity.cartItems[index].productEntity);
                             setState(() {
 
                             });
@@ -82,7 +85,19 @@ class _CartViewBodyState extends State<CartViewBody> {
                     children: [
                       Spacer(),
                       CustomButton(
-                          onPressed: (){},
+                          onPressed: (){
+                            if (widget.cartEntity.cartItems.isNotEmpty) {
+                              PersistentNavBarNavigator.pushNewScreen(
+                                context,
+                                screen: ShipViewBody(cartEntity: widget.cartEntity,),
+                                withNavBar: true, // OPTIONAL VALUE. True by default.
+                                pageTransitionAnimation:
+                                PageTransitionAnimation.cupertino,
+                              );
+                            }else{
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Cart is empty')));
+                            }
+                          },
                           title: 'Pay  ${widget.cartEntity.calculateTotalPrice()}'r'  $',
                           backgroundColor: Styles.primaryColor,
                           borderRadius: 16,

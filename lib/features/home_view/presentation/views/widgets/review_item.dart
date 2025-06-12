@@ -6,9 +6,10 @@ import '../../../../../generated/assets.dart';
 
 class ReviewItem extends StatelessWidget {
   const ReviewItem({
-    super.key, required this.reviewEntity,
+    super.key, required this.reviewEntity,required this.onPressed,
   });
 final ReviewEntity reviewEntity;
+final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -31,7 +32,7 @@ final ReviewEntity reviewEntity;
                       child: CircleAvatar(
                         radius: 15,
                         backgroundColor: Color(0xffFFB400),
-                        child: Text('5',style: Styles.semiBold11.copyWith(color: Colors.white),),
+                        child: Text('${reviewEntity.rating}',style: Styles.semiBold11.copyWith(color: Colors.white),),
                       ),
                     )
                   ]
@@ -40,6 +41,7 @@ final ReviewEntity reviewEntity;
                 child: ListTile(
                   title: Text(reviewEntity.name,style: Styles.semiBold16,),
                   subtitle: Text(reviewEntity.date,style: Styles.regular13.copyWith(color: Color(0xff949D9E))),
+                  trailing: IconButton(onPressed:onPressed, icon:Icon(Icons.delete)),
                 ),
               ),
             ],

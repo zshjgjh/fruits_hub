@@ -63,10 +63,10 @@ class SupaBaseDataBaseService implements DataBaseService {
   }
 
   @override
-  Future<void> deletData({required String path, required String id}) async {
+  Future<void> deleteData({required String path, required String id}) async {
     await supabase.client
         .from(path)
         .delete()
-        .eq('user-id', id);
+        .eq('id', id);
   }
 }

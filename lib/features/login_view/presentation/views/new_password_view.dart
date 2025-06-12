@@ -6,6 +6,7 @@ import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/core/widgets/cutom_text-field.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import '../../../../core/utilis/styles.dart';
 import '../../../../generated/assets.dart';
 
@@ -16,7 +17,7 @@ class NewPasswordView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, title: 'New password'),
+      appBar: buildAppBar(context, title: 'New password', isArrowExists: true,onPressed: (){ PersistentNavBarNavigator.pop(context);}),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 12.0,horizontal: 12),

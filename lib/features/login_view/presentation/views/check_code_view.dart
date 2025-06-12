@@ -14,7 +14,7 @@ class CheckCodeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, title: 'Check code'),
+      appBar: buildAppBar(context, title: 'Check code', isArrowExists: true,onPressed: (){ Navigator.of(context).pop();}),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 12.0,horizontal: 12),

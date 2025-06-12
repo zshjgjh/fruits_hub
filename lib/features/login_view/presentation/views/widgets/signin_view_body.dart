@@ -31,7 +31,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, title: 'SignIn'),
+      appBar: buildAppBar(context, title: 'SignIn', isArrowExists: true,onPressed: (){ Navigator.of(context).pop();}),
       body: BlocListener<SigninCubit, SigninState>(
         listener: (context, state) {
           if (state is SigninLoading) {

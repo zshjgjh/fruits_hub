@@ -1,9 +1,11 @@
 import 'dart:io';
 
+import 'package:fruits_hub/features/home_view/domain/entities/review_entity.dart';
+
 
 
 class ProductEntity{
-  final String productID;
+  final String id;
   final String name;
   final String code;
   final String description;
@@ -12,7 +14,7 @@ class ProductEntity{
   final int expMonthes;
   final int numOfCalories;
   final int unitAmount;
-  final int ratingCount;
+   final int ratingCount;
   final num avgRating;
   final int sellingCount;
   final num price;
@@ -21,7 +23,7 @@ class ProductEntity{
   String? imageUrl;
 
   ProductEntity({
-    required this.productID,
+    required this.id,
     required this.name,
     required this.code,
     required this.description,
@@ -39,4 +41,17 @@ class ProductEntity{
     this.imageUrl,
   });
 
+
+
 }
+
+double calculateReviewsValue({required List<ReviewEntity> reviews, required int value,required ProductEntity productEntity}) {
+  double reviewsValue = 0;
+  for (var review in reviews) {
+    if (review.rating.round() == value) {
+      reviewsValue = reviewsValue + 1;
+    }
+  }
+  return productEntity.ratingCount==0?1: reviewsValue/productEntity.ratingCount;
+}
+

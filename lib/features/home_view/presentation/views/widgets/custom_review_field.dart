@@ -10,10 +10,11 @@ class CustomReviewField extends StatefulWidget {
     this.style,
     this.maxLines=1,
     this.textInputType,
-    this.onSaved,
+    this.onSubmited,
     this.borderRadius=4,
     this.controller,
-    this.onChanged
+    this.onChanged,
+    this.onSaved
   });
 
   final String? labelText;
@@ -21,10 +22,10 @@ class CustomReviewField extends StatefulWidget {
   final int? maxLines;
   final double? borderRadius;
   final TextInputType? textInputType;
-  final void Function(String?)? onSaved;
+  final void Function(String)? onSubmited;
   final TextEditingController? controller;
   final void Function(String)? onChanged;
-
+final void Function(String?)? onSaved;
 
   @override
   State<CustomReviewField> createState() => _CustomTextFieldState();
@@ -42,7 +43,8 @@ class _CustomTextFieldState extends State<CustomReviewField> {
       controller:widget.controller,
       maxLines:widget.maxLines ,
       keyboardType: widget.textInputType,
-      onSaved: widget.onSaved,
+      onSaved:widget.onSaved ,
+      onFieldSubmitted: widget.onSubmited,
       onChanged:widget.onChanged ,
       decoration: InputDecoration(
         labelText:widget.labelText,

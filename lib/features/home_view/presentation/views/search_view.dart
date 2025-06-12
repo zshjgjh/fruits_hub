@@ -77,7 +77,8 @@ class _ProductsViewState extends State<SearchView> {
               children: [
                 buildAppBar(context,
                     title: 'Search',
-                    leading: Image.asset(Assets.imagesNotification)),
+                    action: Image.asset(Assets.imagesNotification),
+                    onPressed: (){ PersistentNavBarNavigator.pop(context);}, isArrowExists: true),
                 SearchField(
                   onTapOutside: (event) {
                     FocusScope.of(context).unfocus(); //remove keyboard

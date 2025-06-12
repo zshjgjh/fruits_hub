@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/utilis/app_routers.dart';
 import 'package:fruits_hub/core/widgets/build_app_bar.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/widgets/products_bloc_builder.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 import '../../../../core/utilis/styles.dart';
 import '../../../../generated/assets.dart';
@@ -35,7 +36,8 @@ class _BestSellerViewState extends State<BestSellerView> {
                 spacing: 30,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  buildAppBar(context, title: 'Best seller', leading:Image.asset(Assets.imagesNotification)),
+                  buildAppBar(context, title: 'Best seller', action:Image.asset(Assets.imagesNotification),
+                  onPressed: (){ PersistentNavBarNavigator.pop(context);}, isArrowExists: true),
                   Text(
                     'Best Seller',
                     style: Styles.bold19,

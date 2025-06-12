@@ -5,7 +5,7 @@ import '../../domain/entities/product_entity.dart';
 
 
 class ProductModel{
-  final String productID;
+  final String id;
   final String name;
   final String code;
   final String description;
@@ -22,7 +22,7 @@ class ProductModel{
   String? imageUrl;
 
   ProductModel({
-    required this.productID,
+    required this.id,
     required this.name,
     required this.code,
     required this.description,
@@ -40,7 +40,7 @@ class ProductModel{
   });
  factory ProductModel.fromEntity(ProductEntity productEntity){
    return ProductModel(
-     productID: productEntity.productID,
+     id: productEntity.id,
        name: productEntity.name,
        code: productEntity.code,
        description: productEntity.description,
@@ -59,7 +59,7 @@ class ProductModel{
 
   factory ProductModel.fromJson(Map<String,dynamic> json){
     return ProductModel(
-      productID: json['productID'],
+      id: json['id'],
       name: json['name'],
       price: json['price'],
       description: json['description'],
@@ -81,7 +81,7 @@ class ProductModel{
   }
   ProductEntity toEntity(){
     return ProductEntity(
-      productID: productID,
+        id: id,
         name: name,
         price: price,
         description: description,
@@ -100,7 +100,7 @@ class ProductModel{
   }
  toJason(){// same as to map
    return {
-     'productID':productID,
+     'id':id,
      'name': name,
      'price': price,
      'description': description,
@@ -118,4 +118,5 @@ class ProductModel{
 
    }; //to save data in fire storage as json
  }
+
 }
