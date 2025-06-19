@@ -28,6 +28,12 @@ class CartCubit extends Cubit<CartState> {
       cartItemEntity.decreaseCount();
     }else{
       cartEntity.removeCartItem(cartItemEntity);
-    }emit(CartItemAdded());
+    }emit(CartItemRemoved());
   }
+
+  void clearCart() {
+    cartEntity.cartItems.clear();
+    emit(CartCleared());
+  }
+
 }

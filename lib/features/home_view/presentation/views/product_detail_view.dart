@@ -161,6 +161,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                           if(widget.cartItemEntity.count==0) {
                             BlocProvider.of<CartCubit>(context).addItem(
                                 productEntity: widget.productEntity);
+
                             Provider
                                 .of<TabControllerProvider>(
                                 context, listen: false)

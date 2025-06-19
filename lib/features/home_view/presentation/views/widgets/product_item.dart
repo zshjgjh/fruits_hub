@@ -14,10 +14,10 @@ import '../../../../cart_view/presentation/views/cart_view.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem({
-    super.key, required this.productEntity, this.onPressed,
+    super.key, required this.productEntity,
   });
 final ProductEntity productEntity;
-final void Function()? onPressed;
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +33,7 @@ final void Function()? onPressed;
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 5,
             children: [
-              GestureDetector(
-                  child: GestureDetector(child: Image.asset(Assets.imagesHeart,height: 25,width: 30,)),),
+              Image.asset(Assets.imagesHeart,height: 25,width: 30,),
               SizedBox(
                 height: 100,
                   width: 120,
@@ -54,7 +53,17 @@ final void Function()? onPressed;
                       color:  Color(0xFF1B5E37),
                     ),
                     child: IconButton(
-                        onPressed: onPressed,
+                        onPressed: (){
+
+                            BlocProvider.of<CartCubit>(context).addItem(
+                                productEntity: productEntity);
+
+                            Provider
+                                .of<TabControllerProvider>(
+                                context, listen: false)
+                                .controller
+                                .index = 2;
+                        },
 
                         icon: Icon(Icons.add,color: Colors.white,),),
                   )

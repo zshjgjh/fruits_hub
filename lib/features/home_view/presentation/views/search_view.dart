@@ -1,25 +1,15 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fruits_hub/core/utilis/constants.dart';
 import 'package:fruits_hub/core/widgets/build_app_bar.dart';
-import 'package:fruits_hub/core/widgets/build_bottom_bar.dart';
 import 'package:fruits_hub/features/home_view/data/models/search_item_model.dart';
 import 'package:fruits_hub/features/home_view/presentation/manager/search_cubit/search_cubit.dart';
-import 'package:fruits_hub/features/home_view/presentation/views/best_seller_view.dart';
-import 'package:fruits_hub/features/home_view/presentation/views/widgets/our_product_item.dart';
-import 'package:fruits_hub/features/home_view/presentation/views/widgets/our_products-bloc_builder.dart';
-import 'package:fruits_hub/features/home_view/presentation/views/widgets/product_item.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/widgets/products_bloc_builder.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/widgets/search_field.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/widgets/search_item.dart';
-import 'package:hive/hive.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
-
 import '../../../../../core/utilis/styles.dart';
 import '../../../../../generated/assets.dart';
-import '../../domain/entities/product_entity.dart';
 import '../manager/products_cubit/products_cubit.dart';
 
 class SearchView extends StatefulWidget {

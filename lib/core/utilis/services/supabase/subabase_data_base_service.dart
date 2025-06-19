@@ -48,6 +48,9 @@ class SupaBaseDataBaseService implements DataBaseService {
           data= await supabase.client.from(path).select().gte('price', startRange)
           .lte('price', endRange)
           .order('price',ascending: true);
+        }if (query['userID'] != null){
+          var userID=query['userID'];
+          data= await supabase.client.from(path).select().eq('userID', userID);
         }
       }
         var result =  data;

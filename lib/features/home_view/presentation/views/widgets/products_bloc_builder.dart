@@ -31,13 +31,7 @@ BlocBuilder<ProductsCubit, ProductsState> productsBlocBuilder() {
                 },
                   child: Padding(
                     padding: const EdgeInsets.only(right: 8.0,left: 8),
-                    child: ProductItem(productEntity: products[index],
-                    onPressed: (){
-                      BlocProvider.of<CartCubit>(context).addItem(productEntity:products[index]);
-                      Provider.of<TabControllerProvider>(context,listen: false).controller.index=2;
-
-
-                    },),
+                    child: ProductItem(productEntity: products[index],),
                   ));
             },
                 childCount: products.length

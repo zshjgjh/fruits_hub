@@ -89,7 +89,7 @@ class _CartViewBodyState extends State<CartViewBody> {
                             if (widget.cartEntity.cartItems.isNotEmpty) {
                               PersistentNavBarNavigator.pushNewScreen(
                                 context,
-                                screen: ShipViewBody(cartEntity: widget.cartEntity,),
+                                screen: ShipViewBody(),
                                 withNavBar: true, // OPTIONAL VALUE. True by default.
                                 pageTransitionAnimation:
                                 PageTransitionAnimation.cupertino,

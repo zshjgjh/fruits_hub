@@ -19,7 +19,7 @@ class CartEntity {
 
   bool isProductExist(ProductEntity productEntity) {
     for (var cartItemEntity in cartItems) {
-      if (cartItemEntity.productEntity == productEntity) {
+      if (cartItemEntity.productEntity.id == productEntity.id) {
         return true;
       }
     }
@@ -28,7 +28,7 @@ class CartEntity {
 
   CartItemEntity getCartItem(ProductEntity productEntity){
     for (var cartItemEntity in cartItems) {
-      if (cartItemEntity.productEntity == productEntity) {
+      if (cartItemEntity.productEntity.id == productEntity.id) {
         return cartItemEntity;
       }
     }

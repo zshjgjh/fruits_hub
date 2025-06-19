@@ -26,87 +26,100 @@ class ProductsView extends StatefulWidget {
   State<ProductsView> createState() => _ProductsViewState();
 }
 
-class _ProductsViewState extends State<ProductsView> {
+class _ProductsViewState extends State<ProductsView> with AutomaticKeepAliveClientMixin {
 
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<ProductsCubit>(context).getProducts();
+    final cubit = BlocProvider.of<ProductsCubit>(context);
+    if (cubit.state is! ProductsSuccess) {
+      cubit.getProducts();
+    }
   }
 
   @override
+  bool get wantKeepAlive => true; // للحفاظ على حالة الويجت وعدم إعادة البناء عند التنقل
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context); // مهم جداً عند استخدام AutomaticKeepAliveClientMixin
+
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Column(
-                spacing: 20,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  buildAppBar(context, title: 'Products',
-                      action: Image.asset(Assets.imagesNotification),
-                    isArrowExists: false
-                  ),
-                  SearchField(),
-                  Row(
-                    children: [
-                      Text('Our Products', style: Styles.bold19,),
-                      Spacer(),
-                      TextButton(
-                        onPressed: () {
+        slivers: [
+          SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                buildAppBar(
+                  context,
+                  title: 'Products',
+                  action: Image.asset(Assets.imagesNotification),
+                  isArrowExists: false,
+                ),
+                const SizedBox(height: 20),
+                const SearchField(),
+                const SizedBox(height: 20),
+                Row(
+                  children: [
+                    Text('Our Products', style: Styles.bold19),
+                    const Spacer(),
+                    TextButton(
+                      onPressed: () {
                         buildBottomSheet(context);
                       },
-                        style: TextButton.styleFrom(
-                          iconSize: 30,
-                          side: BorderSide(color: Colors.grey.withOpacity(.2)),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          backgroundColor: Colors.white,
+                      style: TextButton.styleFrom(
+                        iconSize: 30,
+                        side: BorderSide(color: Colors.grey.withOpacity(.2)),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4),
                         ),
-                        child: Image.asset(Assets.imagesSwaparrow),
-                      )
-                    ],
+                        backgroundColor: Colors.white,
+                      ),
+                      child: Image.asset(Assets.imagesSwaparrow),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 1),
+              ],
+            ),
+          ),
+
+          ourProductsBlocBuilder(context),
+
+          const SliverToBoxAdapter(child: SizedBox(height: 20)),
+
+          SliverToBoxAdapter(
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    PersistentNavBarNavigator.pushNewScreen(
+                      context,
+                      screen: const BestSellerView(),
+                      withNavBar: true,
+                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                    );
+                  },
+                  child: Text('Best Seller', style: Styles.bold16),
+                ),
+                const Spacer(),
+                GestureDetector(
+                  child: Text(
+                    'Show more',
+                    style: Styles.regular13.copyWith(color: const Color(0xFF949D9E)),
                   ),
-                  SizedBox(height: 1,)
-                ],
-              ),
+                ),
+              ],
             ),
-            ourProductsBlocBuilder(context),
+          ),
 
-            SliverToBoxAdapter(
-                child: SizedBox(height: 20,)),
+          const SliverToBoxAdapter(child: SizedBox(height: 20)),
 
-            SliverToBoxAdapter(
-              child: Row(
-                children: [
-                  GestureDetector(
-                      onTap: () {
-                        PersistentNavBarNavigator.pushNewScreen(
-                          context,
-                          screen: BestSellerView(),
-                          withNavBar: true, // OPTIONAL VALUE. True by default.
-                          pageTransitionAnimation: PageTransitionAnimation
-                              .cupertino,
-                        );
-                      },
-                      child: Text('Best Seller', style: Styles.bold16,)),
-                  Spacer(),
-                  GestureDetector(
-                      child: Text('Show more', style: Styles.regular13.copyWith(
-                          color: Color(0xFF949D9E)),))
-                ],
-              ),
-            ),
-            SliverToBoxAdapter(
-                child: SizedBox(height: 20,)),
-
-            productsBlocBuilder()
-          ]),
+          productsBlocBuilder()
+        ],
+      ),
     );
   }
-
-
 }

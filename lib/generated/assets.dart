@@ -2,24 +2,30 @@
 class Assets {
   Assets._();
 
+  static const String imagesAcceptorder = 'assets/images/acceptorder.png';
   static const String imagesApple = 'assets/images/apple.png';
   static const String imagesArrowBack = 'assets/images/arrowBack.png';
   static const String imagesAvatar = 'assets/images/avatar.png';
   static const String imagesCalorie = 'assets/images/calorie.png';
   static const String imagesCircles = 'assets/images/circles.png';
   static const String imagesClock = 'assets/images/clock.png';
+  static const String imagesDelivered = 'assets/images/delivered.png';
+  static const String imagesDeliveredtrack = 'assets/images/deliveredtrack.png';
   static const String imagesExpire = 'assets/images/expire.png';
   static const String imagesFacebook = 'assets/images/facebook.png';
   static const String imagesFilter = 'assets/images/filter.png';
+  static const String imagesFolloworder = 'assets/images/followorder.png';
   static const String imagesFruitbasket = 'assets/images/fruitbasket.png';
   static const String imagesFruits = 'assets/images/fruits.png';
   static const String imagesGmail = 'assets/images/gmail.png';
+  static const String imagesGreenCheck = 'assets/images/greenCheck.png';
   static const String imagesGreenad = 'assets/images/greenad.png';
   static const String imagesGreenbg = 'assets/images/greenbg.png';
   static const String imagesHeart = 'assets/images/heart.png';
   static const String imagesLeaf = 'assets/images/leaf.png';
   static const String imagesLogo = 'assets/images/logo.png';
   static const String imagesNotification = 'assets/images/notification.png';
+  static const String imagesOrder = 'assets/images/order.png';
   static const String imagesOrganig = 'assets/images/organig.png';
   static const String imagesPasswordchange = 'assets/images/passwordchange.png';
   static const String imagesPineapple = 'assets/images/pineapple.png';

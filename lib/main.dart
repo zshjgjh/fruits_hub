@@ -3,10 +3,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:fruits_hub/core/utilis/shared_prefrences.dart';
 import 'package:fruits_hub/core/widgets/build_bottom_bar.dart';
 import 'package:fruits_hub/features/cart_view/presentation/manager/cart_cubit.dart';
 import 'package:fruits_hub/features/home_view/data/models/search_item_model.dart';
+import 'package:fruits_hub/features/shipping_view/data/repos_impl/order_repo_impl.dart';
+
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:provider/provider.dart';
@@ -21,8 +24,9 @@ import 'core/utilis/services/supabase/supabase_storage_service.dart';
 import 'core/utilis/styles.dart';
 import 'features/home_view/data/repo_impl/product_repo-impl.dart';
 import 'features/home_view/presentation/manager/products_cubit/products_cubit.dart';
-import 'features/login_view/data/repos_impl/auth_repo_impl.dart';
-import 'features/login_view/presentation/manager/signup_cubit/signup_cubit.dart';
+
+import 'features/shipping_view/presentation/manager/get_orders_cubit/get_orders_cubit.dart';
+import 'features/shipping_view/presentation/manager/set_orderes_cubit/set_orders_cubit.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -31,6 +35,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+
 
   await SupaBaseDataBaseService.initSupabase(); // initialize supa
   // await SupaBaseStorageService.createBucket(kImagesStorage);// create bucket
@@ -52,12 +58,27 @@ void main() async {
                     supabaseDataBaseService: SupaBaseDataBaseService()));
           },
         ),
-      BlocProvider<CartCubit>(create: (BuildContext context) {
-        return CartCubit();
-      },)
-      ],
-          child: const MyApp()
-      ),
+        BlocProvider<CartCubit>(
+          create: (BuildContext context) {
+            return CartCubit();
+          },
+        ),
+        BlocProvider<SetOrdersCubit>(
+          create: (BuildContext context) {
+            return SetOrdersCubit(
+                orderRepo: OrderRepoImp(
+                    supabaseDataBaseService: SupaBaseDataBaseService()));
+          },
+        ),
+        BlocProvider<GetOrdersCubit>(
+          create: (BuildContext context) {
+            return GetOrdersCubit(
+                orderRepo: OrderRepoImp(
+                    supabaseDataBaseService: SupaBaseDataBaseService()));
+          },
+        ),
+
+      ], child: const MyApp()),
     ),
   ) // Wrap your app
       );

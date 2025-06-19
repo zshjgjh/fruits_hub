@@ -18,38 +18,55 @@ class BestSellerView extends StatefulWidget {
   State<BestSellerView> createState() => _BestSellerViewState();
 }
 
-class _BestSellerViewState extends State<BestSellerView> {
+class _BestSellerViewState extends State<BestSellerView> with AutomaticKeepAliveClientMixin {
 
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<ProductsCubit>(context).getBestSellingProducts();
+    final cubit = BlocProvider.of<ProductsCubit>(context);
+    if (cubit.state is! ProductsSuccess) {
+      cubit.getBestSellingProducts();
+    }
   }
+
+  @override
+  bool get wantKeepAlive => true;
+
   @override
   Widget build(BuildContext context) {
+    super.build(context); // مهم جداً عند استخدام AutomaticKeepAliveClientMixin
+
     return Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.only(top: 8.0,right: 8,left: 8),
-          child: CustomScrollView(slivers: [
+      body: Padding(
+        padding: const EdgeInsets.only(top: 8.0, right: 8, left: 8),
+        child: CustomScrollView(
+          slivers: [
             SliverToBoxAdapter(
               child: Column(
-                spacing: 30,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  buildAppBar(context, title: 'Best seller', action:Image.asset(Assets.imagesNotification),
-                  onPressed: (){ PersistentNavBarNavigator.pop(context);}, isArrowExists: true),
+                  buildAppBar(
+                    context,
+                    title: 'Best seller',
+                    action: Image.asset(Assets.imagesNotification),
+                    onPressed: () {
+                      PersistentNavBarNavigator.pop(context);
+                    },
+                    isArrowExists: true,
+                  ),
+                  const SizedBox(height: 30),
                   Text(
                     'Best Seller',
                     style: Styles.bold19,
                   ),
-                  SizedBox(height: 1,)
+                  const SizedBox(height: 1),
                 ],
               ),
             ),
-            productsBlocBuilder()
-          ]),
+            productsBlocBuilder(),
+          ],
         ),
-
+      ),
     );
   }
 }
