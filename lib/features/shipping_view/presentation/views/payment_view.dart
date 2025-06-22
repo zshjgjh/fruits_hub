@@ -91,7 +91,7 @@ class _PaymentViewState extends State<PaymentView> {
                   width: double.infinity,
                   backgroundColor: Styles.primaryColor,
                   borderRadius: 16,
-                  titleStyle: Styles.bold19,
+                  titleStyle: Styles.bold19.copyWith(color: Colors.white),
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();

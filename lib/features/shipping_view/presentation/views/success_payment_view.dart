@@ -31,67 +31,70 @@ class _SuccessPaymentViewState extends State<SuccessPaymentView> {
       userEntity: getUserDataLocally(),
     );
   }
-List<OrderEntity> orders=[];
-  bool isLoading=false;
+
+  List<OrderEntity> orders = [];
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocConsumer<GetOrdersCubit, GetOrdersState>(
-          listener: (BuildContext context,  state) {
-            if (state is GetOrdersFailure) {
-              isLoading=false;
-              setState(() {
-
-              });
-              ScaffoldMessenger.of(context).
-              showSnackBar(SnackBar(content: Text('Fail to fetch order...please try again later',
-                style: Styles.bold19,),backgroundColor: Colors.red,));
-            }else if(state is GetOrdersSuccess){
-              orders=state.orders;
-              isLoading=false;
-              setState(() {
-
-              });
-            }else{
-              isLoading=true;
-            }
-          },
-        builder: (context, state) {
-            return Scaffold(
-              body: ModalProgressHUD(
-                inAsyncCall:isLoading ,
+        body: BlocListener<GetOrdersCubit, GetOrdersState>(
+            listener: (BuildContext context, state) {
+              if (state is GetOrdersFailure) {
+                isLoading = false;
+                setState(() {});
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text(
+                    'Fail to fetch order...please try again later',
+                    style: Styles.bold19,
+                  ),
+                  backgroundColor: Colors.red,
+                ));
+              } else if (state is GetOrdersSuccess) {
+                orders = state.orders;
+                isLoading = false;
+                setState(() {});
+              } else {
+                isLoading = true;
+                setState(() {});
+              }
+            },
+            child: ModalProgressHUD(
+                inAsyncCall: isLoading,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     spacing: 20,
                     children: [
-                      buildAppBar(context, title: '', isArrowExists:true,onPressed: (){
+                      buildAppBar(context, title: '', isArrowExists: true,
+                          onPressed: () {
                         PersistentNavBarNavigator.pop(context);
                       }),
                       Image.asset(Assets.imagesGreenCheck),
                       Text('Success', style: Styles.bold19),
-                    orders.isEmpty?SizedBox() : Text('Order number: ${orders.last.id}', style: Styles.bold19),
+                      orders.isEmpty
+                          ? SizedBox()
+                          : Text('Order number: ${orders.last.id}',
+                              style: Styles.bold19),
                       Spacer(),
                       CustomButton(
-                          title: 'Home',
-                          height: 55,
-                          width: double.infinity,
-                          backgroundColor: Styles.primaryColor,
-                          borderRadius: 16,
-                          titleStyle:  Styles.bold19.copyWith(color: Colors.white),
-                        onPressed: (){
-                          Provider
-                              .of<TabControllerProvider>(
-                              context, listen: false)
+                        title: 'Home',
+                        height: 55,
+                        width: double.infinity,
+                        backgroundColor: Styles.primaryColor,
+                        borderRadius: 16,
+                        titleStyle: Styles.bold19.copyWith(color: Colors.white),
+                        onPressed: () {
+                          Provider.of<TabControllerProvider>(context,
+                                  listen: false)
                               .controller
                               .index = 0;
 
                           BlocProvider.of<CartCubit>(context).clearCart();
 
-                          Navigator.of(context).popUntil((route) => route.isFirst);
+                          Navigator.of(context)
+                              .popUntil((route) => route.isFirst);
                         },
-
                       ),
                       CustomButton(
                         title: 'Order Details',
@@ -99,24 +102,23 @@ List<OrderEntity> orders=[];
                         width: double.infinity,
                         backgroundColor: Styles.primaryColor,
                         borderRadius: 16,
-                        titleStyle:  Styles.bold19.copyWith(color: Colors.white),
-                        onPressed: (){
+                        titleStyle: Styles.bold19.copyWith(color: Colors.white),
+                        onPressed: () {
                           PersistentNavBarNavigator.pushNewScreen(
                             context,
                             screen: OrderDetailsView(),
-                            withNavBar: true, // OPTIONAL VALUE. True by default.
-                            pageTransitionAnimation: PageTransitionAnimation
-                                .cupertino,
+                            withNavBar:
+                                true, // OPTIONAL VALUE. True by default.
+                            pageTransitionAnimation:
+                                PageTransitionAnimation.cupertino,
                           );
                         },
                       )
                     ],
                   ),
-                ),
-              ),
-            );
-          }
-      ),
+                )
+            )
+        )
     );
   }
 }

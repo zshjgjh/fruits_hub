@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesSingelton{
@@ -15,6 +17,9 @@ class SharedPreferencesSingelton{
     instance.setString(key, value);
   }
   static getString(String key){
-    return instance.getString(key)??false;
+    return instance.getString(key);
   }
+
+
+
 }

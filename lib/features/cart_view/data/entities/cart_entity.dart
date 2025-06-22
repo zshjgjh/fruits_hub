@@ -34,8 +34,8 @@ class CartEntity {
     }
     return CartItemEntity(productEntity:productEntity,count: 1);
   }
-  num calculateNumOfProducts(){
-    num numOfProducts=0;
+  int calculateNumOfProducts(){
+    int numOfProducts=0;
     for(var cartItemEntity in cartItems){
       numOfProducts=numOfProducts+cartItemEntity.count;
     }return numOfProducts;

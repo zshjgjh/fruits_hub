@@ -108,7 +108,13 @@ class _OrderStackState extends State<OrderStack> {
                     });
                   },
                 ),
-                ReviewView(),
+                ReviewView(
+                  onEditPayment: () {
+                    setState(() {
+                      currentStep = 2; // الخطوة الخاصة بصفحة الدفع
+                    });
+                  },
+                ),
               ],
             ),
           ),

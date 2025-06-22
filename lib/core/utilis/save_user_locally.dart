@@ -1,10 +1,12 @@
 import 'dart:convert';
 
 import 'package:fruits_hub/core/utilis/shared_prefrences.dart';
+import 'package:fruits_hub/features/shipping_view/data/models/address_model.dart';
 
 import '../../features/login_view/data/models/user_model.dart';
 import '../../features/login_view/domain/entities/user_entity.dart';
 import '../../features/shipping_view/data/models/order_model.dart';
+import '../../features/shipping_view/domain/entity/address_entity.dart';
 import '../../features/shipping_view/domain/entity/order_entity.dart';
 import 'constants.dart';
 
@@ -20,16 +22,26 @@ UserEntity getUserDataLocally() {
 
 }
 
-saveAddressLocally(OrderEntity orderEntity) {
-  var jsonString=jsonEncode(OrderModel.fromEntity(orderEntity).toJson());
+saveAddressLocally(AddressEntity addressEntity) {
+  var jsonString=jsonEncode(AddressModel.fromEntity(addressEntity).toJson());
   SharedPreferencesSingelton.setString(kSaveAddressLocally, jsonString);
 }
 
-OrderEntity getAddressLocally() {
-  var jsonString=SharedPreferencesSingelton.getString(kSaveUserLocally);
-  OrderEntity orderEntity=(OrderModel.fromJson(jsonDecode(jsonString))).toEntity();
-  return orderEntity;
+AddressEntity getAddressLocally() {
+  var jsonString = SharedPreferencesSingelton.getString(kSaveAddressLocally);
+  if (jsonString == null || jsonString.isEmpty) {
+    return AddressEntity(
+      name: '',
+      email: '',
+      phone: '',
+      address: '',
+      city: '',
+      flatNumber: '',
+    );
+  }
 
+  return AddressModel.fromJson(jsonDecode(jsonString)).toEntity();
 }
+
 
 

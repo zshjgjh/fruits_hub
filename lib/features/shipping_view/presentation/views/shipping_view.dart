@@ -97,6 +97,15 @@ class _ShippingViewState extends State<ShippingView> with AutomaticKeepAliveClie
                     ),
                   );
                 } else {
+                 if(selectedShippingOption=='option 1') {
+                   BlocProvider
+                       .of<SetOrdersCubit>(context)
+                       .orderEntity = OrderEntity(payCash: true);
+                 }else{
+                   BlocProvider
+                       .of<SetOrdersCubit>(context)
+                       .orderEntity = OrderEntity(payCash: false);
+                 }
                   widget.onNext();
                 }
               },

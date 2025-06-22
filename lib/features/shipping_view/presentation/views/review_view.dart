@@ -14,8 +14,9 @@ import '../manager/set_orderes_cubit/set_orders_cubit.dart';
 
 class ReviewView extends StatefulWidget {
   const ReviewView({
-    super.key,
+    super.key, this.onEditPayment,
   });
+  final VoidCallback? onEditPayment;
 
 
   @override
@@ -154,7 +155,7 @@ class _ReviewViewState extends State<ReviewView> {
                                   IconButton(
                                      icon: Icon(Icons.edit),
                                       onPressed: () {
-
+                                        widget.onEditPayment?.call();
 
                                       } )
                                 ],

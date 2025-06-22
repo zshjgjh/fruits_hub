@@ -9,45 +9,60 @@ import '../../../../../core/widgets/custom_button.dart';
 
 void editFieldBottomSheet(BuildContext context) {
   String? address;
-  TextEditingController addressController = TextEditingController( text:  BlocProvider
-      .of<SetOrdersCubit>(context)
-      .orderEntity.address??'');
+  TextEditingController addressController = TextEditingController(
+    text: BlocProvider.of<SetOrdersCubit>(context).orderEntity.address ?? '',
+  );
+
   showModalBottomSheet(
     context: context,
+    isScrollControlled: true, // للسماح بتوسيع الـ Bottom Sheet
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
     ),
     builder: (context) {
       return Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.only(
+          left: 16,
+          right: 16,
+          top: 16,
+          bottom: MediaQuery.of(context).viewInsets.bottom + 16,
+        ),
         child: Column(
-           spacing:20 ,
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Edit Address', style: Styles.bold19),
-           CustomTextField(
-             labelText: 'Enter new address',
-             controller: addressController,
-             onChanged: (value){
-               address=value;
-             },
-           ),
-
+            /// Row contains close button and title
+            Row(
+              children: [
+                Text('Edit Address', style: Styles.bold19),
+                Spacer(),
+                IconButton(
+                  icon: Icon(Icons.close),
+                  onPressed: () => Navigator.pop(context),
+                )
+              ],
+            ),
+            SizedBox(height: 20),
+            CustomTextField(
+              labelText: 'Enter new address',
+              controller: addressController,
+              onChanged: (value) {
+                address = value;
+              },
+            ),
+            SizedBox(height: 20),
             CustomButton(
-             title: 'Save',
+              title: 'Save',
               titleStyle: Styles.bold19.copyWith(color: Colors.white),
               backgroundColor: Styles.primaryColor,
               borderRadius: 16,
               height: 55,
               width: double.infinity,
               onPressed: () {
-               var orderEntity= BlocProvider
-                   .of<SetOrdersCubit>(context).orderEntity;
+                var orderEntity = BlocProvider.of<SetOrdersCubit>(context).orderEntity;
 
-                BlocProvider
-                    .of<SetOrdersCubit>(context)
-                    .orderEntity = OrderEntity(
-                  address:address,
+                BlocProvider.of<SetOrdersCubit>(context).orderEntity = OrderEntity(
+                  address: address,
                   price: orderEntity.price,
                   payCash: orderEntity.payCash,
                   phone: orderEntity.phone,
@@ -56,15 +71,13 @@ void editFieldBottomSheet(BuildContext context) {
                   userID: orderEntity.userID,
                   city: orderEntity.city,
                   delivery: orderEntity.delivery,
-                  flatNumber: orderEntity.flatNumber
+                  flatNumber: orderEntity.flatNumber,
                 );
 
-               BlocProvider
-                   .of<SetOrdersCubit>(context).setOrderAddress(address: address!);
-
+                BlocProvider.of<SetOrdersCubit>(context).setOrderAddress(address: address!);
                 Navigator.pop(context);
-              }
-            )
+              },
+            ),
           ],
         ),
       );

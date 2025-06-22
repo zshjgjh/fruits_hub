@@ -14,6 +14,13 @@ class OrderModel {
   final String? address;
   final String? city;
   final String? flatNumber;
+  final DateTime? date;
+  final int? amount;
+  final bool? followOrder;
+  final bool? acceptOrder;
+  final bool? shippingOrder;
+  final bool? deliveryOrder;
+  final bool? delivered;
 
   OrderModel({
     this.id,
@@ -27,6 +34,13 @@ class OrderModel {
     this.address,
     this.city,
     this.flatNumber,
+    this.date,
+    this.amount,
+    this.followOrder,
+    this.acceptOrder ,
+    this.shippingOrder,
+    this.deliveryOrder,
+    this.delivered ,
   });
 
   factory OrderModel.fromEntity(OrderEntity orderEntity) {
@@ -41,7 +55,14 @@ class OrderModel {
       phone: orderEntity.phone,
       address: orderEntity.address,
       city: orderEntity.city,
+      date: orderEntity.date,
+      amount: orderEntity.amount,
       flatNumber: orderEntity.flatNumber,
+      followOrder:orderEntity.followOrder,
+      acceptOrder:orderEntity.acceptOrder,
+      shippingOrder:orderEntity.shippingOrder,
+      deliveryOrder:orderEntity.deliveryOrder,
+      delivered:orderEntity.delivered,
     );
   }
 
@@ -58,6 +79,13 @@ class OrderModel {
       address: address,
       city: city,
       flatNumber: flatNumber,
+      date:date,
+      amount: amount,
+      followOrder:followOrder,
+      acceptOrder:acceptOrder,
+      shippingOrder:shippingOrder,
+      deliveryOrder:deliveryOrder,
+      delivered:delivered,
     );
   }
 
@@ -74,6 +102,14 @@ class OrderModel {
       address: json['address'],
       city: json['city'],
       flatNumber: json['flatNumber'],
+      date:DateTime.parse(json['date']),
+      amount: json['amount'],
+      followOrder:json['followOrder'],
+      acceptOrder:json['acceptOrder'],
+      shippingOrder:json['shippingOrder'],
+      deliveryOrder:json['deliveryOrder'],
+      delivered:json['delivered'],
+
     );
   }
 
@@ -88,7 +124,13 @@ class OrderModel {
       'phone': phone,
       'address': address,
       'city': city,
+      'amount':amount,
       'flatNumber': flatNumber,
+      'followOrder':followOrder,
+      'acceptOrder':acceptOrder,
+     'shippingOrder':shippingOrder,
+      'deliveryOrder':deliveryOrder,
+      'delivered':delivered,
     };
   }
 }
