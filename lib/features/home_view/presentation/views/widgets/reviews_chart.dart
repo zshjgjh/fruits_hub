@@ -7,6 +7,7 @@ import 'package:fruits_hub/features/home_view/presentation/views/widgets/reviews
 
 import '../../../../../core/utilis/styles.dart';
 import '../../../../../generated/assets.dart';
+import '../../../../../generated/l10n.dart';
 import '../../../domain/entities/product_entity.dart';
 import '../../../domain/entities/review_entity.dart';
 
@@ -45,7 +46,7 @@ class _ReviewsChartState extends State<ReviewsChart> {
                 spacing: 10,
                 children: [
                   Text(
-                    '${widget.productEntity.ratingCount} Reviews',
+                    '${widget.productEntity.ratingCount} ${S.of(context).reviews}',
                     style: Styles.bold19,
                   ),
                   ReviewBarItem(

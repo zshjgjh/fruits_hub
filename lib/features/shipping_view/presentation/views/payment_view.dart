@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import '../../../../core/utilis/styles.dart';
 import '../../../../core/widgets/custom_button.dart';
+import '../../../../generated/l10n.dart';
 
 class PaymentView extends StatefulWidget {
   const PaymentView({
@@ -86,7 +87,7 @@ class _PaymentViewState extends State<PaymentView> {
                         ))),
 
                 CustomButton(
-                  title: 'Next',
+                  title: S.of(context).next,
                   height: 55,
                   width: double.infinity,
                   backgroundColor: Styles.primaryColor,

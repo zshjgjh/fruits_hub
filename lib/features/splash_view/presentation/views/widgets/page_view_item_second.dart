@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/utilis/styles.dart';
 import '../../../../../generated/assets.dart';
+import '../../../../../generated/l10n.dart';
 
 class PageViewItemSecond extends StatelessWidget {
   const PageViewItemSecond({super.key});
@@ -34,23 +35,19 @@ class PageViewItemSecond extends StatelessWidget {
           children: [
 
             Text(
-              'ابحث وتسوق',
+              S.of(context).searchandShop,
               style: Styles.bold23,
             ),
           ],
         ),
         Spacer(flex: 1,),
         Text(
-          'نقدم لك أفضل الفواكه المختارة بعناية. اطلع على   ',
-          style: Styles.semiBold13,
-        ),
-        Text(
-          'التفاصيل والصور والتقييمات لتتأكد من اختيار الفاكهة ',
-          style: Styles.semiBold13,
-        ),
-        Text(
-          'المثالية',
-          style: Styles.semiBold13,
+          S.of(context).splash2,
+          style: Styles.bold23,
+          overflow: TextOverflow.visible,
+          softWrap: true,
+          maxLines: 8,
+          textAlign: TextAlign.center,
         ),
         Spacer(flex: 7,)
 

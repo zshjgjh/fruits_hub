@@ -4,6 +4,7 @@ import 'package:fruits_hub/core/widgets/build_app_bar.dart';
 import 'package:fruits_hub/core/widgets/build_bottom_bar.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/best_seller_view.dart';
+import 'package:fruits_hub/features/home_view/presentation/views/search_view.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/widgets/build_bottom_sheet.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/widgets/our_product_item.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/widgets/our_products-bloc_builder.dart';
@@ -14,6 +15,7 @@ import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 import '../../../../../core/utilis/styles.dart';
 import '../../../../../generated/assets.dart';
+import '../../../../generated/l10n.dart';
 import '../../domain/entities/product_entity.dart';
 import '../manager/products_cubit/products_cubit.dart';
 
@@ -26,8 +28,8 @@ class ProductsView extends StatefulWidget {
   State<ProductsView> createState() => _ProductsViewState();
 }
 
-class _ProductsViewState extends State<ProductsView> with AutomaticKeepAliveClientMixin {
-
+class _ProductsViewState extends State<ProductsView>
+    with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     super.initState();
@@ -38,7 +40,8 @@ class _ProductsViewState extends State<ProductsView> with AutomaticKeepAliveClie
   }
 
   @override
-  bool get wantKeepAlive => true; // للحفاظ على حالة الويجت وعدم إعادة البناء عند التنقل
+  bool get wantKeepAlive =>
+      true; // للحفاظ على حالة الويجت وعدم إعادة البناء عند التنقل
 
   @override
   Widget build(BuildContext context) {
@@ -54,16 +57,24 @@ class _ProductsViewState extends State<ProductsView> with AutomaticKeepAliveClie
               children: [
                 buildAppBar(
                   context,
-                  title: 'Products',
+                  title: S.of(context).products,
                   action: Image.asset(Assets.imagesNotification),
                   isArrowExists: false,
                 ),
                 const SizedBox(height: 20),
-                const SearchField(),
+                SearchField(
+                  onTap: () {
+                    PersistentNavBarNavigator.pushNewScreen(
+                      context,
+                      screen: const SearchView(),
+                      withNavBar: true,
+                    );
+                  },
+                ),
                 const SizedBox(height: 20),
                 Row(
                   children: [
-                    Text('Our Products', style: Styles.bold19),
+                    Text(S.of(context).ourproducts, style: Styles.bold19),
                     const Spacer(),
                     TextButton(
                       onPressed: () {
@@ -85,11 +96,8 @@ class _ProductsViewState extends State<ProductsView> with AutomaticKeepAliveClie
               ],
             ),
           ),
-
           ourProductsBlocBuilder(context),
-
           const SliverToBoxAdapter(child: SizedBox(height: 20)),
-
           SliverToBoxAdapter(
             child: Row(
               children: [
@@ -99,24 +107,24 @@ class _ProductsViewState extends State<ProductsView> with AutomaticKeepAliveClie
                       context,
                       screen: const BestSellerView(),
                       withNavBar: true,
-                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                      pageTransitionAnimation:
+                          PageTransitionAnimation.cupertino,
                     );
                   },
-                  child: Text('Best Seller', style: Styles.bold16),
+                  child: Text(S.of(context).bestseller, style: Styles.bold16),
                 ),
                 const Spacer(),
                 GestureDetector(
                   child: Text(
-                    'Show more',
-                    style: Styles.regular13.copyWith(color: const Color(0xFF949D9E)),
+                    S.of(context).showmore,
+                    style: Styles.regular13
+                        .copyWith(color: const Color(0xFF949D9E)),
                   ),
                 ),
               ],
             ),
           ),
-
           const SliverToBoxAdapter(child: SizedBox(height: 20)),
-
           productsBlocBuilder()
         ],
       ),

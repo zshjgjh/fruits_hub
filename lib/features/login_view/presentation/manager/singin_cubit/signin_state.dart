@@ -16,3 +16,6 @@ final class SigninSuccess extends SigninState {
 
   SigninSuccess({required this.userEntity});
 }
+final class updateProfileSuccess extends SigninState {
+
+}

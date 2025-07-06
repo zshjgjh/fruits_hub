@@ -11,6 +11,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../../../core/utilis/app_routers.dart';
 import '../../../../core/utilis/styles.dart';
 import '../../../../generated/assets.dart';
+import '../../../../generated/l10n.dart';
 import '../manager/signup_cubit/signup_cubit.dart';
 
 
@@ -32,7 +33,7 @@ class _SignupViewState extends State<SignupView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, title: 'New account', isArrowExists: true,onPressed: (){ Navigator.of(context).pop();}),
+      appBar: buildAppBar(context, title:S.of(context).newAccount, isArrowExists: true,onPressed: (){ Navigator.of(context).pop();}),
       body: BlocListener<SignUpCubit, SignUpState>(
         listener: (context, state) {
           if (state is SignUpLoading) {
@@ -47,7 +48,7 @@ class _SignupViewState extends State<SignupView> {
             setState(() {});
             ScaffoldMessenger.of(context).
             showSnackBar(SnackBar(
-              content: Center(child: Text('Success')),
+              content: Center(child: Text(S.of(context).success)),
               backgroundColor: Colors.green,
               duration: Duration(seconds: 2),));
 
@@ -70,7 +71,7 @@ class _SignupViewState extends State<SignupView> {
                       onSaved: (value) {
                         name = value;
                       },
-                      labelText: 'Full name',
+                      labelText:S.of(context).name,
                       style: Styles.bold13.copyWith(color: Color(0xFF949D9E)),
                       textInputType: TextInputType.name,
                       borderRadius: 4,
@@ -79,7 +80,7 @@ class _SignupViewState extends State<SignupView> {
                       onSaved: (value) {
                         email = value;
                       },
-                      labelText: 'Email',
+                      labelText:S.of(context).email,
                       style: Styles.bold13.copyWith(color: Color(0xFF949D9E)),
                       textInputType: TextInputType.emailAddress,
                       borderRadius: 4,
@@ -88,7 +89,7 @@ class _SignupViewState extends State<SignupView> {
                       onSaved: (value) {
                         password = value;
                       },
-                      labelText: 'Password',
+                      labelText: S.of(context).password,
                       style: Styles.bold13.copyWith(color: Color(0xFF949D9E)),
                       hiddenText: true,
                       textInputType: TextInputType.text,
@@ -107,24 +108,27 @@ class _SignupViewState extends State<SignupView> {
                             borderRadius: 4,
                             value: isChecked,
                             onChanged: (value) {
-                              isChecked = value!;
+                              isChecked = value;
                               setState(() {});
                             }),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'By creating an account, you agree to',
+                              S.of(context).terms1,
                               style: Styles.semiBold13,
-                              textDirection: TextDirection.rtl,
+                             softWrap: true,
+                              overflow: TextOverflow.visible,
+                              maxLines: 3,
+                              textAlign: TextAlign.center,
                             ),
                             GestureDetector(
                                 onTap: () {},
                                 child: Text(
-                                  'Our Terms and Conditions',
+                                  S.of(context).terms2,
                                   style: Styles.semiBold13
                                       .copyWith(color: Styles.primaryColor),
-                                  textDirection: TextDirection.rtl,
+
                                 )),
                           ],
                         ),
@@ -140,15 +144,15 @@ class _SignupViewState extends State<SignupView> {
 
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
+                                   SnackBar(
                                       content: Text(
-                                          'Please agree to the privacy terms.')));
+                                        S.of(context).agreeterms)));
                             }
                           } else {
                             autovalidateMode = AutovalidateMode.always;
                           }
                         },
-                        title: 'Create new account',
+                        title:  S.of(context).createnewaccount,
                         backgroundColor: Styles.primaryColor,
                         borderRadius: 16,
                         titleStyle:
@@ -160,7 +164,7 @@ class _SignupViewState extends State<SignupView> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'already have an account? ',
+                            S.of(context).haveaccount,
                           style: Styles.semiBold16
 
                         ),
@@ -170,7 +174,7 @@ class _SignupViewState extends State<SignupView> {
                                 .pushReplacement(AppRouters.kLoginView);
                           },
                           child: Text(
-                            'Sign In',
+                            S.of(context).login,
                             style: Styles.semiBold16.copyWith(color: Styles.primaryColor),
                           ),
                         ),

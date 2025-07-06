@@ -14,3 +14,4 @@ const kSupabaseAccessToken='sbp_c7c3b6a006d816bb52cc587f97fd45eaadcf357a';
 const kOneSignalAppID='74760d97-3c4d-4ab9-8e69-24e768f6138d';
 const kOrders='orders';
 const kOrderedProduct='orderedProducts';
+const kCards="cards";

@@ -11,12 +11,12 @@ class OrderEntity {
   String? address;
   final String? city;
   final String? flatNumber;
-  final DateTime? date;
-  final bool? followOrder;
-  final bool? acceptOrder;
-  final bool? shippingOrder;
-  final bool? deliveryOrder;
-  final bool? delivered;
+  final String? date;
+  final String? followOrder;
+  final String? acceptOrder;
+  final String? shippingOrder;
+  final String? deliveryOrder;
+  final String? delivered;
 
   OrderEntity({
     this.price,
@@ -32,10 +32,10 @@ class OrderEntity {
     this.flatNumber,
     this.date,
     this.amount,
-    this.followOrder = true,
-    this.acceptOrder = true,
-    this.shippingOrder = true,
-    this.deliveryOrder = false,
-    this.delivered = false,
+    this.followOrder='',
+    this.acceptOrder ='',
+    this.shippingOrder='',
+    this.deliveryOrder='' ,
+    this.delivered='',
   });
 }

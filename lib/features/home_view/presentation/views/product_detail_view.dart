@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import '../../../../core/utilis/styles.dart';
 import '../../../../core/widgets/build_bottom_bar.dart';
 import '../../../../generated/assets.dart';
+import '../../../../generated/l10n.dart';
 import '../../../cart_view/presentation/manager/cart_cubit.dart';
 import '../../../cart_view/presentation/views/cart_view.dart';
 
@@ -131,7 +132,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                               withNavBar: true, // OPTIONAL VALUE. True by default.
                             );
                           },
-                          child: Text('Reviews',style: Styles.bold19
+                          child: Text(S.of(context).reviews,style: Styles.bold19
                               .copyWith(color: Styles.primaryColor,decoration:TextDecoration.underline ),),
                         )
 
@@ -176,7 +177,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                           }
 
                         },
-                        title: 'Add To Cart',
+                        title: S.of(context).addtocart,
                         backgroundColor: Styles.primaryColor,
                         borderRadius: 16,
                         titleStyle: Styles.bold16.copyWith(color: Colors.white),

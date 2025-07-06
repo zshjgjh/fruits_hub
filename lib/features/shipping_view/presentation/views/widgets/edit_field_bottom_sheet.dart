@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/widgets/cutom_text-field.dart';
 import 'package:fruits_hub/features/shipping_view/domain/entity/order_entity.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../manager/set_orderes_cubit/set_orders_cubit.dart';
 import '../../../../../core/utilis/styles.dart';
 import '../../../../../core/widgets/custom_button.dart';
@@ -34,7 +35,7 @@ void editFieldBottomSheet(BuildContext context) {
             /// Row contains close button and title
             Row(
               children: [
-                Text('Edit Address', style: Styles.bold19),
+                Text(S.of(context).editaddress, style: Styles.bold19),
                 Spacer(),
                 IconButton(
                   icon: Icon(Icons.close),
@@ -44,7 +45,7 @@ void editFieldBottomSheet(BuildContext context) {
             ),
             SizedBox(height: 20),
             CustomTextField(
-              labelText: 'Enter new address',
+              labelText: S.of(context).enternewaddress,
               controller: addressController,
               onChanged: (value) {
                 address = value;
@@ -52,7 +53,7 @@ void editFieldBottomSheet(BuildContext context) {
             ),
             SizedBox(height: 20),
             CustomButton(
-              title: 'Save',
+              title: S.of(context).save,
               titleStyle: Styles.bold19.copyWith(color: Colors.white),
               backgroundColor: Styles.primaryColor,
               borderRadius: 16,

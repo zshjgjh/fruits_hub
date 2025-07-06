@@ -6,12 +6,13 @@ import 'package:fruits_hub/features/cart_view/data/entities/cart_entity.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/product_detail_view.dart';
 import 'package:fruits_hub/features/shipping_view/domain/entity/address_entity.dart';
 import 'package:fruits_hub/features/shipping_view/domain/entity/order_entity.dart';
-import 'package:fruits_hub/features/shipping_view/presentation/views/widgets/save_address_button.dart';
+import 'package:fruits_hub/features/shipping_view/presentation/views/widgets/custom_switch_tile.dart';
 
 import '../../../../core/utilis/shared_prefrences.dart';
 import '../../../../core/utilis/styles.dart';
 import '../../../../core/widgets/build_app_bar.dart';
 import '../../../../core/widgets/custom_button.dart';
+import '../../../../generated/l10n.dart';
 import '../../../cart_view/presentation/manager/cart_cubit.dart';
 import '../manager/set_orderes_cubit/set_orders_cubit.dart';
 
@@ -96,7 +97,7 @@ class _AddressViewState extends State<AddressView>
                       spacing: 20,
                       children: [
                         CustomTextField(
-                          labelText: 'Full name',
+                          labelText: S.of(context).name,
                           controller: nameController,
                           style:
                               Styles.bold13.copyWith(color: Color(0xff949D9E)),
@@ -104,7 +105,7 @@ class _AddressViewState extends State<AddressView>
                           maxLines: 1,
                         ),
                         CustomTextField(
-                          labelText: 'Email',
+                          labelText: S.of(context).email,
                           controller: emailController,
                           style:
                               Styles.bold13.copyWith(color: Color(0xff949D9E)),
@@ -112,7 +113,7 @@ class _AddressViewState extends State<AddressView>
                           maxLines: 1,
                         ),
                         CustomTextField(
-                          labelText: 'Phone',
+                          labelText: S.of(context).phonenumber,
                           controller: phoneController,
                           style:
                               Styles.bold13.copyWith(color: Color(0xff949D9E)),
@@ -120,7 +121,7 @@ class _AddressViewState extends State<AddressView>
                           maxLines: 1,
                         ),
                         CustomTextField(
-                          labelText: 'Address',
+                          labelText: S.of(context).address,
                           controller: addressController,
                           style:
                               Styles.bold13.copyWith(color: Color(0xff949D9E)),
@@ -128,7 +129,7 @@ class _AddressViewState extends State<AddressView>
                           maxLines: 1,
                         ),
                         CustomTextField(
-                          labelText: 'City',
+                          labelText: S.of(context).city,
                           controller: cityController,
                           style:
                               Styles.bold13.copyWith(color: Color(0xff949D9E)),
@@ -136,14 +137,15 @@ class _AddressViewState extends State<AddressView>
                           maxLines: 1,
                         ),
                         CustomTextField(
-                          labelText: 'Flat number',
+                          labelText: S.of(context).flat,
                           controller: flatNumberController,
                           style:
                               Styles.bold13.copyWith(color: Color(0xff949D9E)),
                           textInputType: TextInputType.text,
                           maxLines: 2,
                         ),
-                        SaveAddressSwitchTile(
+                        CustomSwitchTile(
+                          title: S.of(context).saveaddress,
                           value: saveAddress,
                           onChanged: (val) {
                             setState(() {
@@ -185,7 +187,7 @@ class _AddressViewState extends State<AddressView>
                           padding: const EdgeInsets.all(8.0),
                           child: CustomButton(
                             height: 55,
-                            title: 'Next',
+                            title: S.of(context).next,
                             backgroundColor: Styles.primaryColor,
                             borderRadius: 16,
                             titleStyle:
@@ -212,6 +214,7 @@ class _AddressViewState extends State<AddressView>
                                   address: address,
                                   city: city,
                                   flatNumber: flatNumber,
+                                  date: DateTime.now().toString(),
                                 );
                                 widget.onNext();
                               } else {

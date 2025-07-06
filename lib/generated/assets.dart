@@ -6,25 +6,33 @@ class Assets {
   static const String imagesApple = 'assets/images/apple.png';
   static const String imagesArrowBack = 'assets/images/arrowBack.png';
   static const String imagesAvatar = 'assets/images/avatar.png';
+  static const String imagesBox = 'assets/images/box.png';
   static const String imagesCalorie = 'assets/images/calorie.png';
   static const String imagesCircles = 'assets/images/circles.png';
   static const String imagesClock = 'assets/images/clock.png';
   static const String imagesDelivered = 'assets/images/delivered.png';
   static const String imagesDeliveredtrack = 'assets/images/deliveredtrack.png';
+  static const String imagesEdit = 'assets/images/Edit.png';
+  static const String imagesEmptywallet = 'assets/images/emptywallet.png';
   static const String imagesExpire = 'assets/images/expire.png';
   static const String imagesFacebook = 'assets/images/facebook.png';
   static const String imagesFilter = 'assets/images/filter.png';
   static const String imagesFolloworder = 'assets/images/followorder.png';
   static const String imagesFruitbasket = 'assets/images/fruitbasket.png';
   static const String imagesFruits = 'assets/images/fruits.png';
+  static const String imagesGlobal = 'assets/images/global.png';
   static const String imagesGmail = 'assets/images/gmail.png';
   static const String imagesGreenCheck = 'assets/images/greenCheck.png';
   static const String imagesGreenad = 'assets/images/greenad.png';
   static const String imagesGreenbg = 'assets/images/greenbg.png';
   static const String imagesHeart = 'assets/images/heart.png';
+  static const String imagesInfocircle = 'assets/images/infocircle.png';
   static const String imagesLeaf = 'assets/images/leaf.png';
   static const String imagesLogo = 'assets/images/logo.png';
+  static const String imagesMagicpen = 'assets/images/magicpen.png';
+  static const String imagesMasterCard = 'assets/images/masterCard.png';
   static const String imagesNotification = 'assets/images/notification.png';
+  static const String imagesNotifications = 'assets/images/notifications.png';
   static const String imagesOrder = 'assets/images/order.png';
   static const String imagesOrderShipping = 'assets/images/orderShipping.png';
   static const String imagesOrganig = 'assets/images/organig.png';
@@ -41,6 +49,7 @@ class Assets {
   static const String imagesStrawberry = 'assets/images/strawberry.png';
   static const String imagesSwaparrow = 'assets/images/swaparrow.png';
   static const String imagesTrash = 'assets/images/trash.png';
+  static const String imagesUser = 'assets/images/user.png';
   static const String imagesVisa = 'assets/images/visa.png';
 
 }

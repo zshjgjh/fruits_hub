@@ -4,6 +4,7 @@ import 'package:fruits_hub/features/cart_view/data/entities/cart_item_entity.dar
 import 'package:fruits_hub/features/home_view/presentation/views/product_detail_view.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../../domain/entities/product_entity.dart';
 import '../../manager/products_cubit/products_cubit.dart';
 import '../best_seller_view.dart';
@@ -41,7 +42,7 @@ BlocBuilder<ProductsCubit, ProductsState> ourProductsBlocBuilder(context) {
       }else if(state is ProductsFailure){
         return SliverToBoxAdapter(child: Text(state.errorMessage.toString()));
       }else{
-        return SliverToBoxAdapter(child: Text('loading'));
+        return SliverToBoxAdapter(child: Center(child: Text(S.of(context).loading)));
       }
     },
   );

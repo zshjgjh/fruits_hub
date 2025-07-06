@@ -6,6 +6,7 @@ import 'package:fruits_hub/features/shipping_view/domain/entity/order_entity.dar
 import 'package:fruits_hub/features/shipping_view/presentation/views/success_payment_view.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import '../../../../../core/utilis/styles.dart';
+import '../../../../generated/l10n.dart';
 import 'widgets/edit_field_bottom_sheet.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../generated/assets.dart';
@@ -46,7 +47,7 @@ class _ReviewViewState extends State<ReviewView> {
 
         } else if (state is SetOrdersFailure) {
           ScaffoldMessenger.of(context).
-          showSnackBar(SnackBar(content: Text('Fail to complete order...please try again later',style: Styles.bold19,),backgroundColor: Colors.red,));
+          showSnackBar(SnackBar(content: Text(S.of(context).failfetchorder,style: Styles.bold19,),backgroundColor: Colors.red,));
         } else {
           if(state is SetOrderAddressSuccess){
             setState(() {
@@ -66,7 +67,7 @@ class _ReviewViewState extends State<ReviewView> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Order Summary:',
+                        S.of(context).ordersumary,
                         style: Styles.bold19,
                       ),
                       Container(
@@ -81,7 +82,7 @@ class _ReviewViewState extends State<ReviewView> {
                               Row(
                                 children: [
                                   Text(
-                                    'Sub total:',
+                                    S.of(context).subtotal,
                                     style: Styles.regular13
                                         .copyWith(color: Colors.grey.shade600),
                                   ),
@@ -95,7 +96,7 @@ class _ReviewViewState extends State<ReviewView> {
                               Row(
                                 children: [
                                   Text(
-                                    'Delivery:',
+                                    S.of(context).delivery,
                                     style: Styles.regular13
                                         .copyWith(color: Colors.grey.shade600),
                                   ),
@@ -117,7 +118,7 @@ class _ReviewViewState extends State<ReviewView> {
                               Row(
                                 children: [
                                   Text(
-                                    'Total:',
+                                    S.of(context).total,
                                     style: Styles.regular13,
                                   ),
                                   Spacer(),
@@ -131,7 +132,7 @@ class _ReviewViewState extends State<ReviewView> {
                         ),
                       ),
                       Text(
-                        'Confirm your order',
+                        S.of(context).confirmorder,
                         style: Styles.bold19,
                       ),
                  payCash?  SizedBox() :Container(
@@ -146,10 +147,10 @@ class _ReviewViewState extends State<ReviewView> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Text('Payment Method', style: Styles.bold13),
+                                  Text(S.of(context).paymentmethod, style: Styles.bold13),
                                   Spacer(),
                                   Text(
-                                    'edit',
+                                    S.of(context).edit,
                                     style: Styles.semiBold16,
                                   ),
                                   IconButton(
@@ -188,10 +189,10 @@ class _ReviewViewState extends State<ReviewView> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Text('Address', style: Styles.regular13),
+                                  Text(S.of(context).address, style: Styles.regular13),
                                   Spacer(),
                                   Text(
-                                    'edit',
+                                    S.of(context).edit,
                                     style: Styles.semiBold16,
                                   ),
                                   IconButton(
@@ -219,7 +220,7 @@ class _ReviewViewState extends State<ReviewView> {
                       ),
                       CustomButton(
                         height: 55,
-                        title: 'Confirm Order',
+                        title: S.of(context).confirmorder,
                         backgroundColor: Styles.primaryColor,
                         borderRadius: 16,
                         titleStyle: Styles.bold19.copyWith(color: Colors.white),

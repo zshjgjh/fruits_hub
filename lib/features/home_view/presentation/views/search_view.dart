@@ -10,6 +10,7 @@ import 'package:fruits_hub/features/home_view/presentation/views/widgets/search_
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import '../../../../../core/utilis/styles.dart';
 import '../../../../../generated/assets.dart';
+import '../../../../generated/l10n.dart';
 import '../manager/products_cubit/products_cubit.dart';
 
 class SearchView extends StatefulWidget {
@@ -22,7 +23,6 @@ class SearchView extends StatefulWidget {
 }
 
 class _ProductsViewState extends State<SearchView> {
-
   bool isSearch = false;
   bool isTyping = false;
   String? searchWord;
@@ -33,7 +33,7 @@ class _ProductsViewState extends State<SearchView> {
   @override
   void initState() {
     isSearch = true;
-    BlocProvider.of<SearchCubit>(context).getSearchHistory();
+    BlocProvider.of<SearchCubit>(context).getSearchHistory(context);
     super.initState();
   }
 
@@ -43,8 +43,8 @@ class _ProductsViewState extends State<SearchView> {
 
     // Start new timer
     debounce = Timer(const Duration(milliseconds: 500), () {
-      BlocProvider.of<ProductsCubit>(context).getSearchProducts(
-          searchWord: searchWord);
+      BlocProvider.of<ProductsCubit>(context)
+          .getSearchProducts(searchWord: searchWord);
     });
   }
 
@@ -66,35 +66,33 @@ class _ProductsViewState extends State<SearchView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 buildAppBar(context,
-                    title: 'Search',
+                    title: S.of(context).search,
                     action: Image.asset(Assets.imagesNotification),
-                    onPressed: (){ PersistentNavBarNavigator.pop(context);}, isArrowExists: true),
+                    onPressed: () {
+                  PersistentNavBarNavigator.pop(context);
+                }, isArrowExists: true),
                 SearchField(
                   onTapOutside: (event) {
                     FocusScope.of(context).unfocus(); //remove keyboard
                     isSearch = true;
                     isTyping = false;
-                    setState(() {
-
-                    });
+                    setState(() {});
                   },
                   onChanged: (value) {
                     isTyping = true;
                     isSearch = false;
-                    BlocProvider.of<SearchCubit>(context).getSearchHistory();
+                    BlocProvider.of<SearchCubit>(context)
+                        .getSearchHistory(context);
                     onSearchChanged(searchWord: value);
-                    setState(() {
-
-                    });
+                    setState(() {});
                   },
                   onSubmitted: (value) {
                     isTyping = false;
                     isSearch = false;
                     searchItemModel = SearchItemModel(title: value);
-                   BlocProvider.of<SearchCubit>(context).addSearchItem(searchItemModel: searchItemModel!);
-                    setState(() {
-
-                    });
+                    BlocProvider.of<SearchCubit>(context)
+                        .addSearchItem(searchItemModel: searchItemModel!);
+                    setState(() {});
                   },
                 ),
                 SizedBox(
@@ -103,7 +101,6 @@ class _ProductsViewState extends State<SearchView> {
               ],
             ),
           ),
-
           SliverToBoxAdapter(
             child: Visibility(
               visible: isTyping,
@@ -112,34 +109,57 @@ class _ProductsViewState extends State<SearchView> {
                   Row(
                     children: [
                       Text(
-                        'Recent research',
+                        S.of(context).recentsearch,
                         style: Styles.bold19,
                       ),
                       Spacer(),
                       Text(
-                        'Delete all',
+                        S.of(context).deleteall,
                         style: Styles.regular13
                             .copyWith(color: Colors.grey.withOpacity(.2)),
                       ),
                     ],
                   ),
-                  SizedBox(height: 30,),
+                  SizedBox(
+                    height: 30,
+                  ),
                   SizedBox(
                     height: 200,
                     child: BlocListener<SearchCubit, SearchState>(
                       listener: (context, state) {
-                        if(state is SearchSuccess){
-                          searchItems=state.searchItems;
-                        }else if(state is SearchFailure){
+                        if (state is SearchSuccess) {
+                          searchItems = state.searchItems;
+                        } else if (state is SearchFailure) {
                           print(state.errorMessage);
                         }
                       },
-                      child: ListView.builder(
-                        itemCount: searchItems.length,
-                        scrollDirection: Axis.vertical,
-                        itemBuilder: (context, index) {
-                          return searchItems.isNotEmpty? SearchItem(
-                            searchItemModel: searchItems[index],):SizedBox();
+                      child: BlocBuilder<SearchCubit, SearchState>(
+                        builder: (context, state) {
+                          if (state is SearchSuccess) {
+                            return ListView.builder(
+                              itemCount: searchItems.length,
+                              scrollDirection: Axis.vertical,
+                              itemBuilder: (context, index) {
+                                return searchItems.isNotEmpty
+                                    ? SearchItem(
+                                        searchItemModel: searchItems[index],
+                                        onPressed: () {
+                                          BlocProvider.of<SearchCubit>(context)
+                                              .deleteSearchHistory(context,
+                                                  searchItemModel:
+                                                      searchItems[index]);
+                                          BlocProvider.of<SearchCubit>(context)
+                                              .getSearchHistory(context);
+                                        },
+                                      )
+                                    : SizedBox();
+                              },
+                            );
+                          } else if (state is SearchFailure) {
+                            return Text('fail to load history');
+                          } else {
+                            return Text('');
+                          }
                         },
                       ),
                     ),
@@ -148,7 +168,6 @@ class _ProductsViewState extends State<SearchView> {
               ),
             ),
           ),
-
           SliverToBoxAdapter(
             child: Visibility(
               visible: isSearch,
@@ -157,25 +176,21 @@ class _ProductsViewState extends State<SearchView> {
                   children: [
                     Container(
                       color: Colors.white,
-                      child: Text('No Search Reults'),
+                      child: Text(S.of(context).nosearchresult),
                     ),
                     Image.asset(Assets.imagesSearchimg),
                   ]),
             ),
           ),
-
           isSearch == false && isTyping == false
               ? productsBlocBuilder()
               : SliverToBoxAdapter(child: SizedBox()),
-
           SliverToBoxAdapter(
               child: SizedBox(
-                height: 20,
-              )),
+            height: 20,
+          )),
         ]),
       ),
     );
   }
 }
-
-

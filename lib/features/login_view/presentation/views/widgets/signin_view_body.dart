@@ -10,6 +10,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../../../../core/utilis/styles.dart';
 import '../../../../../generated/assets.dart';
+import '../../../../../generated/l10n.dart';
 import '../../manager/signup_cubit/signup_cubit.dart';
 import '../../manager/singin_cubit/signin_cubit.dart';
 import 'custom_signin_button.dart';
@@ -31,7 +32,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, title: 'SignIn', isArrowExists: true,onPressed: (){ Navigator.of(context).pop();}),
+      appBar: buildAppBar(context, title: S.of(context).login, isArrowExists: true,onPressed: (){ Navigator.of(context).pop();}),
       body: BlocListener<SigninCubit, SigninState>(
         listener: (context, state) {
           if (state is SigninLoading) {
@@ -64,7 +65,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                       onSaved: (value) {
                         email = value;
                       },
-                      labelText: 'Email',
+                      labelText: S.of(context).email,
                       style: Styles.bold13.copyWith(color: Color(0xFF949D9E)),
                       textInputType: TextInputType.emailAddress,
                       borderRadius: 4,
@@ -73,7 +74,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                       onSaved: (value) {
                         password = value;
                       },
-                      labelText: 'Password',
+                      labelText: S.of(context).password,
                       style: Styles.bold13.copyWith(color: Color(0xFF949D9E)),
                       hiddenText: true,
                       textInputType: TextInputType.text,
@@ -85,7 +86,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                               .pushReplacement(AppRouters.kForgetPassword);
                         },
                         child: Text(
-                          'Forget password?',
+                          S.of(context).forgetPassword,
                           style: Styles.semiBold13
                               .copyWith(color: Styles.primaryColor),
                         )),
@@ -99,7 +100,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                             autovalidateMode = AutovalidateMode.always;
                           }
                         },
-                        title: 'Sign In',
+                        title:S.of(context).login,
                         backgroundColor: Styles.primaryColor,
                         borderRadius: 16,
                         titleStyle:
@@ -109,7 +110,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Dont have account?',
+                        Text(S.of(context).unaccountably1,
                           style: Styles.semiBold16
 
                         ),
@@ -118,7 +119,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                             GoRouter.of(context)
                                 .pushReplacement(AppRouters.kCreateAccount);
                           },
-                          child: Text('  Create account',
+                          child: Text(S.of(context).unaccountably2,
                             style: Styles.semiBold16.copyWith(color: Styles.primaryColor),
                           ),
                         ),
@@ -133,7 +134,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                         )),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text('OR', style: Styles.semiBold16),
+                          child: Text(S.of(context).or, style: Styles.semiBold16),
                         ),
                         Expanded(
                             child: Divider(
@@ -144,7 +145,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                     ),
                     CustomSigninButton(
                       onPressed: () {},
-                      title: 'SignIn with Apple',
+                      title: S.of(context).apple,
                       borderRadius: 16,
                       titleStyle: Styles.semiBold16,
                       leading: Assets.imagesApple,
@@ -153,7 +154,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                     ),
                     CustomSigninButton(
                       onPressed: () {},
-                      title: 'SignIn with Google',
+                      title: S.of(context).google,
                       borderRadius: 16,
                       titleStyle: Styles.semiBold16,
                       leading: Assets.imagesGmail,
@@ -162,7 +163,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                     ),
                     CustomSigninButton(
                       onPressed: () {},
-                      title: 'SignIn with Facebook',
+                      title: S.of(context).facebook,
                       borderRadius: 16,
                       titleStyle: Styles.semiBold16,
                       leading: Assets.imagesFacebook,

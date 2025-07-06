@@ -4,6 +4,7 @@ import 'package:fruits_hub/features/cart_view/presentation/manager/cart_cubit.da
 import 'package:fruits_hub/features/shipping_view/presentation/manager/set_orderes_cubit/set_orders_cubit.dart';
 
 import '../../../../../core/widgets/build_app_bar.dart';
+import '../../../../../generated/l10n.dart';
 import '../review_view.dart';
 import '../address_view.dart';
 import '../payment_view.dart';
@@ -28,8 +29,8 @@ class _OrderStackState extends State<OrderStack> {
   Widget build(BuildContext context) {
 
     final List<String> steps = payCash
-        ? ['Shipping', 'Address', 'Review']
-        : ['Shipping', 'Address', 'Payment', 'Review'];
+        ? [S.of(context).shipping, S.of(context).address, S.of(context).review]
+        : [S.of(context).shipping, S.of(context).address, S.of(context).payment, S.of(context).review];
 
     return Scaffold(
       body: Column(

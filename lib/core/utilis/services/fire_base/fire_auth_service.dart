@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fruits_hub/core/errors/server_failure.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -65,5 +66,74 @@ class FireAuthService {
   bool isUserSignin()  {
     return FirebaseAuth.instance.currentUser !=null;
 }
+
+  Future<void> updateProfile({required String uid, String? name, String? email, String? currentPassword, String? newPassword,}) async {
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user == null) {
+      throw ServerFailure('No user is currently signed in.');
+    }
+
+    // Determine what needs to be updated
+    final hasPasswordChange = newPassword != null && currentPassword != null;
+    final hasNameOrEmailChange = (name != null) || (email != null);
+
+    try {
+      // Re-authenticate if needed (email or password change)
+      if (hasPasswordChange || email != null) {
+        if (currentPassword == null) {
+          throw ServerFailure('You must enter your current password to re-authenticate.');
+        }
+
+        final credential = EmailAuthProvider.credential(
+          email: user.email!,
+          password: currentPassword,
+        );
+
+        await user.reauthenticateWithCredential(credential);
+      }
+
+      // Update password
+      if (hasPasswordChange) {
+        await user.updatePassword(newPassword!);
+      }
+
+      // Update email
+      if (email != null && email != user.email) {
+        await user.updateEmail(email);
+      }
+
+      // Update Firestore document (name and/or email)
+      if (hasNameOrEmailChange) {
+        final userDoc = FirebaseFirestore.instance.collection('users').doc(uid);
+
+        final updateData = <String, dynamic>{};
+        if (name != null) updateData['name'] = name;
+        if (email != null) updateData['email'] = email;
+
+        await userDoc.update(updateData);
+      }
+
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {
+        case 'wrong-password':
+          throw ServerFailure('The current password is incorrect.');
+        case 'weak-password':
+          throw ServerFailure('The new password is too weak.');
+        case 'email-already-in-use':
+          throw ServerFailure('This email address is already in use.');
+        case 'invalid-email':
+          throw ServerFailure('The email address is invalid.');
+        case 'requires-recent-login':
+          throw ServerFailure('Please sign in again to perform this action.');
+        default:
+          throw ServerFailure(e.message ?? 'An unknown error occurred.');
+      }
+    } catch (e) {
+      throw ServerFailure('Failed to update profile: ${e.toString()}');
+    }
+  }
+
+
 
 }

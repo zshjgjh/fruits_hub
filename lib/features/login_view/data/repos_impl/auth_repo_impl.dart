@@ -104,4 +104,21 @@ class AuthRepoImpl implements AuthRepo{
 
   }
 
+  @override
+  Future<Either<Failure,void>> updateProfile({required String uid, String? name, String? email, String? currentPassword, String? newPassword,}) async {
+    try {
+     await fireBaseAuthService.updateProfile(
+         currentPassword:currentPassword,
+         uid:uid,
+         name:name,
+         newPassword:newPassword);
+
+     return Right(null);
+    } catch (e) {
+      return left(ServerFailure(e.toString()));
+    }
+
+  }
+
+
 }

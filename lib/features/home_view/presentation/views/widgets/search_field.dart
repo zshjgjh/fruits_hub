@@ -3,6 +3,7 @@ import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 import '../../../../../core/utilis/styles.dart';
 import '../../../../../generated/assets.dart';
+import '../../../../../generated/l10n.dart';
 import '../search_view.dart';
 
 class SearchField extends StatelessWidget {
@@ -22,8 +23,7 @@ final Function(PointerDownEvent)? onTapOutside;
       onChanged: onChanged,
       decoration: InputDecoration(
         prefixIcon: Image.asset(Assets.imagesSearch),
-        suffixIcon: Image.asset(Assets.imagesFilter),
-        hintText: '   Search for',
+        hintText: S.of(context).search,
         hintStyle: Styles.regular13.copyWith(color: Color(0xFF949D9E)),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(4),

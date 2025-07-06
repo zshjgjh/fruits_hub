@@ -19,6 +19,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../../../../core/utilis/styles.dart';
 import '../../../../../generated/assets.dart';
+import '../../../../../generated/l10n.dart';
 import 'reviews_list.dart';
 import 'review_bar_item.dart';
 import 'review_item.dart';
@@ -62,12 +63,12 @@ class _ReviewsViewState extends State<ReviewsViewBody> {
           isLoading = false;
           setState(() {});
           ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text('Success submit review')));
+              .showSnackBar(SnackBar(content: Text(S.of(context).successreview)));
         } else if (state is SetReviewFailure) {
           isLoading = false;
           setState(() {});
           ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text('Fail submit review')));
+              .showSnackBar(SnackBar(content: Text(S.of(context).failreview)));
           print(state.errorMessage);
         } else {
           isLoading = true;
@@ -89,7 +90,7 @@ class _ReviewsViewState extends State<ReviewsViewBody> {
                           spacing: 30,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            buildAppBar(context, title: 'Reviews', isArrowExists: true,onPressed: (){ Navigator.of(context).pop();}),
+                            buildAppBar(context, title: S.of(context).reviews, isArrowExists: true,onPressed: (){ Navigator.of(context).pop();}),
                             WriteReviewSection(
                                 controller: controller,
                                 onSaved: (value) {
@@ -103,7 +104,7 @@ class _ReviewsViewState extends State<ReviewsViewBody> {
 
                                 }),
                             CustomButton(
-                              title: 'Submit Review',
+                              title: S.of(context).submitreview,
                               backgroundColor: Styles.primaryColor,
                               borderRadius: 12,
                               titleStyle:
@@ -135,7 +136,7 @@ class _ReviewsViewState extends State<ReviewsViewBody> {
                                   } else {
                                     autovalidateMode = AutovalidateMode.always;
                                     ScaffoldMessenger.of(context)
-                                        .showSnackBar(SnackBar(content: Text('please give rating')));
+                                        .showSnackBar(SnackBar(content: Text(S.of(context).rating)));
                                   }
                                 },
 

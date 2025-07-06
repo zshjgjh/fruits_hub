@@ -10,6 +10,7 @@ import '../../../../core/utilis/save_user_locally.dart';
 import '../../../../core/utilis/styles.dart';
 import '../../../../core/widgets/build_bottom_bar.dart';
 import '../../../../generated/assets.dart';
+import '../../../../generated/l10n.dart';
 import '../../../cart_view/presentation/manager/cart_cubit.dart';
 import '../../../home_view/presentation/views/home_view.dart';
 import '../../domain/entity/order_entity.dart';
@@ -44,7 +45,7 @@ class _SuccessPaymentViewState extends State<SuccessPaymentView> {
                 setState(() {});
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text(
-                    'Fail to fetch order...please try again later',
+                    S.of(context).failfetchorder,
                     style: Styles.bold19,
                   ),
                   backgroundColor: Colors.red,
@@ -71,14 +72,14 @@ class _SuccessPaymentViewState extends State<SuccessPaymentView> {
                         PersistentNavBarNavigator.pop(context);
                       }),
                       Image.asset(Assets.imagesGreenCheck),
-                      Text('Success', style: Styles.bold19),
+                      Text(S.of(context).success, style: Styles.bold19),
                       orders.isEmpty
                           ? SizedBox()
-                          : Text('Order number: ${orders.last.id}',
+                          : Text('${S.of(context).ordernumber} ${orders.last.id}',
                               style: Styles.bold19),
                       Spacer(),
                       CustomButton(
-                        title: 'Home',
+                        title:S.of(context).home,
                         height: 55,
                         width: double.infinity,
                         backgroundColor: Styles.primaryColor,
@@ -97,7 +98,7 @@ class _SuccessPaymentViewState extends State<SuccessPaymentView> {
                         },
                       ),
                       CustomButton(
-                        title: 'Order Details',
+                        title: S.of(context).orderdetails,
                         height: 55,
                         width: double.infinity,
                         backgroundColor: Styles.primaryColor,

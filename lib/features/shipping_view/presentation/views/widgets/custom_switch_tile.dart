@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_hub/core/utilis/styles.dart';
 
-class SaveAddressSwitchTile extends StatelessWidget {
+class CustomSwitchTile extends StatelessWidget {
   final bool value;
   final ValueChanged<bool> onChanged;
+  final String title;
 
-  const SaveAddressSwitchTile({
+  const CustomSwitchTile({
     super.key,
     required this.value,
     required this.onChanged,
+    required this.title,
   });
 
   @override
@@ -16,7 +18,7 @@ class SaveAddressSwitchTile extends StatelessWidget {
     return SwitchListTile(
       activeColor: Styles.primaryColor,
       title: Text(
-        'Save address for next use',
+        title,
         style: Styles.bold16.copyWith(color: const Color(0xff949D9E)),
       ),
       value: value,

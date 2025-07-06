@@ -11,6 +11,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../../core/utilis/app_routers.dart';
 import '../../../../../core/utilis/styles.dart';
 import '../../../../../generated/assets.dart';
+import '../../../../../generated/l10n.dart';
 
 class OnBoardingViewBody extends StatefulWidget {
   const OnBoardingViewBody({super.key});
@@ -71,7 +72,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
                   SharedPreferencesSingelton.setBool(kIsOnBoardingViewSeen, true);
                   GoRouter.of(context).pushReplacement(AppRouters.kLoginView);
                 },
-                title: 'ابدأ الان',
+                title: S.of(context).start,
                 backgroundColor: Styles.primaryColor,
                 borderRadius: 16,
                 titleStyle: Styles.bold16.copyWith(color: Color(0xFFFFFFFF)),

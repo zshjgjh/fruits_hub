@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../generated/l10n.dart';
 import '../utilis/styles.dart';
 import 'build_app_bar.dart';
 
@@ -14,7 +15,8 @@ class CustomTextField extends StatefulWidget {
     this.hiddenText=false,
     this.borderRadius=4,
     this.controller,
-    this.onChanged
+    this.onChanged,
+    this.validator
   });
 
 final String? labelText;
@@ -26,6 +28,7 @@ final void Function(String?)? onSaved;
 final bool? hiddenText;
  final TextEditingController? controller;
  final void Function(String)? onChanged;
+ final String? Function(String?)? validator;
 
 
   @override
@@ -33,13 +36,15 @@ final bool? hiddenText;
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
-  @override
   bool obSecureText=true;
+
+  @override
+
   Widget build(BuildContext context) {
     return TextFormField(
-      validator: (value){
+      validator:widget.validator?? (value){
         if(value!.isEmpty){
-          return 'field is required';
+          return S.of(context).fieldrequired;
         }
       },
       controller:widget.controller,

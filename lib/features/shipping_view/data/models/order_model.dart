@@ -14,13 +14,13 @@ class OrderModel {
   final String? address;
   final String? city;
   final String? flatNumber;
-  final DateTime? date;
+  final String? date;
   final int? amount;
-  final bool? followOrder;
-  final bool? acceptOrder;
-  final bool? shippingOrder;
-  final bool? deliveryOrder;
-  final bool? delivered;
+  final String? followOrder;
+  final String? acceptOrder;
+  final String? shippingOrder;
+  final String? deliveryOrder;
+  final String? delivered;
 
   OrderModel({
     this.id,
@@ -102,16 +102,16 @@ class OrderModel {
       address: json['address'],
       city: json['city'],
       flatNumber: json['flatNumber'],
-      date:DateTime.parse(json['date']),
+      date: json['date'],
       amount: json['amount'],
-      followOrder:json['followOrder'],
-      acceptOrder:json['acceptOrder'],
-      shippingOrder:json['shippingOrder'],
-      deliveryOrder:json['deliveryOrder'],
-      delivered:json['delivered'],
-
+      followOrder: json['followOrder'],
+      acceptOrder: json['acceptOrder'] ,
+      shippingOrder: json['shippingOrder'] ,
+      deliveryOrder: json['deliveryOrder'] ,
+      delivered: json['delivered'],
     );
   }
+
 
   Map<String, dynamic> toJson() {
     return {
@@ -126,11 +126,9 @@ class OrderModel {
       'city': city,
       'amount':amount,
       'flatNumber': flatNumber,
-      'followOrder':followOrder,
-      'acceptOrder':acceptOrder,
-     'shippingOrder':shippingOrder,
-      'deliveryOrder':deliveryOrder,
-      'delivered':delivered,
+      'date': date,
+
+
     };
   }
 }

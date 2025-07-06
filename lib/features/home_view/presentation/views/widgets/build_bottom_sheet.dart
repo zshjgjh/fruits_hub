@@ -5,6 +5,7 @@ import '../../../../../core/utilis/styles.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/cutom_text-field.dart';
 import '../../../../../generated/assets.dart';
+import '../../../../../generated/l10n.dart';
 import '../../manager/products_cubit/products_cubit.dart';
 
 void buildBottomSheet(BuildContext context) {
@@ -25,11 +26,11 @@ void buildBottomSheet(BuildContext context) {
             child: Column(
               spacing: 30,
               children: [
-                Text('Sort by', style: Styles.bold19),
+                Text(S.of(context).sortby, style: Styles.bold19),
                 Row(
                   children: [
                     Image.asset(Assets.imagesPrice),
-                    Text('Price:', style: Styles.bold13),
+                    Text(S.of(context).price, style: Styles.bold13),
                   ],
                 ),
                 Row(
@@ -47,7 +48,7 @@ void buildBottomSheet(BuildContext context) {
                       ),
                     ),
                     SizedBox(width: 8),
-                    Text('To', style: Styles.bold13),
+                    Text(S.of(context).to, style: Styles.bold13),
                     SizedBox(width: 8),
                     Expanded(
                       child: CustomTextField(
@@ -92,7 +93,7 @@ void buildBottomSheet(BuildContext context) {
                     );
                     Navigator.pop(context); // إغلاق الشيت
                   },
-                  title: 'Filter',
+                  title: S.of(context).filter,
                   backgroundColor: Styles.primaryColor,
                   borderRadius: 16,
                   titleStyle: Styles.bold16.copyWith(color: Colors.white),

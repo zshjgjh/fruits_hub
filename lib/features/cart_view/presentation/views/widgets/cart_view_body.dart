@@ -10,6 +10,7 @@ import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 import '../../../../../core/utilis/styles.dart';
 import '../../../../../generated/assets.dart';
+import '../../../../../generated/l10n.dart';
 import '../../../../shipping_view/presentation/views/ship_view_body.dart';
 
 class CartViewBody extends StatefulWidget {
@@ -33,14 +34,14 @@ class _CartViewBodyState extends State<CartViewBody> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: buildAppBar(context, title: 'Cart', isArrowExists: false),
+                      child: buildAppBar(context, title: S.of(context).cart, isArrowExists: false),
                     ),
                     Container(
                       alignment: Alignment.center,
                       height: 50,
                       width: double.infinity,
                       color: Color(0xffEBF9F1),
-                      child: Text('You have ${widget.cartEntity.calculateNumOfProducts()} items in cart',style: Styles.semiBold13.copyWith(color: Styles.primaryColor),),
+                      child: Text('${S.of(context).youhave} ${widget.cartEntity.calculateNumOfProducts()} ${S.of(context).itemsincart}',style: Styles.semiBold13.copyWith(color: Styles.primaryColor),),
                     ),
                     SizedBox(height: 20,)
 
@@ -95,10 +96,10 @@ class _CartViewBodyState extends State<CartViewBody> {
                                 PageTransitionAnimation.cupertino,
                               );
                             }else{
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Cart is empty')));
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(S.of(context).cartempty)));
                             }
                           },
-                          title: 'Pay  ${widget.cartEntity.calculateTotalPrice()}'r'  $',
+                          title: '${S.of(context).pay}  ${widget.cartEntity.calculateTotalPrice()}'r'  $',
                           backgroundColor: Styles.primaryColor,
                           borderRadius: 16,
                           titleStyle: Styles.bold19.copyWith(color: Colors.white),

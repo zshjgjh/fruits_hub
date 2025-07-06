@@ -7,6 +7,7 @@ import 'package:fruits_hub/features/home_view/presentation/manager/reviews_cubit
 import 'package:fruits_hub/features/home_view/presentation/views/widgets/review_bar_item.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/widgets/custom_review_field.dart';
 import '../../../../../core/utilis/styles.dart';
+import '../../../../../generated/l10n.dart';
 
 class WriteReviewSection extends StatelessWidget {
 const WriteReviewSection({super.key, required this.onSaved,required this.onRatingUpdate, this.controller});
@@ -27,7 +28,7 @@ final TextEditingController? controller;
             CustomReviewField(
               controller:controller ,
                 maxLines: 2,
-                labelText: 'write review',
+                labelText: S.of(context).writereview,
                 borderRadius: 10,
                 style: Styles.bold19,
                 onSaved:onSaved,),

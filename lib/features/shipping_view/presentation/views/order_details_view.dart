@@ -10,6 +10,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../../../core/utilis/save_user_locally.dart';
 import '../../../../core/utilis/styles.dart';
 import '../../../../generated/assets.dart';
+import '../../../../generated/l10n.dart';
 
 class OrderDetailsView extends StatefulWidget {
   const OrderDetailsView({super.key});
@@ -46,7 +47,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
             });
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(
-                'Fail fetch order..please try later',
+                S.of(context).failfetchorder,
                 style: Styles.bold19,
               ),
               backgroundColor: Colors.red,
@@ -70,7 +71,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                       children: [
                         buildAppBar(
                           context,
-                          title: 'Order Details',
+                          title: S.of(context).orderdetails,
                           isArrowExists: true,
                         ),
                         const SizedBox(height: 30),
@@ -81,10 +82,10 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                           child: Column(
                             children: [
                               OrderStep(
-                                isCompleted: orderEntity!.followOrder!?true:false,
-                                title: 'Order following',
+                                isCompleted: orderEntity!.followOrder==null?false:true,
+                                title: S.of(context).orderfollowing,
                                 image: Assets.imagesFolloworder,
-                                orderEntity: orderEntity!,
+                                subTitle: orderEntity?.followOrder??''
                               ),
                               const Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 70.0),
@@ -94,10 +95,10 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                                 ),
                               ),
                               OrderStep(
-                                isCompleted: orderEntity!.acceptOrder!?true:false,
-                                title: 'Order accepted',
+                                isCompleted: orderEntity!.acceptOrder==null?false:true,
+                                title: S.of(context).orderaccepted,
                                 image: Assets.imagesAcceptorder,
-                                orderEntity: orderEntity!,
+                                subTitle: orderEntity?.acceptOrder??'',
                               ),
                               const Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 60.0),
@@ -107,10 +108,10 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                                 ),
                               ),
                               OrderStep(
-                                isCompleted: orderEntity!.shippingOrder!?true:false,
-                                title: 'Order shipping',
+                                isCompleted: orderEntity!.shippingOrder==null?false:true,
+                                title: S.of(context).ordershipping,
                                 image: Assets.imagesOrderShipping,
-                                orderEntity: orderEntity!,
+                                subTitle: orderEntity?.shippingOrder??'',
                               ),
                               const Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 60.0),
@@ -120,10 +121,10 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                                 ),
                               ),
                               OrderStep(
-                                isCompleted: orderEntity!.deliveryOrder!?true:false,
-                                title: 'Order out for delivery',
+                                isCompleted: orderEntity!.deliveryOrder==null?false:true,
+                                title: S.of(context).orderout,
                                 image: Assets.imagesDeliveredtrack,
-                                orderEntity: orderEntity!,
+                                subTitle: orderEntity?.deliveryOrder??"",
                               ),
                               const Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 60.0),
@@ -133,10 +134,10 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
                                 ),
                               ),
                               OrderStep(
-                                isCompleted: orderEntity!.delivered!?true:false,
-                                title: 'Order delivered',
+                                isCompleted: orderEntity!.delivered==null?false:true,
+                                title: S.of(context).orderdelivered,
                                 image: Assets.imagesDelivered,
-                                orderEntity: orderEntity!,
+                                subTitle: orderEntity?.delivered??'',
                               ),
                             ],
                           ),

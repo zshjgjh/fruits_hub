@@ -20,6 +20,7 @@ class SetOrdersCubit extends Cubit<SetOrdersState> {
     result.fold((failure){
       emit(SetOrdersFailure(errorMessage: failure.toString()));
       print(failure.toString());
+      print(orderEntity.date);
     }, (r){
       emit(SetOrdersSuccess());
 

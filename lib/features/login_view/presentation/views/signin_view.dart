@@ -18,10 +18,8 @@ class SigninView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocProvider<SigninCubit>(
-        create: (context) => SigninCubit(authRepo:AuthRepoImpl(fireBaseAuthService: FireAuthService(), fireStoreService: FireStoreService(), supaBaseDataBaseService: SupaBaseDataBaseService())),
-        child: SigninViewBody(),
-      ),
+      body: SigninViewBody(),
+
     );
   }
 }

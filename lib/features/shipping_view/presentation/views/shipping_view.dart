@@ -7,6 +7,7 @@ import 'package:fruits_hub/features/shipping_view/domain/entity/order_entity.dar
 import 'package:fruits_hub/features/shipping_view/presentation/views/widgets/custom_radio_list.dart';
 
 import '../../../../core/utilis/styles.dart';
+import '../../../../generated/l10n.dart';
 import '../manager/set_orderes_cubit/set_orders_cubit.dart';
 
 class ShippingView extends StatefulWidget {
@@ -43,8 +44,8 @@ class _ShippingViewState extends State<ShippingView> with AutomaticKeepAliveClie
           spacing: 20,
           children: [
             CustomRadioList(
-              title: 'Payment on delivery',
-              subTitle: 'Delivery on place',
+              title: S.of(context).paymentondelivery,
+              subTitle: S.of(context).deliveryonplace,
               secondary: '${BlocProvider.of<CartCubit>(context).cartEntity.calculateTotalPrice() + 40}',
               value: 'option 1',
               selectedValue: selectedShippingOption ?? '',
@@ -61,8 +62,8 @@ class _ShippingViewState extends State<ShippingView> with AutomaticKeepAliveClie
               },
             ),
             CustomRadioList(
-              title: 'Payment online',
-              subTitle: 'please choose payment method',
+              title: S.of(context).paymentonline,
+              subTitle: S.of(context).selectpaymentmethod,
               secondary: '${BlocProvider.of<CartCubit>(context).cartEntity.calculateTotalPrice()}',
               value: 'option 2',
               selectedValue: selectedShippingOption ?? '',
@@ -81,7 +82,7 @@ class _ShippingViewState extends State<ShippingView> with AutomaticKeepAliveClie
             const Spacer(),
             CustomButton(
               height: 55,
-              title: 'Next',
+              title: S.of(context).next,
               backgroundColor: Styles.primaryColor,
               borderRadius: 16,
               titleStyle: Styles.bold19.copyWith(color: Colors.white),
@@ -90,7 +91,7 @@ class _ShippingViewState extends State<ShippingView> with AutomaticKeepAliveClie
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(
-                        'Please select a shipping option',
+                        S.of(context).shipoption,
                         style: Styles.bold19.copyWith(color: Colors.white),
                       ),
                       backgroundColor: Styles.secondaryColor,

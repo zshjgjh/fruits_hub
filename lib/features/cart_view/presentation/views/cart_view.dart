@@ -26,14 +26,13 @@ class _CartViewState extends State<CartView> {
         body: BlocConsumer<CartCubit, CartState>(
           listener: (context, state) {
             if(state is CartItemAdded){
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Success add product')));
             }else if(state is CartCleared){
               setState(() {
 
               });
             }
             else{
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('fail to add product')));
+
             }
           },
           builder: (BuildContext context,  state) {

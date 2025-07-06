@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/utilis/styles.dart';
 import '../../../../generated/assets.dart';
+import '../../../../generated/l10n.dart';
 
 class CheckCodeView extends StatelessWidget {
   const CheckCodeView({super.key});
@@ -14,7 +15,7 @@ class CheckCodeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, title: 'Check code', isArrowExists: true,onPressed: (){ Navigator.of(context).pop();}),
+      appBar: buildAppBar(context, title: S.of(context).checkCode, isArrowExists: true,onPressed: (){ Navigator.of(context).pop();}),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 12.0,horizontal: 12),
@@ -22,7 +23,7 @@ class CheckCodeView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 20,
             children: [
-              Text('Enter Code',
+              Text(S.of(context).enterCode,
                 style: Styles.semiBold16.copyWith(color: Color(0xFF616A6B)),
 
                 maxLines: 2,),
@@ -74,7 +75,7 @@ class CheckCodeView extends StatelessWidget {
                   onPressed:(){
                     GoRouter.of(context).pushReplacement(AppRouters.kNewPassword);
                   },
-                  title: 'Check code',
+                  title: S.of(context).checkCode,
                   backgroundColor: Styles.primaryColor,
                   borderRadius:16,
                   titleStyle: Styles.bold16.copyWith(color: Colors.white),
@@ -83,7 +84,7 @@ class CheckCodeView extends StatelessWidget {
               ),
 
               Center(
-                child: Text('Resend code',
+                child: Text(S.of(context).resendcode,
                   style: Styles.semiBold16.copyWith(color: Styles.primaryColor),
                   maxLines: 2,),
               ),

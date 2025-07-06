@@ -6,6 +6,7 @@ import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../core/widgets/build_bottom_bar.dart';
+import '../../../../../generated/l10n.dart';
 import '../../../../cart_view/presentation/manager/cart_cubit.dart';
 import '../../../domain/entities/product_entity.dart';
 import '../../manager/products_cubit/products_cubit.dart';
@@ -42,9 +43,9 @@ BlocBuilder<ProductsCubit, ProductsState> productsBlocBuilder() {
                 crossAxisSpacing: 0,
                 mainAxisSpacing: 20));
       }else if(state is ProductsFailure){
-        return SliverToBoxAdapter(child: Text('Fail to fetch products...please try later'));
+        return SliverToBoxAdapter(child: Text(S.of(context).failloading));
       }else {
-        return SliverToBoxAdapter(child: Text('loading'));
+        return SliverToBoxAdapter(child: Text(S.of(context).loading));
       }
     },
   );

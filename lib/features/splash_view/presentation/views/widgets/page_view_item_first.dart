@@ -7,6 +7,7 @@ import '../../../../../core/utilis/constants.dart';
 import '../../../../../core/utilis/shared_prefrences.dart';
 import '../../../../../core/utilis/styles.dart';
 import '../../../../../generated/assets.dart';
+import '../../../../../generated/l10n.dart';
 
 class PageViewItemFirst extends StatelessWidget {
   const PageViewItemFirst({super.key});
@@ -39,7 +40,7 @@ class PageViewItemFirst extends StatelessWidget {
                       GoRouter.of(context).pushReplacement(AppRouters.kLoginView);
                     },
                     child: Text(
-                      'تخط',
+                      S.of(context).skip,
                       style: Styles.semiBold13.copyWith(color: Color(0xFF949D9E)),
                     ),
                   ),
@@ -56,6 +57,10 @@ class PageViewItemFirst extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
+              S.of(context).welcometo,
+              style: Styles.bold23.copyWith(color: Styles.primaryColor),
+            ),
+            Text(
               ' Fruit',
               style: Styles.bold23.copyWith(color: Styles.primaryColor),
             ),
@@ -63,25 +68,18 @@ class PageViewItemFirst extends StatelessWidget {
               ' Hub ',
               style: Styles.bold23.copyWith(color: Styles.secondaryColor),
             ),
-            Text(
-              'مرحبًا بك في ',
-              style: Styles.bold23,
-            ),
+
           ],
         ),
         Spacer(flex: 1,),
-        Text(
-          'اكتشف تجربة تسوق فريدة مع FruitHUB. استكشف  ',
-          style: Styles.semiBold13,
+        Text(S.of(context).splash1,
+          style: Styles.bold16,
+          overflow: TextOverflow.visible,
+          softWrap: true,
+          maxLines: 8,
+          textAlign: TextAlign.center,
         ),
-        Text(
-          'مجموعتنا الواسعة من الفواكه الطازجة الممتازة',
-          style: Styles.semiBold13,
-        ),
-        Text(
-          'واحصل على أفضل العروض والجودة العالية.',
-          style: Styles.semiBold13,
-        ),
+
         Spacer(flex: 7,)
 
 

@@ -7,6 +7,7 @@ import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 import '../../../../core/utilis/styles.dart';
 import '../../../../generated/assets.dart';
+import '../../../../generated/l10n.dart';
 import '../manager/products_cubit/products_cubit.dart';
 
 class BestSellerView extends StatefulWidget {
@@ -47,7 +48,7 @@ class _BestSellerViewState extends State<BestSellerView> with AutomaticKeepAlive
                 children: [
                   buildAppBar(
                     context,
-                    title: 'Best seller',
+                    title: S.of(context).bestseller,
                     action: Image.asset(Assets.imagesNotification),
                     onPressed: () {
                       PersistentNavBarNavigator.pop(context);
@@ -56,7 +57,7 @@ class _BestSellerViewState extends State<BestSellerView> with AutomaticKeepAlive
                   ),
                   const SizedBox(height: 30),
                   Text(
-                    'Best Seller',
+                    S.of(context).bestseller,
                     style: Styles.bold19,
                   ),
                   const SizedBox(height: 1),

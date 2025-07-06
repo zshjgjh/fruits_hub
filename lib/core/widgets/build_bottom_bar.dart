@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/features/cart_view/presentation/views/cart_view.dart';
+import 'package:fruits_hub/features/profile_view/presentation/views/my_account_view.dart';
 
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
@@ -26,7 +27,7 @@ class buildBottomBar extends StatelessWidget {
         HomeViewBody(),
         ProductsView(),
         CartView(),
-
+         MyAccountView()
       ],
       items: [
         PersistentBottomNavBarItem(
@@ -43,6 +44,12 @@ class buildBottomBar extends StatelessWidget {
 
         PersistentBottomNavBarItem(
             icon: const Icon(Icons.add_shopping_cart_outlined),
+            activeColorPrimary: Colors.deepOrange,
+            inactiveColorPrimary: Colors.grey,
+            activeColorSecondary: Colors.green),
+
+        PersistentBottomNavBarItem(
+            icon: const Icon(Icons.person),
             activeColorPrimary: Colors.deepOrange,
             inactiveColorPrimary: Colors.grey,
             activeColorSecondary: Colors.green),

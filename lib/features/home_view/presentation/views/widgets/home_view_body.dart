@@ -10,6 +10,8 @@ import 'package:fruits_hub/features/home_view/presentation/views/best_seller_vie
 import 'package:fruits_hub/features/home_view/presentation/views/search_view.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
+import '../../../../../generated/l10n.dart';
+
 class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
 
@@ -66,11 +68,11 @@ class _HomeViewBodyState extends State<HomeViewBody>
                           PageTransitionAnimation.cupertino,
                         );
                       },
-                      child: Text('Best Seller', style: Styles.bold16),
+                      child: Text(S.of(context).bestseller, style: Styles.bold16),
                     ),
                     const Spacer(),
                     Text(
-                      'Show more',
+                      S.of(context).showmore,
                       style: Styles.regular13.copyWith(color: const Color(0xFF949D9E)),
                     ),
                   ],
