@@ -54,7 +54,7 @@ class _SignupViewState extends State<SignupView> {
             setState(() => isLoading = false);
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Center(child: Text(S.of(context).success)),
+                content: Center(child: Text(S.of(context).verifyemail)),
                 backgroundColor: Colors.green,
                 duration: const Duration(seconds: 2),
               ),

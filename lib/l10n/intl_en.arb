@@ -29,7 +29,7 @@
   "createnewaccount":  "Create new account",
   "haveaccount": "Have an account?",
   "agreeterms": "please agree terms",
-  "dontworry": "Don’t worry, just enter your phone number and we’ll send you a verification code.",
+  "dontworry": "Don’t worry, just enter your email and we’ll send you a reset link.",
   "createnewpasswordtologin": "Create a new password to log in.",
   "lookfor": "Look for",
   "goodmorning!": "Good morning!",
@@ -185,7 +185,9 @@
  "passwordRequired": "Password is required.",
  "passwordTooShort": "Password must be at least 6 characters.",
 
- "nameRequired": "Name is required."
+ "nameRequired": "Name is required.",
+ "verifyemail": "We send you a verification email",
+ "checkemail": "Check your email"
 
 }
 

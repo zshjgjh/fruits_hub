@@ -19,3 +19,9 @@ final class SigninSuccess extends SigninState {
 final class updateProfileSuccess extends SigninState {
 
 }
+final class LogoutSuccess extends SigninState {
+
+}
+final class ResetPasswordSuccess extends SigninState {
+
+}

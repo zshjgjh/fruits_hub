@@ -165,7 +165,16 @@ class FireAuthService {
     }
   }
 
+  Future<void> sendPasswordResetEmail({required String email}) async {
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+  }
+
+
 
 }
+
+
+
+
 
 

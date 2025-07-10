@@ -285,10 +285,10 @@ class S {
     );
   }
 
-  /// `Don’t worry, just enter your phone number and we’ll send you a verification code.`
+  /// `Don’t worry, just enter your email and we’ll send you a reset link.`
   String get dontworry {
     return Intl.message(
-      'Don’t worry, just enter your phone number and we’ll send you a verification code.',
+      'Don’t worry, just enter your email and we’ll send you a reset link.',
       name: 'dontworry',
       desc: '',
       args: [],
@@ -1461,6 +1461,26 @@ class S {
     return Intl.message(
       'Name is required.',
       name: 'nameRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We send you a verification email`
+  String get verifyemail {
+    return Intl.message(
+      'We send you a verification email',
+      name: 'verifyemail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check your email`
+  String get checkemail {
+    return Intl.message(
+      'Check your email',
+      name: 'checkemail',
       desc: '',
       args: [],
     );

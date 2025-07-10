@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/utilis/save_user_locally.dart';
 import 'package:fruits_hub/core/widgets/build_app_bar.dart';
+import 'package:fruits_hub/features/login_view/presentation/manager/singin_cubit/signin_cubit.dart';
 import 'package:fruits_hub/features/profile_view/presentation/views/payments_view.dart';
 import 'package:fruits_hub/features/profile_view/presentation/views/profile_view.dart';
 import 'package:fruits_hub/features/profile_view/presentation/views/support_view.dart';
@@ -174,7 +176,9 @@ class _MyAccountViewState extends State<MyAccountView> {
                   children: [
                     Text(S.of(context).logout,style: Styles.bold19.copyWith(color: Styles.primaryColor),),
                     Spacer(),
-                    IconButton(onPressed: (){}, icon:Icon(Icons.login_outlined,color: Styles.primaryColor,))
+                    IconButton(onPressed: (){
+                      showLogoutDialog(context);
+                    }, icon:Icon(Icons.login_outlined,color: Styles.primaryColor,))
                   ],
                 ),
               ),
@@ -184,4 +188,80 @@ class _MyAccountViewState extends State<MyAccountView> {
       ),
     );
   }
+}
+void showLogoutDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // زر إغلاق
+              Align(
+                alignment: Alignment.topRight,
+                child: InkWell(
+                  onTap: () => Navigator.pop(context),
+                  child: const Icon(Icons.close, size: 20),
+                ),
+              ),
+              const SizedBox(height: 8),
+              // نص العنوان
+              Text(
+                'هل ترغب في تسجيل الخروج ؟',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 24),
+              // الأزرار
+              Row(
+                children: [
+                  // زر "لا أرغب"
+                  Expanded(
+                    child: OutlinedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      style: OutlinedButton.styleFrom(
+                        side: BorderSide(color: Colors.green),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                      ),
+                      child: Text('لا أرغب', style: TextStyle(color: Colors.green)),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  // زر "تأكيد"
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                       BlocProvider.of<SigninCubit>(context).logOut();
+
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                      ),
+                      child: Text('تأكيد', style: TextStyle(color: Colors.white)),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
 }

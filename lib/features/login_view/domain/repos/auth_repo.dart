@@ -13,4 +13,6 @@ abstract class AuthRepo{
   Future<void> addUserToken({required String path,required String token,required String userId});
   Future<Either<Failure,void>>updateProfile({required String uid, String? name, String? email, String? currentPassword, String? newPassword,});
   Future<Either<Failure, void>> logout();
+  Future<Either<Failure, void>> sendPasswordResetEmail({required String email});
+
 }

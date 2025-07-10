@@ -45,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "cartempty": MessageLookupByLibrary.simpleMessage("Cart is empty"),
     "changepassword": MessageLookupByLibrary.simpleMessage("Change Password"),
     "checkCode": MessageLookupByLibrary.simpleMessage("Check Code"),
+    "checkemail": MessageLookupByLibrary.simpleMessage("Check your email"),
     "chooselanguge": MessageLookupByLibrary.simpleMessage("Choose Language"),
     "city": MessageLookupByLibrary.simpleMessage("City"),
     "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
@@ -73,7 +74,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "discount": MessageLookupByLibrary.simpleMessage("25% off"),
     "dontworry": MessageLookupByLibrary.simpleMessage(
-      "Don’t worry, just enter your phone number and we’ll send you a verification code.",
+      "Don’t worry, just enter your email and we’ll send you a reset link.",
     ),
     "edit": MessageLookupByLibrary.simpleMessage("Edit"),
     "editaddress": MessageLookupByLibrary.simpleMessage("Edit address"),
@@ -302,6 +303,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "unaccountably2": MessageLookupByLibrary.simpleMessage("create account"),
     "us": MessageLookupByLibrary.simpleMessage(
       "Welcome to our restaurant, where authentic flavor meets high quality and exceptional service.\nWe offer a wide variety of dishes carefully prepared with fresh, daily ingredients to provide you with an unforgettable dining experience that satisfies every taste.\n\nWhether you\'re a fan of traditional cuisine or looking for a modern twist on your favorite meals, our kitchen blends authenticity and creativity in every dish.\nWe are committed to creating a comfortable atmosphere and providing top-notch service, because your comfort and satisfaction are our top priorities.\n\n📞 Contact Us\n📍 Address: Riyadh – Al-Nakheel District, Prince Turki Al Awwal Street\n📧 Email: info@tastyrestaurant.com\n📱 Mobile: +966 55 123 4567\n☎️ Landline: +966 11 876 5432\n\n⏰ Opening Hours: Daily from 12:00 PM to 12:00 AM",
+    ),
+    "verifyemail": MessageLookupByLibrary.simpleMessage(
+      "We send you a verification email",
     ),
     "wait": MessageLookupByLibrary.simpleMessage("Waiting"),
     "welcometo": MessageLookupByLibrary.simpleMessage("Welcome to"),
