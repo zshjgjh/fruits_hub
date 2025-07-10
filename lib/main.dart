@@ -10,6 +10,7 @@ import 'package:fruits_hub/core/widgets/build_bottom_bar.dart';
 import 'package:fruits_hub/features/cart_view/presentation/manager/cart_cubit.dart';
 import 'package:fruits_hub/features/home_view/data/models/search_item_model.dart';
 import 'package:fruits_hub/features/home_view/presentation/manager/search_cubit/search_cubit.dart';
+import 'package:fruits_hub/features/profile_view/presentation/manager/favorite_cubit/favorite_cubit.dart';
 import 'package:fruits_hub/features/shipping_view/data/repos_impl/order_repo_impl.dart';
 
 import 'package:hive_flutter/hive_flutter.dart';
@@ -31,6 +32,8 @@ import 'features/home_view/presentation/manager/products_cubit/products_cubit.da
 import 'features/login_view/data/repos_impl/auth_repo_impl.dart';
 import 'features/login_view/presentation/manager/singin_cubit/signin_cubit.dart';
 import 'features/profile_view/data/models/card_model.dart';
+
+import 'features/profile_view/presentation/manager/card_cubit/card_cubit.dart';
 import 'features/profile_view/presentation/views/widgets/language_notifier.dart';
 import 'features/profile_view/presentation/views/widgets/theme_notifier.dart';
 import 'features/shipping_view/presentation/manager/get_orders_cubit/get_orders_cubit.dart';
@@ -101,6 +104,16 @@ void main() async {
         BlocProvider<SearchCubit>(
             create: (context) {
               return SearchCubit();
+            }),
+
+        BlocProvider<CardCubit>(
+            create: (context) {
+              return CardCubit();
+            }),
+
+        BlocProvider<FavoriteCubit>(
+            create: (context) {
+              return FavoriteCubit();
             }),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
 

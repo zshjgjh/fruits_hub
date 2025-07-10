@@ -9,9 +9,9 @@
   "newAccount": "New Account",
   "forgetPassword": "Forget Password",
   "checkCode": "Check Code",
- "enterCode": "Enter Code",
+  "enterCode": "Enter Code",
  "resendcode": "Resend code",
-"phonenumber": "Phone number",
+ "phonenumber": "Phone number",
   "newPassword": "New Password",
   "createpassword": "Create a new password",
   "success": "Success",
@@ -36,7 +36,6 @@
   "bestseller": "Best seller",
   "search":"Search",
   "recentsearch":  "Recent search",
-
   "sortby": "Sort by",
   "price":"Price: " ,
   "to": "to",
@@ -51,12 +50,10 @@
   "submitreview": "Submit Review",
   "rating": "please give rating",
   "writereview": "Write review",
-
   "addtocart": "Add to cart",
   "products": "Products",
   "deleteall": "Delete all",
   "nosearchresult": "No search results",
-
   "cart": "Cart",
   "youhave": "You have",
   "itemsincart": "Items in cart",
@@ -111,7 +108,6 @@
   "general":"General" ,
   "ourproducts": "Our Products",
   "failfetchsearchhistory": "Fail to fetch search history",
-
   "profile": "Profile",
   "personalinformation": "Personal Information",
   "fieldrequired": "This field is required",
@@ -119,7 +115,6 @@
   "confirmnewpassword": "Confirm New Password",
   "changepassword": "Change Password",
   "savechanges": "Save Changes",
-
   "wait": "Waiting",
   "addnewpayment": "+ Add new payment method",
   "addcard": "Add new card",
@@ -127,18 +122,84 @@
   "cardnumber": "Card number",
   "expdate": "Expiration date",
   "cvv": "CVV",
-  "savevirtualcard": "Save as virtual card"
+  "savevirtualcard": "Save as virtual card",
+  "failfetchproducts": "Fail fetch products ..please check internet connection",
+  "failfetchsearchedproducts": "Not found",
+  "cardcheck": "check for cards",
+  "nocards": "No cards are added",
+  "successaddcard": "Success Add Card",
+  "failaddcard": "Fail add card",
+  "successAddCard": "Card added successfully",
+  "failAddCard": "Failed to add card",
+  "invalidCardNumber": "Card number must be exactly 8 digits",
+  "myorders": "My Orders",
+  "nofavorite": "No favorite items founded",
+  "specialoffers": "Special offers",
+  "discount": "25% off",
+ "shopnow": "Shop now",
+ "confirm": "Confirm",
+ "aboitus": "About us",
+ "profileupdatedsuccessfully": "Profile updated successfully.",
+ "confirmyournewpassword.": "Please confirm your new password.",
+ "match": "Password do not match.",
+ "enterCurrentPassword": "Enter Current Password",
+ "cancel": "Cancel",
+ "enteryourcurrentpassword.": "Please enter your current password.",
+ "passwordmustbeatleast6": "Password must be at least 6 characters long.",
+ "us": "Welcome to our restaurant, where authentic flavor meets high quality and exceptional service.\nWe offer a wide variety of dishes carefully prepared with fresh, daily ingredients to provide you with an unforgettable dining experience that satisfies every taste.\n\nWhether you're a fan of traditional cuisine or looking for a modern twist on your favorite meals, our kitchen blends authenticity and creativity in every dish.\nWe are committed to creating a comfortable atmosphere and providing top-notch service, because your comfort and satisfaction are our top priorities.\n\n\uD83D\uDCDE Contact Us\n\uD83D\uDCCD Address: Riyadh – Al-Nakheel District, Prince Turki Al Awwal Street\n\uD83D\uDCE7 Email: info@tastyrestaurant.com\n\uD83D\uDCF1 Mobile: +966 55 123 4567\n☎️ Landline: +966 11 876 5432\n\n⏰ Opening Hours: Daily from 12:00 PM to 12:00 AM",
 
+ "requiredCardName": "Card holder name is required",
+ "shortCardName": "Card holder name is too short",
+ "invalidCardName": "Invalid card holder name",
+ "requiredCardNumber": "Card number is required",
+ "cardNumberDigits": "Card number must be exactly 16 digits",
+ "requiredExpiryDate": "Expiry date is required",
+ "invalidExpiryFormat": "Invalid format, use MM/YY",
+ "invalidExpiryDate": "Invalid expiry date",
+ "cardExpired": "Card has expired",
+ "requiredCVV": "CVV is required",
+ "cvvDigits": "CVV must be exactly 3 digits",
+ "faildeletesearchhistory": "fail delete search history",
 
+ "requiredName": "Name is required.",
+ "shortName": "Name is too short.",
+ "invalidName": "Name contains invalid characters.",
 
+ "requiredEmail": "Email is required.",
+ "invalidEmail": "Please enter a valid email address.",
 
+ "requiredPhone": "Phone number is required.",
+ "invalidPhone": "Please enter a valid phone number.",
 
+ "requiredAddress": "Address is required.",
+ "shortAddress": "Address is too short.",
 
+ "requiredCity": "City is required.",
+ "shortCity": "City name is too short.",
+ "invalidCity": "City contains invalid characters.",
 
+ "requiredFlatNumber": "Flat number is required.",
+ "invalidFlatNumber": "Flat number contains invalid characters.",
 
+ "emailRequired": "Email is required.",
+ "passwordRequired": "Password is required.",
+ "passwordTooShort": "Password must be at least 6 characters.",
 
-
-
-
+ "nameRequired": "Name is required."
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

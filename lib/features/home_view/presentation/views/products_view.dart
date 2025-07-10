@@ -35,7 +35,7 @@ class _ProductsViewState extends State<ProductsView>
     super.initState();
     final cubit = BlocProvider.of<ProductsCubit>(context);
     if (cubit.state is! ProductsSuccess) {
-      cubit.getProducts();
+      cubit.getProducts(context);
     }
   }
 

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/widgets/build_app_bar.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
-import 'package:fruits_hub/features/cart_view/data/entities/cart_entity.dart';
 import 'package:fruits_hub/features/cart_view/presentation/manager/cart_cubit.dart';
 import 'package:fruits_hub/features/cart_view/presentation/views/widgets/cart_item.dart';
 import 'package:fruits_hub/features/shipping_view/presentation/views/shipping_view.dart';
@@ -12,6 +11,7 @@ import '../../../../../core/utilis/styles.dart';
 import '../../../../../generated/assets.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../shipping_view/presentation/views/ship_view_body.dart';
+import '../../../domain/entities/cart_entity.dart';
 
 class CartViewBody extends StatefulWidget {
   const CartViewBody({super.key, required this.cartEntity});

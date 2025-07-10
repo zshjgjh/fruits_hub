@@ -5,6 +5,8 @@ import 'package:fruits_hub/core/widgets/build_app_bar.dart';
 import 'package:fruits_hub/features/profile_view/presentation/views/widgets/order_item.dart';
 import 'package:fruits_hub/features/shipping_view/presentation/views/widgets/order_card.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+import '../../../../generated/l10n.dart';
 import '../../../shipping_view/domain/entity/order_entity.dart';
 import '../../../shipping_view/presentation/manager/get_orders_cubit/get_orders_cubit.dart';
 
@@ -51,7 +53,10 @@ class _MyOrdersViewState extends State<MyOrdersView> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      buildAppBar(context, title: '', isArrowExists: true),
+                      buildAppBar(context, title: S.of(context).myorders,
+                          isArrowExists: true,onPressed: (){
+                            PersistentNavBarNavigator.pop(context);
+                          }),
 
                     ],
                   ),

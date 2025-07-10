@@ -1,5 +1,5 @@
-part of 'card_cubit.dart';
 
+part of 'card_cubit.dart';
 @immutable
 sealed class CardState {}
 

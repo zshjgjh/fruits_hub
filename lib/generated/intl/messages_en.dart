@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "aboitus": MessageLookupByLibrary.simpleMessage("About us"),
     "aboutus": MessageLookupByLibrary.simpleMessage("About us"),
     "addcard": MessageLookupByLibrary.simpleMessage("Add new card"),
     "addnewpayment": MessageLookupByLibrary.simpleMessage(
@@ -32,6 +33,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "agreeterms": MessageLookupByLibrary.simpleMessage("please agree terms"),
     "apple": MessageLookupByLibrary.simpleMessage("Signin with Apple"),
     "bestseller": MessageLookupByLibrary.simpleMessage("Best seller"),
+    "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+    "cardExpired": MessageLookupByLibrary.simpleMessage("Card has expired"),
+    "cardNumberDigits": MessageLookupByLibrary.simpleMessage(
+      "Card number must be exactly 16 digits",
+    ),
+    "cardcheck": MessageLookupByLibrary.simpleMessage("check for cards"),
     "cardholde": MessageLookupByLibrary.simpleMessage("Card holder name"),
     "cardnumber": MessageLookupByLibrary.simpleMessage("Card number"),
     "cart": MessageLookupByLibrary.simpleMessage("Cart"),
@@ -40,6 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "checkCode": MessageLookupByLibrary.simpleMessage("Check Code"),
     "chooselanguge": MessageLookupByLibrary.simpleMessage("Choose Language"),
     "city": MessageLookupByLibrary.simpleMessage("City"),
+    "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
     "confirmnewpassword": MessageLookupByLibrary.simpleMessage(
       "Confirm New Password",
     ),
@@ -55,28 +63,47 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "currentpassword": MessageLookupByLibrary.simpleMessage("Current Password"),
     "cvv": MessageLookupByLibrary.simpleMessage("CVV"),
+    "cvvDigits": MessageLookupByLibrary.simpleMessage(
+      "CVV must be exactly 3 digits",
+    ),
     "deleteall": MessageLookupByLibrary.simpleMessage("Delete all"),
     "delivery": MessageLookupByLibrary.simpleMessage("Delivery"),
     "deliveryonplace": MessageLookupByLibrary.simpleMessage(
       "Delivery on place",
     ),
+    "discount": MessageLookupByLibrary.simpleMessage("25% off"),
     "dontworry": MessageLookupByLibrary.simpleMessage(
       "Don’t worry, just enter your phone number and we’ll send you a verification code.",
     ),
     "edit": MessageLookupByLibrary.simpleMessage("Edit"),
     "editaddress": MessageLookupByLibrary.simpleMessage("Edit address"),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
+    "emailRequired": MessageLookupByLibrary.simpleMessage("Email is required."),
     "enterCode": MessageLookupByLibrary.simpleMessage("Enter Code"),
+    "enterCurrentPassword": MessageLookupByLibrary.simpleMessage(
+      "Enter Current Password",
+    ),
     "enternewaddress": MessageLookupByLibrary.simpleMessage(
       "Enter new address",
     ),
     "expdate": MessageLookupByLibrary.simpleMessage("Expiration date"),
     "facebook": MessageLookupByLibrary.simpleMessage("Signin with Facebook"),
+    "failAddCard": MessageLookupByLibrary.simpleMessage("Failed to add card"),
+    "failaddcard": MessageLookupByLibrary.simpleMessage("Fail add card"),
     "failcompleteorder": MessageLookupByLibrary.simpleMessage(
       "Fail to complete order...please try again later",
     ),
+    "faildeletesearchhistory": MessageLookupByLibrary.simpleMessage(
+      "fail delete search history",
+    ),
     "failfetchorder": MessageLookupByLibrary.simpleMessage(
       "Fail fetch order...please try later",
+    ),
+    "failfetchproducts": MessageLookupByLibrary.simpleMessage(
+      "Fail fetch products ..please check internet connection",
+    ),
+    "failfetchsearchedproducts": MessageLookupByLibrary.simpleMessage(
+      "Not found",
     ),
     "failfetchsearchhistory": MessageLookupByLibrary.simpleMessage(
       "Fail to fetch search history",
@@ -99,6 +126,33 @@ class MessageLookup extends MessageLookupByLibrary {
     "haveaccount": MessageLookupByLibrary.simpleMessage("Have an account?"),
     "hi": MessageLookupByLibrary.simpleMessage("Hi"),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
+    "invalidCardName": MessageLookupByLibrary.simpleMessage(
+      "Invalid card holder name",
+    ),
+    "invalidCardNumber": MessageLookupByLibrary.simpleMessage(
+      "Card number must be exactly 8 digits",
+    ),
+    "invalidCity": MessageLookupByLibrary.simpleMessage(
+      "City contains invalid characters.",
+    ),
+    "invalidEmail": MessageLookupByLibrary.simpleMessage(
+      "Please enter a valid email address.",
+    ),
+    "invalidExpiryDate": MessageLookupByLibrary.simpleMessage(
+      "Invalid expiry date",
+    ),
+    "invalidExpiryFormat": MessageLookupByLibrary.simpleMessage(
+      "Invalid format, use MM/YY",
+    ),
+    "invalidFlatNumber": MessageLookupByLibrary.simpleMessage(
+      "Flat number contains invalid characters.",
+    ),
+    "invalidName": MessageLookupByLibrary.simpleMessage(
+      "Name contains invalid characters.",
+    ),
+    "invalidPhone": MessageLookupByLibrary.simpleMessage(
+      "Please enter a valid phone number.",
+    ),
     "itemscount": MessageLookupByLibrary.simpleMessage("Items Count"),
     "itemsincart": MessageLookupByLibrary.simpleMessage("Items in cart"),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
@@ -106,12 +160,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "login": MessageLookupByLibrary.simpleMessage("Login"),
     "logout": MessageLookupByLibrary.simpleMessage("Logout"),
     "lookfor": MessageLookupByLibrary.simpleMessage("Look for"),
+    "match": MessageLookupByLibrary.simpleMessage("Password do not match."),
     "myaccount": MessageLookupByLibrary.simpleMessage("My account"),
+    "myorders": MessageLookupByLibrary.simpleMessage("My Orders"),
     "myprofile": MessageLookupByLibrary.simpleMessage("My profile"),
     "name": MessageLookupByLibrary.simpleMessage("Name"),
+    "nameRequired": MessageLookupByLibrary.simpleMessage("Name is required."),
     "newAccount": MessageLookupByLibrary.simpleMessage("New Account"),
     "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
     "next": MessageLookupByLibrary.simpleMessage("Next"),
+    "nocards": MessageLookupByLibrary.simpleMessage("No cards are added"),
+    "nofavorite": MessageLookupByLibrary.simpleMessage(
+      "No favorite items founded",
+    ),
     "nosearchresult": MessageLookupByLibrary.simpleMessage("No search results"),
     "notification": MessageLookupByLibrary.simpleMessage("Notifications"),
     "or": MessageLookupByLibrary.simpleMessage("Or"),
@@ -127,6 +188,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "ordersumary": MessageLookupByLibrary.simpleMessage("Order Summary:"),
     "ourproducts": MessageLookupByLibrary.simpleMessage("Our Products"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
+    "passwordRequired": MessageLookupByLibrary.simpleMessage(
+      "Password is required.",
+    ),
+    "passwordTooShort": MessageLookupByLibrary.simpleMessage(
+      "Password must be at least 6 characters.",
+    ),
+    "passwordmustbeatleast6": MessageLookupByLibrary.simpleMessage(
+      "Password must be at least 6 characters long.",
+    ),
     "pay": MessageLookupByLibrary.simpleMessage("Pay"),
     "payment": MessageLookupByLibrary.simpleMessage("payment"),
     "paymentmethod": MessageLookupByLibrary.simpleMessage("Payment Method"),
@@ -141,8 +211,33 @@ class MessageLookup extends MessageLookupByLibrary {
     "price": MessageLookupByLibrary.simpleMessage("Price: "),
     "products": MessageLookupByLibrary.simpleMessage("Products"),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+    "profileupdatedsuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Profile updated successfully.",
+    ),
     "rating": MessageLookupByLibrary.simpleMessage("please give rating"),
     "recentsearch": MessageLookupByLibrary.simpleMessage("Recent search"),
+    "requiredAddress": MessageLookupByLibrary.simpleMessage(
+      "Address is required.",
+    ),
+    "requiredCVV": MessageLookupByLibrary.simpleMessage("CVV is required"),
+    "requiredCardName": MessageLookupByLibrary.simpleMessage(
+      "Card holder name is required",
+    ),
+    "requiredCardNumber": MessageLookupByLibrary.simpleMessage(
+      "Card number is required",
+    ),
+    "requiredCity": MessageLookupByLibrary.simpleMessage("City is required."),
+    "requiredEmail": MessageLookupByLibrary.simpleMessage("Email is required."),
+    "requiredExpiryDate": MessageLookupByLibrary.simpleMessage(
+      "Expiry date is required",
+    ),
+    "requiredFlatNumber": MessageLookupByLibrary.simpleMessage(
+      "Flat number is required.",
+    ),
+    "requiredName": MessageLookupByLibrary.simpleMessage("Name is required."),
+    "requiredPhone": MessageLookupByLibrary.simpleMessage(
+      "Phone number is required.",
+    ),
     "resendcode": MessageLookupByLibrary.simpleMessage("Resend code"),
     "review": MessageLookupByLibrary.simpleMessage("Review"),
     "reviews": MessageLookupByLibrary.simpleMessage("Reviews"),
@@ -161,9 +256,21 @@ class MessageLookup extends MessageLookupByLibrary {
       "Please select shipping option",
     ),
     "shipping": MessageLookupByLibrary.simpleMessage("Shipping"),
+    "shopnow": MessageLookupByLibrary.simpleMessage("Shop now"),
+    "shortAddress": MessageLookupByLibrary.simpleMessage(
+      "Address is too short.",
+    ),
+    "shortCardName": MessageLookupByLibrary.simpleMessage(
+      "Card holder name is too short",
+    ),
+    "shortCity": MessageLookupByLibrary.simpleMessage(
+      "City name is too short.",
+    ),
+    "shortName": MessageLookupByLibrary.simpleMessage("Name is too short."),
     "showmore": MessageLookupByLibrary.simpleMessage("Show more"),
     "skip": MessageLookupByLibrary.simpleMessage("Skip"),
     "sortby": MessageLookupByLibrary.simpleMessage("Sort by"),
+    "specialoffers": MessageLookupByLibrary.simpleMessage("Special offers"),
     "splash1": MessageLookupByLibrary.simpleMessage(
       "Discover a unique shopping experience with FruitHUB. Explore our wide selection of premium fresh fruits and enjoy the best deals and top quality.",
     ),
@@ -174,6 +281,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "submitreview": MessageLookupByLibrary.simpleMessage("Submit Review"),
     "subtotal": MessageLookupByLibrary.simpleMessage("Sub Total"),
     "success": MessageLookupByLibrary.simpleMessage("Success"),
+    "successAddCard": MessageLookupByLibrary.simpleMessage(
+      "Card added successfully",
+    ),
+    "successaddcard": MessageLookupByLibrary.simpleMessage("Success Add Card"),
     "successreview": MessageLookupByLibrary.simpleMessage(
       "Success submit review",
     ),
@@ -189,6 +300,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Don\'t have an account?",
     ),
     "unaccountably2": MessageLookupByLibrary.simpleMessage("create account"),
+    "us": MessageLookupByLibrary.simpleMessage(
+      "Welcome to our restaurant, where authentic flavor meets high quality and exceptional service.\nWe offer a wide variety of dishes carefully prepared with fresh, daily ingredients to provide you with an unforgettable dining experience that satisfies every taste.\n\nWhether you\'re a fan of traditional cuisine or looking for a modern twist on your favorite meals, our kitchen blends authenticity and creativity in every dish.\nWe are committed to creating a comfortable atmosphere and providing top-notch service, because your comfort and satisfaction are our top priorities.\n\n📞 Contact Us\n📍 Address: Riyadh – Al-Nakheel District, Prince Turki Al Awwal Street\n📧 Email: info@tastyrestaurant.com\n📱 Mobile: +966 55 123 4567\n☎️ Landline: +966 11 876 5432\n\n⏰ Opening Hours: Daily from 12:00 PM to 12:00 AM",
+    ),
     "wait": MessageLookupByLibrary.simpleMessage("Waiting"),
     "welcometo": MessageLookupByLibrary.simpleMessage("Welcome to"),
     "writereview": MessageLookupByLibrary.simpleMessage("Write review"),

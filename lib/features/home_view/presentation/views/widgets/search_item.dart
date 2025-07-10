@@ -22,7 +22,7 @@ class _SearchItemState extends State<SearchItem> {
         Image.asset(Assets.imagesClock),
         Text(widget.searchItemModel.title),
         Spacer(),
-        IconButton(onPressed: (){}, icon: Icon(Icons.close))
+        IconButton(onPressed:widget.onPressed, icon: Icon(Icons.close))
       ],);
   }
 }

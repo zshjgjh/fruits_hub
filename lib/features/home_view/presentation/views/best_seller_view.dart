@@ -26,7 +26,7 @@ class _BestSellerViewState extends State<BestSellerView> with AutomaticKeepAlive
     super.initState();
     final cubit = BlocProvider.of<ProductsCubit>(context);
     if (cubit.state is! ProductsSuccess) {
-      cubit.getBestSellingProducts();
+      cubit.getBestSellingProducts(context);
     }
   }
 

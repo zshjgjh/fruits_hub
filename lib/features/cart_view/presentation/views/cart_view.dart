@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/features/cart_view/presentation/manager/cart_cubit.dart';
 import 'package:fruits_hub/features/cart_view/presentation/views/widgets/cart_view_body.dart';
 
-import '../../data/entities/cart_entity.dart';
+import '../../domain/entities/cart_entity.dart';
+
+
 
 class CartView extends StatefulWidget {
   const CartView({super.key});

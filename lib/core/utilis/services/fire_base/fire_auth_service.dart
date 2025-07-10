@@ -1,16 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:fruits_hub/core/errors/server_failure.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class FireAuthService {
-  Future<User> createUserWithEmailAndPassword({required String email, required String password}) async {
+  Future<User> createUserWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
     try {
       final credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
+
+      // ✅ إرسال رابط التحقق إلى بريد المستخدم
+      await credential.user?.sendEmailVerification();
+
       return credential.user!;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -18,12 +26,13 @@ class FireAuthService {
       } else if (e.code == 'email-already-in-use') {
         throw ServerFailure('The account already exists for that email.');
       } else {
-        throw ServerFailure(e.toString());
+        throw ServerFailure(e.message ?? 'Unknown Firebase Auth error.');
       }
     } catch (e) {
       throw ServerFailure(e.toString());
     }
   }
+
 
   Future<User> signinWithEmailAndPassword({required String email, required String password}) async{
     try {
@@ -82,7 +91,8 @@ class FireAuthService {
       // Re-authenticate if needed (email or password change)
       if (hasPasswordChange || email != null) {
         if (currentPassword == null) {
-          throw ServerFailure('You must enter your current password to re-authenticate.');
+          throw ServerFailure(
+              'You must enter your current password to re-authenticate.');
         }
 
         final credential = EmailAuthProvider.credential(
@@ -113,7 +123,6 @@ class FireAuthService {
 
         await userDoc.update(updateData);
       }
-
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
         case 'wrong-password':
@@ -133,7 +142,30 @@ class FireAuthService {
       throw ServerFailure('Failed to update profile: ${e.toString()}');
     }
   }
+  Future<void> logOut() async {
+    try {
+      // Firebase sign out
+      await FirebaseAuth.instance.signOut();
 
+      // Google sign out
+      final googleSignIn = GoogleSignIn();
+      if (await googleSignIn.isSignedIn()) {
+        await googleSignIn.signOut();
+      }
+
+      // Facebook sign out (only if logged in)
+      final accessToken = await FacebookAuth.instance.accessToken;
+      if (accessToken != null) {
+        await FacebookAuth.instance.logOut();
+      }
+
+    } catch (e) {
+      // تأكد أن ServerFailure معرف
+      throw ServerFailure('Failed to sign out: ${e.toString()}');
+    }
+  }
 
 
 }
+
+

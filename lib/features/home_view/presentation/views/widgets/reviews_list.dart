@@ -30,7 +30,7 @@ BlocConsumer<UpdateReviewsCubit, UpdateReviewsState> reviewsList({required Produ
               BlocProvider.of<UpdateReviewsCubit>(context).deleteReviews(reviewEntity:reviews[index]);
               BlocProvider.of<UpdateReviewsCubit>(context).updateReviews();
               BlocProvider.of<ProductsCubit>(context)
-                  .getProducts();
+                  .getProducts(context);
 
         },
         );

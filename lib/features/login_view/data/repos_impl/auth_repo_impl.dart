@@ -120,5 +120,18 @@ class AuthRepoImpl implements AuthRepo{
 
   }
 
+  @override
+  Future<Either<Failure, void>> logout() async {
+    try {
+
+      await fireBaseAuthService.logOut();
+
+      return Right(null);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+
 
 }

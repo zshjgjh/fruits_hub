@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fruits_hub/features/cart_view/data/entities/cart_item_entity.dart';
+
 
 import '../../../../../core/utilis/styles.dart';
 import '../../../../../generated/assets.dart';
+import '../../../domain/entities/cart_item_entity.dart';
 import '../../manager/cart_cubit.dart';
 
 class CartItem extends StatelessWidget {

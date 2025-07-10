@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/utilis/save_user_locally.dart';
 import 'package:fruits_hub/core/widgets/cutom_text-field.dart';
-import 'package:fruits_hub/features/cart_view/data/entities/cart_entity.dart';
-import 'package:fruits_hub/features/home_view/presentation/views/product_detail_view.dart';
+
 import 'package:fruits_hub/features/shipping_view/domain/entity/address_entity.dart';
 import 'package:fruits_hub/features/shipping_view/domain/entity/order_entity.dart';
 import 'package:fruits_hub/features/shipping_view/presentation/views/widgets/custom_switch_tile.dart';
@@ -29,7 +28,7 @@ class AddressView extends StatefulWidget {
 
 class _AddressViewState extends State<AddressView>
     with AutomaticKeepAliveClientMixin {
-  GlobalKey<FormState> key = GlobalKey();
+  final GlobalKey<FormState> key = GlobalKey();
   bool saveAddress = false;
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
@@ -73,77 +72,148 @@ class _AddressViewState extends State<AddressView>
     super.dispose();
   }
 
+  // ========== Validators ==========
+
+  String? validateName(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return S.of(context).requiredName;
+    } else if (value.trim().length < 2) {
+      return S.of(context).shortName;
+    } else if (!RegExp(r'^[a-zA-Z\s]+$').hasMatch(value)) {
+      return S.of(context).invalidName;
+    }
+    return null;
+  }
+
+  String? validateEmail(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return S.of(context).requiredEmail;
+    } else if (!RegExp(
+        r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$') // صيغة بريد إلكتروني بسيطة
+        .hasMatch(value.trim())) {
+      return S.of(context).invalidEmail;
+    }
+    return null;
+  }
+
+  String? validatePhone(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return S.of(context).requiredPhone;
+    } else if (!RegExp(r'^\+?[0-9]{7,15}$').hasMatch(value.trim())) {
+      // يقبل أرقام مع + وعدد بين 7-15 رقم
+      return S.of(context).invalidPhone;
+    }
+    return null;
+  }
+
+  String? validateAddress(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return S.of(context).requiredAddress;
+    } else if (value.trim().length < 5) {
+      return S.of(context).shortAddress;
+    }
+    return null;
+  }
+
+  String? validateCity(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return S.of(context).requiredCity;
+    } else if (value.trim().length < 2) {
+      return S.of(context).shortCity;
+    } else if (!RegExp(r'^[a-zA-Z\s]+$').hasMatch(value.trim())) {
+      return S.of(context).invalidCity;
+    }
+    return null;
+  }
+
+  String? validateFlatNumber(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return S.of(context).requiredFlatNumber;
+    } else if (!RegExp(r'^[a-zA-Z0-9\s\-\/]+$').hasMatch(value.trim())) {
+      // يسمح بحروف وأرقام ومسافات و - /
+      return S.of(context).invalidFlatNumber;
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: BlocConsumer<SetOrdersCubit, SetOrdersState>(
         listener: (context, state) {
           if (state is SetOrderAddressSuccess) {
             addressController.text =
-                BlocProvider.of<SetOrdersCubit>(context).orderEntity.address ??
-                    '';
+                BlocProvider.of<SetOrdersCubit>(context).orderEntity.address ?? '';
             setState(() {});
           }
         },
         builder: (context, state) {
           return Form(
             key: key,
+            autovalidateMode: autovalidateMode,
             child: CustomScrollView(
               slivers: [
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
-                      spacing: 20,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomTextField(
                           labelText: S.of(context).name,
                           controller: nameController,
-                          style:
-                              Styles.bold13.copyWith(color: Color(0xff949D9E)),
-                          textInputType: TextInputType.text,
+                          validator: validateName,
+                          style: Styles.bold13.copyWith(color: const Color(0xff949D9E)),
+                          textInputType: TextInputType.name,
                           maxLines: 1,
                         ),
+                        const SizedBox(height: 16),
                         CustomTextField(
                           labelText: S.of(context).email,
                           controller: emailController,
-                          style:
-                              Styles.bold13.copyWith(color: Color(0xff949D9E)),
-                          textInputType: TextInputType.text,
+                          validator: validateEmail,
+                          style: Styles.bold13.copyWith(color: const Color(0xff949D9E)),
+                          textInputType: TextInputType.emailAddress,
                           maxLines: 1,
                         ),
+                        const SizedBox(height: 16),
                         CustomTextField(
                           labelText: S.of(context).phonenumber,
                           controller: phoneController,
-                          style:
-                              Styles.bold13.copyWith(color: Color(0xff949D9E)),
-                          textInputType: TextInputType.text,
+                          validator: validatePhone,
+                          style: Styles.bold13.copyWith(color: const Color(0xff949D9E)),
+                          textInputType: TextInputType.phone,
                           maxLines: 1,
                         ),
+                        const SizedBox(height: 16),
                         CustomTextField(
                           labelText: S.of(context).address,
                           controller: addressController,
-                          style:
-                              Styles.bold13.copyWith(color: Color(0xff949D9E)),
-                          textInputType: TextInputType.text,
+                          validator: validateAddress,
+                          style: Styles.bold13.copyWith(color: const Color(0xff949D9E)),
+                          textInputType: TextInputType.streetAddress,
                           maxLines: 1,
                         ),
+                        const SizedBox(height: 16),
                         CustomTextField(
                           labelText: S.of(context).city,
                           controller: cityController,
-                          style:
-                              Styles.bold13.copyWith(color: Color(0xff949D9E)),
+                          validator: validateCity,
+                          style: Styles.bold13.copyWith(color: const Color(0xff949D9E)),
                           textInputType: TextInputType.text,
                           maxLines: 1,
                         ),
+                        const SizedBox(height: 16),
                         CustomTextField(
                           labelText: S.of(context).flat,
                           controller: flatNumberController,
-                          style:
-                              Styles.bold13.copyWith(color: Color(0xff949D9E)),
+                          validator: validateFlatNumber,
+                          style: Styles.bold13.copyWith(color: const Color(0xff949D9E)),
                           textInputType: TextInputType.text,
                           maxLines: 2,
                         ),
+                        const SizedBox(height: 16),
                         CustomSwitchTile(
                           title: S.of(context).saveaddress,
                           value: saveAddress,
@@ -183,15 +253,16 @@ class _AddressViewState extends State<AddressView>
                             }
                           },
                         ),
+                        const SizedBox(height: 20),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
                           child: CustomButton(
                             height: 55,
                             title: S.of(context).next,
                             backgroundColor: Styles.primaryColor,
                             borderRadius: 16,
                             titleStyle:
-                                Styles.bold19.copyWith(color: Colors.white),
+                            Styles.bold19.copyWith(color: Colors.white),
                             onPressed: () {
                               if (key.currentState!.validate()) {
                                 key.currentState!.save();
@@ -199,9 +270,9 @@ class _AddressViewState extends State<AddressView>
                                     .orderEntity = OrderEntity(
                                   userID: getUserDataLocally().id,
                                   payCash:
-                                      BlocProvider.of<SetOrdersCubit>(context)
-                                          .orderEntity
-                                          .payCash,
+                                  BlocProvider.of<SetOrdersCubit>(context)
+                                      .orderEntity
+                                      .payCash,
                                   price: BlocProvider.of<CartCubit>(context)
                                       .cartEntity
                                       .calculateTotalPrice(),
@@ -218,7 +289,9 @@ class _AddressViewState extends State<AddressView>
                                 );
                                 widget.onNext();
                               } else {
-                                autovalidateMode = AutovalidateMode.always;
+                                setState(() {
+                                  autovalidateMode = AutovalidateMode.always;
+                                });
                               }
                             },
                           ),
@@ -253,8 +326,7 @@ class _AddressViewState extends State<AddressView>
       String text, Function(String) onChanged) {
     final controller = TextEditingController(text: text);
     onChanged(text); // تعيين القيمة الأولية
-    controller
-        .addListener(() => onChanged(controller.text)); // التحديث عند التغيير
+    controller.addListener(() => onChanged(controller.text));
     return controller;
   }
 }

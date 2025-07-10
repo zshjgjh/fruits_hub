@@ -27,7 +27,7 @@ class _HomeViewBodyState extends State<HomeViewBody>
     super.initState();
     final cubit = BlocProvider.of<ProductsCubit>(context);
     if (cubit.state is! ProductsSuccess) {
-      cubit.getProducts(); // تحميل المنتجات فقط إذا لم تكن محمّلة مسبقاً
+      cubit.getProducts(context); // تحميل المنتجات فقط إذا لم تكن محمّلة مسبقاً
     }
   }
 

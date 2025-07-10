@@ -47,6 +47,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           return S.of(context).fieldrequired;
         }
       },
+
       controller:widget.controller,
       maxLines:widget.maxLines ,
       keyboardType: widget.textInputType,

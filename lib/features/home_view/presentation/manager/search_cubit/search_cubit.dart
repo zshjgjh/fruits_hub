@@ -20,7 +20,7 @@ class SearchCubit extends Cubit<SearchState> {
       searchBox.add(searchItemModel);
       emit(SearchSuccess(searchItems: []));
     } catch (e) {
-      emit(SearchFailure(errorMessage: 'Fail to add to history'));
+      emit(SearchFailure(errorMessage: ''));
     }
   }
 
@@ -36,17 +36,13 @@ class SearchCubit extends Cubit<SearchState> {
     }
   }
 
-  void deleteSearchHistory(context, {required SearchItemModel searchItemModel}) {
+  void deleteAllSearchItems(context) async {
     emit(SearchLoading());
     try {
-      searchItemModel.delete();
-      // هنا جلب القائمة الجديدة بعد الحذف
-      final searchItems = searchBox.values.toList();
-      emit(SearchSuccess(searchItems: searchItems));
+      await searchBox.clear(); // حذف جميع العناصر من صندوق Hive
+      emit(SearchSuccess(searchItems: [])); // إرسال حالة بنجاح مع قائمة فارغة
     } catch (e) {
-      emit(SearchFailure(errorMessage: S
-          .of(context)
-          .failfetchsearchhistory));
+      emit(SearchFailure(errorMessage: S.of(context).faildeletesearchhistory));
     }
   }
 

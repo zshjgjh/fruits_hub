@@ -12,5 +12,5 @@ abstract class AuthRepo{
   Future<UserEntity> getUserData({required String path,required String id});
   Future<void> addUserToken({required String path,required String token,required String userId});
   Future<Either<Failure,void>>updateProfile({required String uid, String? name, String? email, String? currentPassword, String? newPassword,});
-
+  Future<Either<Failure, void>> logout();
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub/core/widgets/build_app_bar.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
-import 'package:fruits_hub/features/cart_view/data/entities/cart_item_entity.dart';
+
 import 'package:fruits_hub/features/home_view/domain/entities/product_entity.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/reviews_view.dart';
 import 'package:fruits_hub/features/home_view/presentation/views/widgets/reviews_view_body.dart';
@@ -14,6 +14,7 @@ import '../../../../core/utilis/styles.dart';
 import '../../../../core/widgets/build_bottom_bar.dart';
 import '../../../../generated/assets.dart';
 import '../../../../generated/l10n.dart';
+import '../../../cart_view/domain/entities/cart_item_entity.dart';
 import '../../../cart_view/presentation/manager/cart_cubit.dart';
 import '../../../cart_view/presentation/views/cart_view.dart';
 

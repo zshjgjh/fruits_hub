@@ -6,9 +6,11 @@ import 'package:fruits_hub/core/widgets/cutom_text-field.dart';
 import 'package:fruits_hub/features/login_view/presentation/manager/singin_cubit/signin_cubit.dart';
 import 'package:fruits_hub/features/profile_view/presentation/views/widgets/custom_edit_field.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import '../../../../core/utilis/styles.dart';
 import '../../../../core/widgets/build_app_bar.dart';
 import '../../../../generated/l10n.dart';
+import '../../../login_view/presentation/views/signin_view.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -47,7 +49,7 @@ class _ProfileViewState extends State<ProfileView> {
           );
         } else if (state is updateProfileSuccess) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("Profile updated successfully.")),
+             SnackBar(content: Text(S.of(context).profileupdatedsuccessfully)),
           );
         }
       },
@@ -116,7 +118,7 @@ class _ProfileViewState extends State<ProfileView> {
 
                               // Add your password validation rules here, e.g. minimum length
                               if (value.length < 6) {
-                                return 'Password must be at least 6 characters long.';
+                                return S.of(context).passwordmustbeatleast6;
                               }
 
                               // Add other validation rules as needed
@@ -141,10 +143,10 @@ class _ProfileViewState extends State<ProfileView> {
                                 return null;
                               }
                               if (value == null || value.isEmpty) {
-                                return 'Please confirm your new password.';
+                                return S.of(context).confirmnewpassword;
                               }
                               if (value != newPassword) {
-                                return 'Passwords do not match.';
+                                return S.of(context).match;
                               }
                               return null;
                             },
@@ -168,7 +170,7 @@ class _ProfileViewState extends State<ProfileView> {
                                     String? currentPassword;
                                     return AlertDialog(
                                       title:
-                                          const Text('Enter Current Password'),
+                                           Text(S.of(context).enterCurrentPassword),
                                       content: CustomTextField(
                                         hiddenText: true,
                                         labelText:
@@ -181,7 +183,7 @@ class _ProfileViewState extends State<ProfileView> {
                                         TextButton(
                                           onPressed: () =>
                                               Navigator.pop(context),
-                                          child: const Text('Cancel'),
+                                          child:  Text(S.of(context).cancel),
                                         ),
                                         TextButton(
                                           onPressed: () {
@@ -189,9 +191,9 @@ class _ProfileViewState extends State<ProfileView> {
                                                 currentPassword!.isEmpty) {
                                               ScaffoldMessenger.of(context)
                                                   .showSnackBar(
-                                                const SnackBar(
+                                                SnackBar(
                                                   content: Text(
-                                                      'Please enter your current password.'),
+                                                      S.of(context).enterCurrentPassword),
                                                 ),
                                               );
                                               return;
@@ -210,8 +212,12 @@ class _ProfileViewState extends State<ProfileView> {
                                               name: name?.trim(),
                                               email: email?.trim(),
                                             );
+                                            Navigator.pop(context);
+                                            BlocProvider.of<SigninCubit>(
+                                                context).logOut();
+
                                           },
-                                          child: const Text('Confirm'),
+                                          child:  Text( S.of(context).confirm),
                                         ),
                                       ],
                                     );

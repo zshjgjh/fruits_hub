@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fruits_hub/features/cart_view/data/entities/cart_item_entity.dart';
+
 import 'package:fruits_hub/features/home_view/presentation/views/product_detail_view.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 import '../../../../../generated/l10n.dart';
+import '../../../../cart_view/domain/entities/cart_item_entity.dart';
 import '../../../domain/entities/product_entity.dart';
 import '../../manager/products_cubit/products_cubit.dart';
 import '../best_seller_view.dart';
 import 'our_product_item.dart';
 
 BlocBuilder<ProductsCubit, ProductsState> ourProductsBlocBuilder(context) {
-  BlocProvider.of<ProductsCubit>(context).getOurProducts();
+  BlocProvider.of<ProductsCubit>(context).getOurProducts(context);
   return BlocBuilder<ProductsCubit, ProductsState>(
     builder: (context, state) {
       if(state is ProductsSuccess) {

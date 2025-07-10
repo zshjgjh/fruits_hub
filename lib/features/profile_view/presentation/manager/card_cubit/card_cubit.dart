@@ -3,9 +3,12 @@ import 'package:fruits_hub/core/utilis/constants.dart';
 import 'package:hive/hive.dart';
 import 'package:meta/meta.dart';
 
-import '../../data/models/card_model.dart';
-
+import '../../../data/models/card_model.dart';
 part 'card_state.dart';
+
+
+
+
 var cardBox = Hive.box<CardModel>(kCards);
 class CardCubit extends Cubit<CardState> {
   CardCubit() : super(CardInitial());
@@ -31,13 +34,5 @@ class CardCubit extends Cubit<CardState> {
     }
   }
 
-  void deleteCard({required CardModel card})   {
-    emit(CardLoading());
-    try {
-      cardBox.delete(card);
-      emit(CardSuccess(cards: []));
-    } catch (e) {
-      emit(CardFailure(errorMessage: ''));
-    }
-  }
+
 }

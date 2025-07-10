@@ -3,6 +3,7 @@ import 'package:fruits_hub/core/utilis/save_user_locally.dart';
 import 'package:fruits_hub/core/widgets/build_app_bar.dart';
 import 'package:fruits_hub/features/profile_view/presentation/views/payments_view.dart';
 import 'package:fruits_hub/features/profile_view/presentation/views/profile_view.dart';
+import 'package:fruits_hub/features/profile_view/presentation/views/support_view.dart';
 import 'package:fruits_hub/features/profile_view/presentation/views/widgets/account_item.dart';
 import 'package:fruits_hub/features/profile_view/presentation/views/widgets/language_notifier.dart';
 import 'package:fruits_hub/features/profile_view/presentation/views/widgets/switc_item.dart';
@@ -13,6 +14,7 @@ import 'package:provider/provider.dart';
 import '../../../../core/utilis/styles.dart';
 import '../../../../generated/assets.dart';
 import '../../../../generated/l10n.dart';
+import 'favorite_view.dart';
 import 'my_orders_view.dart';
 
 class MyAccountView extends StatefulWidget {
@@ -94,14 +96,17 @@ class _MyAccountViewState extends State<MyAccountView> {
                       PageTransitionAnimation.cupertino,
                     );
                   }),
-                  AccountItem(title: S.of(context).favorite, image: Assets.imagesHeart,onPressed: (){}),
+                  AccountItem(title: S.of(context).favorite, image: Assets.imagesHeart,onPressed: (){
+                    PersistentNavBarNavigator.pushNewScreen(
+                      context,
+                      screen: const FavoritesView(),
+                      withNavBar: true,
+                      pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                    );
+                  }),
                  SwitchItem(title: S.of(context).notification, image:Assets.imagesNotifications,
                    value: themeValue,
-                   onChanged: (bool val) {
-                   themeValue=val;
-                   setState(() {
-
-                   });}, ),
+                   onChanged: (bool val) {}),
                   AccountItem(title:S.of(context).language, image: Assets.imagesGlobal,onPressed: (){
                     showDialog(
                       context: context,
@@ -140,7 +145,15 @@ class _MyAccountViewState extends State<MyAccountView> {
                     setState(() {
 
                     });},),
-                  AccountItem(title: S.of(context).aboutus, image: Assets.imagesInfocircle,onPressed: (){}),
+                  AccountItem(title: S.of(context).aboutus, image: Assets.imagesInfocircle,onPressed: (){
+                    PersistentNavBarNavigator.pushNewScreen(
+                      context,
+                      screen: const SupportView(),
+                      withNavBar: true,
+                      pageTransitionAnimation:
+                      PageTransitionAnimation.cupertino,
+                    );
+                  }),
                   Text(S.of(context).support,style: Styles.bold19,),
                   SizedBox(
                     height: 20,

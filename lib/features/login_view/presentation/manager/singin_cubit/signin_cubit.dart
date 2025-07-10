@@ -62,4 +62,17 @@ class SigninCubit extends Cubit<SigninState> {
             emit(updateProfileSuccess());
           });
   }
+
+
+  Future<void> logOut() async {
+    emit(SigninLoading());
+    var result= await authRepo.logout();
+    result.fold(
+            (failure){
+          emit(SigninFailure(errorMessage: failure.errorMessage));
+        },
+            (r){
+
+        });
+  }
 }

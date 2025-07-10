@@ -6,7 +6,7 @@ import 'package:meta/meta.dart';
 
 import '../../../../../core/errors/server_failure.dart';
 
-part 'signin_state.dart';
+part 'signup_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit({required this.authRepo}) : super(SignUpInitial());
@@ -23,6 +23,5 @@ class SignUpCubit extends Cubit<SignUpState> {
               emit(SignUpSuccess(userEntity));
             });
   }
-
 
 }

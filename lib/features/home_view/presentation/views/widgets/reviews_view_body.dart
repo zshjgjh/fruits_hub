@@ -131,7 +131,7 @@ class _ReviewsViewState extends State<ReviewsViewBody> {
                                     BlocProvider.of<UpdateReviewsCubit>(context)
                                         .updateReviews();
                                     BlocProvider.of<ProductsCubit>(context)
-                                        .getProducts();
+                                        .getProducts(context);
                                         controller.clear();
                                   } else {
                                     autovalidateMode = AutovalidateMode.always;

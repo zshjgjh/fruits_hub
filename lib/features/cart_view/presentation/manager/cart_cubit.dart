@@ -2,7 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:fruits_hub/features/home_view/domain/entities/product_entity.dart';
 import 'package:meta/meta.dart';
 
-import '../../data/entities/cart_entity.dart';
+import '../../domain/entities/cart_entity.dart';
+
+
 
 part 'cart_state.dart';
 

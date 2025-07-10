@@ -971,6 +971,500 @@ class S {
       args: [],
     );
   }
+
+  /// `Fail fetch products ..please check internet connection`
+  String get failfetchproducts {
+    return Intl.message(
+      'Fail fetch products ..please check internet connection',
+      name: 'failfetchproducts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not found`
+  String get failfetchsearchedproducts {
+    return Intl.message(
+      'Not found',
+      name: 'failfetchsearchedproducts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `check for cards`
+  String get cardcheck {
+    return Intl.message(
+      'check for cards',
+      name: 'cardcheck',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No cards are added`
+  String get nocards {
+    return Intl.message(
+      'No cards are added',
+      name: 'nocards',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Success Add Card`
+  String get successaddcard {
+    return Intl.message(
+      'Success Add Card',
+      name: 'successaddcard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fail add card`
+  String get failaddcard {
+    return Intl.message(
+      'Fail add card',
+      name: 'failaddcard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card added successfully`
+  String get successAddCard {
+    return Intl.message(
+      'Card added successfully',
+      name: 'successAddCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to add card`
+  String get failAddCard {
+    return Intl.message(
+      'Failed to add card',
+      name: 'failAddCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card number must be exactly 8 digits`
+  String get invalidCardNumber {
+    return Intl.message(
+      'Card number must be exactly 8 digits',
+      name: 'invalidCardNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Orders`
+  String get myorders {
+    return Intl.message('My Orders', name: 'myorders', desc: '', args: []);
+  }
+
+  /// `No favorite items founded`
+  String get nofavorite {
+    return Intl.message(
+      'No favorite items founded',
+      name: 'nofavorite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Special offers`
+  String get specialoffers {
+    return Intl.message(
+      'Special offers',
+      name: 'specialoffers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `25% off`
+  String get discount {
+    return Intl.message('25% off', name: 'discount', desc: '', args: []);
+  }
+
+  /// `Shop now`
+  String get shopnow {
+    return Intl.message('Shop now', name: 'shopnow', desc: '', args: []);
+  }
+
+  /// `Confirm`
+  String get confirm {
+    return Intl.message('Confirm', name: 'confirm', desc: '', args: []);
+  }
+
+  /// `About us`
+  String get aboitus {
+    return Intl.message('About us', name: 'aboitus', desc: '', args: []);
+  }
+
+  /// `Profile updated successfully.`
+  String get profileupdatedsuccessfully {
+    return Intl.message(
+      'Profile updated successfully.',
+      name: 'profileupdatedsuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  // skipped getter for the 'confirmyournewpassword.' key
+
+  /// `Password do not match.`
+  String get match {
+    return Intl.message(
+      'Password do not match.',
+      name: 'match',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Current Password`
+  String get enterCurrentPassword {
+    return Intl.message(
+      'Enter Current Password',
+      name: 'enterCurrentPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message('Cancel', name: 'cancel', desc: '', args: []);
+  }
+
+  // skipped getter for the 'enteryourcurrentpassword.' key
+
+  /// `Password must be at least 6 characters long.`
+  String get passwordmustbeatleast6 {
+    return Intl.message(
+      'Password must be at least 6 characters long.',
+      name: 'passwordmustbeatleast6',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome to our restaurant, where authentic flavor meets high quality and exceptional service.\nWe offer a wide variety of dishes carefully prepared with fresh, daily ingredients to provide you with an unforgettable dining experience that satisfies every taste.\n\nWhether you're a fan of traditional cuisine or looking for a modern twist on your favorite meals, our kitchen blends authenticity and creativity in every dish.\nWe are committed to creating a comfortable atmosphere and providing top-notch service, because your comfort and satisfaction are our top priorities.\n\n📞 Contact Us\n📍 Address: Riyadh – Al-Nakheel District, Prince Turki Al Awwal Street\n📧 Email: info@tastyrestaurant.com\n📱 Mobile: +966 55 123 4567\n☎️ Landline: +966 11 876 5432\n\n⏰ Opening Hours: Daily from 12:00 PM to 12:00 AM`
+  String get us {
+    return Intl.message(
+      'Welcome to our restaurant, where authentic flavor meets high quality and exceptional service.\nWe offer a wide variety of dishes carefully prepared with fresh, daily ingredients to provide you with an unforgettable dining experience that satisfies every taste.\n\nWhether you\'re a fan of traditional cuisine or looking for a modern twist on your favorite meals, our kitchen blends authenticity and creativity in every dish.\nWe are committed to creating a comfortable atmosphere and providing top-notch service, because your comfort and satisfaction are our top priorities.\n\n📞 Contact Us\n📍 Address: Riyadh – Al-Nakheel District, Prince Turki Al Awwal Street\n📧 Email: info@tastyrestaurant.com\n📱 Mobile: +966 55 123 4567\n☎️ Landline: +966 11 876 5432\n\n⏰ Opening Hours: Daily from 12:00 PM to 12:00 AM',
+      name: 'us',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card holder name is required`
+  String get requiredCardName {
+    return Intl.message(
+      'Card holder name is required',
+      name: 'requiredCardName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card holder name is too short`
+  String get shortCardName {
+    return Intl.message(
+      'Card holder name is too short',
+      name: 'shortCardName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid card holder name`
+  String get invalidCardName {
+    return Intl.message(
+      'Invalid card holder name',
+      name: 'invalidCardName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card number is required`
+  String get requiredCardNumber {
+    return Intl.message(
+      'Card number is required',
+      name: 'requiredCardNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card number must be exactly 16 digits`
+  String get cardNumberDigits {
+    return Intl.message(
+      'Card number must be exactly 16 digits',
+      name: 'cardNumberDigits',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expiry date is required`
+  String get requiredExpiryDate {
+    return Intl.message(
+      'Expiry date is required',
+      name: 'requiredExpiryDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid format, use MM/YY`
+  String get invalidExpiryFormat {
+    return Intl.message(
+      'Invalid format, use MM/YY',
+      name: 'invalidExpiryFormat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid expiry date`
+  String get invalidExpiryDate {
+    return Intl.message(
+      'Invalid expiry date',
+      name: 'invalidExpiryDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card has expired`
+  String get cardExpired {
+    return Intl.message(
+      'Card has expired',
+      name: 'cardExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CVV is required`
+  String get requiredCVV {
+    return Intl.message(
+      'CVV is required',
+      name: 'requiredCVV',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CVV must be exactly 3 digits`
+  String get cvvDigits {
+    return Intl.message(
+      'CVV must be exactly 3 digits',
+      name: 'cvvDigits',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `fail delete search history`
+  String get faildeletesearchhistory {
+    return Intl.message(
+      'fail delete search history',
+      name: 'faildeletesearchhistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name is required.`
+  String get requiredName {
+    return Intl.message(
+      'Name is required.',
+      name: 'requiredName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name is too short.`
+  String get shortName {
+    return Intl.message(
+      'Name is too short.',
+      name: 'shortName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name contains invalid characters.`
+  String get invalidName {
+    return Intl.message(
+      'Name contains invalid characters.',
+      name: 'invalidName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email is required.`
+  String get requiredEmail {
+    return Intl.message(
+      'Email is required.',
+      name: 'requiredEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid email address.`
+  String get invalidEmail {
+    return Intl.message(
+      'Please enter a valid email address.',
+      name: 'invalidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone number is required.`
+  String get requiredPhone {
+    return Intl.message(
+      'Phone number is required.',
+      name: 'requiredPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid phone number.`
+  String get invalidPhone {
+    return Intl.message(
+      'Please enter a valid phone number.',
+      name: 'invalidPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address is required.`
+  String get requiredAddress {
+    return Intl.message(
+      'Address is required.',
+      name: 'requiredAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address is too short.`
+  String get shortAddress {
+    return Intl.message(
+      'Address is too short.',
+      name: 'shortAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `City is required.`
+  String get requiredCity {
+    return Intl.message(
+      'City is required.',
+      name: 'requiredCity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `City name is too short.`
+  String get shortCity {
+    return Intl.message(
+      'City name is too short.',
+      name: 'shortCity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `City contains invalid characters.`
+  String get invalidCity {
+    return Intl.message(
+      'City contains invalid characters.',
+      name: 'invalidCity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Flat number is required.`
+  String get requiredFlatNumber {
+    return Intl.message(
+      'Flat number is required.',
+      name: 'requiredFlatNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Flat number contains invalid characters.`
+  String get invalidFlatNumber {
+    return Intl.message(
+      'Flat number contains invalid characters.',
+      name: 'invalidFlatNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email is required.`
+  String get emailRequired {
+    return Intl.message(
+      'Email is required.',
+      name: 'emailRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password is required.`
+  String get passwordRequired {
+    return Intl.message(
+      'Password is required.',
+      name: 'passwordRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must be at least 6 characters.`
+  String get passwordTooShort {
+    return Intl.message(
+      'Password must be at least 6 characters.',
+      name: 'passwordTooShort',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name is required.`
+  String get nameRequired {
+    return Intl.message(
+      'Name is required.',
+      name: 'nameRequired',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
